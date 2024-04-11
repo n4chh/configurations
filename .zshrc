@@ -30,6 +30,10 @@ export PATH="$HOME/.config/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 # BINARIOS CARGO
 export PATH="$PATH:$HOME/.cargo/bin"
+# BINARIOS PYTHON
+export PATH="$PATH:$HOME/.local/bin"
+# BINARIOS RVM
+export PATH="$PATH:$HOME/.rvm/bin"
 # alias
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -45,9 +49,9 @@ alias l='lsd -F --group-dirs=first'
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 # Colores zsh
-ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=#15E0ED,underline
-ZSH_HIGHLIGHT_STYLES[precommand]=fg=#15E0ED,underline
-ZSH_HIGHLIGHT_STYLES[arg0]=fg=#15E0ED
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=#0069ff,underline
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=#0069ff,underline
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=#0069ff
 #####################################################
 # Auto completion / suggestion
 # Mixing zsh-autocomplete and zsh-autosuggestions
@@ -109,3 +113,6 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

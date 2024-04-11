@@ -1,26 +1,30 @@
 function settarget() {
   if [ -n "$2"  ]; then
     if [[ "$2" == '-l' ]]; then 
-      echo "$1" > ./.target.txt
-      export TARGET="$(cat ./.target.txt)"
+      echo "$1" > ./.targetip.txt
+      export TARGET="$(cat ./.targetip.txt)"
     elif [[ "$1" == '-l' ]]; then
-      echo "$2" > ./.target.txt
-      export TARGET="$(cat ./.target.txt)"
+      echo "$2" > ./.targetip.txt
+      export TARGET="$(cat ./.targetip.txt)"
     else
       echo "Wrong input" 1>&2
     fi
   else
-    echo "$1" > /home/parrot/.local/target.txt
+    echo "$1" > /home/parrot/.local/.targetip.txt
     if [[ `pwd` =~ .*"/$1" ]]; then 
       echo "$(pwd)/$1" > /home/parrot/.local/targetdir.txt
     else
       echo '' > /home/parrot/.local/targetdir.txt
     fi
-    export TARGET="$(cat /home/parrot/.local/target.txt)"
+    export TARGET="$(cat /home/parrot/.local/.targetip.txt)"
     export TARGETDIR="$(cat /home/parrot/.local/targetdir.txt)"
   fi
 }
 
+function getports () {
+        export PORTS=$(cat allports_tcp | grep Ports | tail -n 1  | awk '{for (i=4; i < NF - 3; i++) printf $i}' | sed 's/\/\/\//\n/g' | tr -s ':,' '/' | cut -d '/' -f 2 | xargs | tr -s ' ' ',') 
+        echo "Sourced ports: $PORTS"
+}
 function cdtarget() {
   if [[ -d $TARGETDIR ]];then
     cd $TARGETDIR
@@ -30,18 +34,31 @@ function cdtarget() {
 }
 
 function cleartarget() {
-  echo "$1" > /home/parrot/.local/target.txt
-  export TARGET="$(cat /home/parrot/.local/target.txt)"
+  echo "$1" > /home/parrot/.local/.targetip.txt
+  export TARGET="$(cat /home/parrot/.local/.targetip.txt)"
 }
 
+
 function setdn() {
-  echo "$1" > /home/parrot/.local/dn.txt
-  export DN="$(cat /home/parrot/.local/dn.txt)"
+  if [ -n "$2"  ]; then
+    if [[ "$2" == '-l' ]]; then
+      echo "$1" > ./.targetdn.txt
+      export DN="$(cat ./.targetdn.txt)"
+    elif [[ "$1" == '-l' ]]; then
+      echo "$2" > ./.targetdn.txt
+      export DN="$(cat ./.targetdn.txt)"
+    else
+      echo "Wrong input" 1>&2
+    fi
+  else
+    echo "$1" > /home/parrot/.local/.targetdn.txt
+    export DN="$(cat /home/parrot/.local/.targetdn.txt)"
+  fi
 }
 
 function cleardn() {
-  echo "$1" > /home/parrot/.local/dn.txt
-  export DN="$(cat /home/parrot/.local/dn.txt)"
+  echo "$1" > /home/parrot/.local/.targetdn.txt
+  export DN="$(cat /home/parrot/.local/.targetdn.txt)"
 }
 
 function setws() {
