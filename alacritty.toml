@@ -19,8 +19,8 @@ white = "#ffffff"
 yellow = "#ffb900"
 
 [colors.primary]
-foreground = "#ffffff"
-background = "#181c24"
+foreground = "#00ff00"
+background = "#080c14"
 
 [cursor]
 thickness = 0.05
@@ -37,12 +37,12 @@ size = 14.0
 
 [font.bold]
 # family = "CaskaydiaCove Nerd Font Propo"
-family = "SFMono Nerd Font"
+family = "Hack Nerd Font Propo"
 style = "Bold"
 
 [font.bold_italic]
 # family = "CaskaydiaCove Nerd Font Propo"
-family = "SFMono Nerd Font"
+family = "Hack Nerd Font Propo"
 style = "Bold Italic"
 
 [font.glyph_offset]
@@ -51,12 +51,12 @@ y = 0
 
 [font.italic]
 # family = "CaskaydiaCove Nerd Font Propo"
-family = "SFMono Nerd Font"
+family = "Hack Nerd Font Propo"
 style = "Italic"
 
 [font.normal]
 # family = "CaskaydiaCove Nerd Font Propo"
-family = "SFMono Nerd Font"
+family = "Hack Nerd Font Propo"
 style = "Regular"
 
 [font.offset]
@@ -65,10 +65,12 @@ y = 0
 
 [shell]
 args = ["--login"]
-program = "/bin/zsh"
+program = "/usr/bin/zsh"
 
 [window]
 opacity = 0.97
+dimensions = {columns = 110, lines = 28}
+
 
 [window.padding]
 x = 15

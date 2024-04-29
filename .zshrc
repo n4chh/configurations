@@ -24,6 +24,8 @@ export VISUAL=nvim
 #
 # Export PATH$
 export PATH=~/.local/bin:/snap/bin:/usr/sandbox/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/opt/bin:/opt/nvim-linux64/bin:$PATH
+#Binarios go
+export PATH=$PATH:$HOME/go/bin
 # BINARIOS PROPIOS
 export PATH="$HOME/.config/bin:$PATH"
 # BINARIOS YARN
@@ -49,9 +51,9 @@ alias l='lsd -F --group-dirs=first'
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 # Colores zsh
-ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=#0069ff,underline
-ZSH_HIGHLIGHT_STYLES[precommand]=fg=#0069ff,underline
-ZSH_HIGHLIGHT_STYLES[arg0]=fg=#0069ff
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=#00e1ff,underline
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=#00e1ff,underline
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=#00e1ff
 #####################################################
 # Auto completion / suggestion
 # Mixing zsh-autocomplete and zsh-autosuggestions
