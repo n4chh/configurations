@@ -24,10 +24,18 @@ export VISUAL=nvim
 #
 # Export PATH$
 export PATH=~/.local/bin:/snap/bin:/usr/sandbox/:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/share/games:/usr/local/sbin:/usr/sbin:/sbin:/opt/bin:/opt/nvim-linux64/bin:$PATH
+#Binarios go
+export PATH=$PATH:$HOME/go/bin
 # BINARIOS PROPIOS
 export PATH="$HOME/.config/bin:$PATH"
 # BINARIOS YARN
 export PATH="$HOME/.yarn/bin:$PATH"
+# BINARIOS CARGO
+export PATH="$PATH:$HOME/.cargo/bin"
+# BINARIOS PYTHON
+export PATH="$PATH:$HOME/.local/bin"
+# BINARIOS RVM
+export PATH="$PATH:$HOME/.rvm/bin"
 # alias
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -40,6 +48,12 @@ alias ll='lsd -lhF --group-dirs=first'
 alias la='lsd -laF --group-dirs=first'
 alias l='lsd -F --group-dirs=first'
 
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+# Colores zsh
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=#2777ff,underline
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=#2777ff,underline
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=#2777ff
 #####################################################
 # Auto completion / suggestion
 # Mixing zsh-autocomplete and zsh-autosuggestions
@@ -58,8 +72,6 @@ bindkey $key[Up] up-line-or-history
 bindkey $key[Down] down-line-or-history
 
 
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # Save type history for completion and easier life
 HISTFILE=~/.zsh_history
@@ -103,3 +115,6 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

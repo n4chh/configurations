@@ -31,13 +31,10 @@
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     os_icon                 # os identifier
+    # htb_icon
     # dir                     # current directory
-    vcs                     # git status
     # context
-    userws
-    # vpn
     target
-    status
     prompt_char             # prompt symbol
   )
 
@@ -46,7 +43,11 @@
   # automatically hidden when the input line reaches it. Right prompt above the
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+    status
+    vcs                     # git status
     dir
+    # userws
+    vpn
     # status                  # exit code of the last command
     # command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
@@ -58,7 +59,7 @@
     goenv                   # go environment (https://github.com/syndbg/goenv)
     nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
     nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
-    nodeenv                 # node.js environment (https://github.com/eparrotnin/nodeenv)
+    nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
     # node_version          # node.js version
     # go_version            # go version (https://golang.org)
     # rust_version          # rustc version (https://www.rust-lang.org)
@@ -162,7 +163,7 @@
   # POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR=' ' below.
   typeset -g POWERLEVEL9K_SHOW_RULER=false
   typeset -g POWERLEVEL9K_RULER_CHAR='─'        # reasonable alternative: '·'
-  typeset -g POWERLEVEL9K_RULER_FOREGROUND=242
+  typeset -g POWERLEVEL9K_RULER_FOREGROUND=#6a6a6a
 
   # Filler between left and right prompt on the first prompt line. You can set it to '·' or '─'
   # to make it easier to see the alignment between left and right prompt and to separate prompt
@@ -173,7 +174,7 @@
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR=' '
   if [[ $POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR != ' ' ]]; then
     # The color of the filler.
-    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND=242
+    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND=#6a6a6a
     # Add a space between the end of left prompt and the filler.
     typeset -g POWERLEVEL9K_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=' '
     # Add a space between the filler and the start of right prompt.
@@ -186,16 +187,17 @@
 
   #################################[ os_icon: os identifier ]##################################
   # OS identifier color. #4f90ff
-  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND='#6a6a6a'
+  # typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND='#6a6a6a'
+  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND="#2777ff"
   # Custom icon.
   # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='⭐'
-  typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION=''
+  # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='󰀵'
+  typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION=' '
 
   ################################[ prompt_char: prompt symbol ]################################
   # Green prompt symbol if the last command succeeded.
-  #
-  # typeset -g POWERLEVEL8K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=84
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND='#F0F0F0'
+  # '#80ff7f'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND='#6a6a6a'
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=1
   # Default prompt symbol.
@@ -214,17 +216,17 @@
 
   ##################################[ dir: current directory ]##################################
   # Default current directory color.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=#ffe060
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=11
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
   # Replace removed segment suffixes with this symbol.
   typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=
   # Color of the shortened directory segments.
-  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=#EFEF6F
+  typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=3
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=#efefaf
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=7
   # Display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -271,7 +273,7 @@
   # directory will be shortened only when prompt doesn't fit or when other parameters demand it
   # (see POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS and POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS_PCT below).
   # If set to `0`, directory will always be shortened to its minimum length.
-  typeset -g POWERLEVEL9K_DIR_MAX_LENGTH=20
+  typeset -g POWERLEVEL9K_DIR_MAX_LENGTH=10
   # When `dir` segment is on the last prompt line, try to shorten it enough to leave at least this
   # many columns for typing commands.
   typeset -g POWERLEVEL9K_DIR_MIN_COMMAND_COLUMNS=40
@@ -309,20 +311,20 @@
   #
     
     typeset -g POWERLEVEL9K_DIR_CLASSES=(
-      "/home/parrot/htb(|/*)"    HTB      '󰆧'
+      "/home/kali/htb(|/*)"    HTB      '󰆧'
       '~(|/*)'       HOME     '󱂵'
       '*'            DEFAULT  '')
-    typeset -g POWERLEVEL9K_DIR_HOME_FOREGROUND=#5070EF
-    typeset -g POWERLEVEL9K_DIR_HOME_ANCHOR_FOREGROUND=#AFEFeF
-    typeset -g POWERLEVEL9K_DIR_HOME_SHORTENED_FOREGROUND=#20a0bF
+    typeset -g POWERLEVEL9K_DIR_HOME_FOREGROUND=#2777ff
+    typeset -g POWERLEVEL9K_DIR_HOME_ANCHOR_FOREGROUND=7
+    typeset -g POWERLEVEL9K_DIR_HOME_SHORTENED_FOREGROUND=#3797ff
   #
     typeset -g POWERLEVEL9K_DIR_HTB_FOREGROUND=#9FEF00
-    typeset -g POWERLEVEL9K_DIR_HTB_ANCHOR_FOREGROUND=#AFEF7F
-    typeset -g POWERLEVEL9K_DIR_HTB_SHORTENED_FOREGROUND=#0FEF7F
+    typeset -g POWERLEVEL9K_DIR_HTB_ANCHOR_FOREGROUND=7
+    typeset -g POWERLEVEL9K_DIR_HTB_SHORTENED_FOREGROUND=#afef00
   #
-    typeset -g POWERLEVEL9K_DIR_DEFAULT_NOT_WRITABLE_FOREGROUND=#ff6060
-    typeset -g POWERLEVEL9K_DIR_DEFAULT_NOT_WRITABLE_ANCHOR_FOREGROUND=#efb0bf
-    typeset -g POWERLEVEL9K_DIR_DEFAULT_NOT_WRITABLE_SHORTENED_FOREGROUND=#EF9F9F
+    typeset -g POWERLEVEL9K_DIR_DEFAULT_NOT_WRITABLE_FOREGROUND=1
+    typeset -g POWERLEVEL9K_DIR_DEFAULT_NOT_WRITABLE_ANCHOR_FOREGROUND=7
+    typeset -g POWERLEVEL9K_DIR_DEFAULT_NOT_WRITABLE_SHORTENED_FOREGROUND=9
   # Whenever the current directory is ~/work or a subdirectory of ~/work, it gets styled with one
   # of the following classes depending on its writability and existence: WORK, WORK_NOT_WRITABLE or
   # WORK_NON_EXISTENT.
@@ -386,10 +388,10 @@
     if (( $1 )); then
       # Styling for up-to-date Git status.
       local       meta='%f'     # default foreground
-      local      clean='%76F'   # green foreground
-      local   modified='%178F'  # yellow foreground
-      local  untracked='%39F'   # blue foreground
-      local conflicted='%196F'  # red foreground
+      local      clean='%10F'   # green foreground
+      local   modified='%11F'  # yellow foreground
+      local  untracked='%12F'   # blue foreground
+      local conflicted='%9F'  # red foreground
     else
       # Styling for incomplete and stale Git status.
       local       meta='%244F'  # grey foreground
@@ -502,7 +504,7 @@
   typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
 
   # Icon color.
-  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR=76
+  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR=10
   typeset -g POWERLEVEL9K_VCS_LOADING_VISUAL_IDENTIFIER_COLOR=244
   # Custom icon.
   # typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='⭐'
@@ -1013,7 +1015,7 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_NVM_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
-  ############[ nodeenv: node.js environment (https://github.com/eparrotnin/nodeenv) ]############
+  ############[ nodeenv: node.js environment (https://github.com/ekalinin/nodeenv) ]############
   # Nodeenv color.
   typeset -g POWERLEVEL9K_NODEENV_FOREGROUND=70
   # Don't show Node version next to the environment name.
@@ -1607,43 +1609,67 @@
   function prompt_example() {
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
   }
+
   function prompt_target() {
-    [ -f '/home/parrot/.local/target.txt' ] &&  export TARGET="$(cat /home/parrot/.local/target.txt)"
-    [ -f '/home/parrot/.local/dn.txt' ] &&  export DN="$(cat /home/parrot/.local/dn.txt)"
-    local targetcolor=#ff776f      
+    [ -f '/home/kali/.local/.targetdn.txt' ] &&  export DN="$(cat /home/kali/.local/.targetdn.txt)"
+    [ -f '/home/kali/.local/.targetip.txt' ] &&  export TARGET="$(cat /home/kali/.local/.targetip.txt)"
+    local targetcolor=1
     local domain=""
     if [[ -n $TARGET ]]; then 
       if ip route get $TARGET >/dev/null 2>&1; then
-        targetcolor='#A6FF96'
+        targetcolor=46
       fi 
-      if [[ -n $DN ]]; then
-        domain+=" %F{123}󱌑  %F{123}$DN" 
-      fi
-      p10k segment -i '%F{9}󰓥%f' -f $targetcolor -t "$TARGET$domain"
     else 
       local ip_pattern='([0-9]{1,3}\.){3}[0-9]{1,3}'
       if [[ $(pwd) =~ ${ip_pattern} ]]; then
         export TARGET=${MATCH}
-      elif ([ -d $WS ] && [ -f "$WS/.target.txt" ] && [[ "$(pwd)" =~ "$WS/.*" ]]) || ([ -f "./.target.txt" ]); then
-        export TARGET="$(cat $WS/.target.txt)"
+      elif [ -d $WS ] && [ -f "$WS/.targetip.txt" ] && [[ "$(pwd)/" =~ "$WS/.*" ]]; then
+        export TARGET="$(cat $WS/.targetip.txt)"
+      elif [ -f "./.targetip.txt" ]; then 
+        export TARGET="$(cat ./.targetip.txt)"
       fi
       if ip route get $TARGET >/dev/null 2>&1; then
-        targetcolor='#A6FF96'
+        targetcolor=46
       fi
-      if [[ -n $DN ]]; then
-        domain+=" %F{123}󱌑  %F{123}$DN" 
+      if [ -d $WS ] && [ -f "$WS/.targetdn.txt" ] && [[ "$(pwd)/" =~ "$WS/.*" ]]; then
+         export DN="$(cat $WS/.targetdn.txt)"
+      elif [ -f "./.targetdn.txt" ]; then 
+        export DN="$(cat ./.targetdn.txt)"
       fi
-      if [[ -n $TARGET ]]; then 
-        p10k segment -i '%F{9}󰓥%f' -f $targetcolor -t "$TARGET$domain"
-      fi
+    fi
+    if [[ -n $DN ]]; then
+      p10k segment -i '%F{1}󰇗%f' -f 46 -t "$DN"
+    fi
+    if [[ -n $TARGET ]]; then
+      p10k segment -i '%F{1}󰓥%f' -f $targetcolor -t "$TARGET"
     fi
   }
-  function prompt_userws() { 
-    [ -f '/home/parrot/.local/workspace.txt' ] &&  export WS="$(cat /home/parrot/.local/workspace.txt)"
-    if [ -d "$WS" ]; then
-      local wsname=" %B[%b%F{#72b9f7}$(echo -n $WS | awk -F'/' '{print $NF}')%f%B]%b" 
+  function prompt_htb_icon()
+  {
+    local iconcolor='#2777ff'
+    local icon=' '
+    if [[ $USER == "root" ]]; then 
+      iconcolor="#df0f30"
+      iconcolor=1
     fi
-    local user="%F{#05EEFF}$USER%f"
+    if [[ "$PWD/" =~ "/home/kali/htb/*." ]]; then 
+      iconcolor="#9FEF00" 
+      icon='󰆧'
+      if [[ $USER == "root" ]]; then 
+        iconcolor="#6f00df"
+	iconcolor=1
+      fi
+    fi
+    p10k segment -i $icon -f $iconcolor
+
+  }
+  function prompt_userws() { 
+    [ -f '/home/kali/.local/workspace.txt' ] &&  export WS="$(cat /home/kali/.local/workspace.txt)"
+    if [ -d "$WS" ]; then
+      local wsname=" %B• %b%F{#309fff}$(echo -n $WS | awk -F'/' '{print $NF}')%f" 
+    fi
+    # local user="%F{#09fa8c}$USER%f"
+    local user="%F{#eeeeff}$USER%f"
     if [[ $USER == "root" ]]; then
       user="%F{#ff4038}%B$USER%b%f"
     fi
@@ -1652,11 +1678,11 @@
   }
 
   function prompt_vpn() {
-    local utun=$(ifconfig | grep -A2 tun | grep 'inet ')
+    local utun=$(ifconfig | grep -A2 utun | grep 'inet ')
 
     if [[ -n $utun ]]; then
-      local ip=$(echo $utun | awk '{print $2}')
-      p10k segment -f '#afc0ff' -i '󰴳' -t"%F{#20a0ff}$ip"
+      local ip=$(echo $utun | cut -f 2 -d ' ')
+      p10k segment -f '#20a0ff' -i '󰴳' -t"%F{#20a}$ip"
     fi
   }
 
