@@ -30,8 +30,8 @@
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-    os_icon                 # os identifier
-    # htb_icon
+    # os_icon                 # os identifier
+    htb_icon
     # dir                     # current directory
     # context
     target
@@ -1617,7 +1617,7 @@
     local domain=""
     if [[ -n $TARGET ]]; then 
       if ip route get $TARGET >/dev/null 2>&1; then
-        targetcolor=46
+        targetcolor=2
       fi 
     else 
       local ip_pattern='([0-9]{1,3}\.){3}[0-9]{1,3}'
@@ -1629,7 +1629,7 @@
         export TARGET="$(cat ./.targetip.txt)"
       fi
       if ip route get $TARGET >/dev/null 2>&1; then
-        targetcolor=46
+        targetcolor=2
       fi
       if [ -d $WS ] && [ -f "$WS/.targetdn.txt" ] && [[ "$(pwd)/" =~ "$WS/.*" ]]; then
          export DN="$(cat $WS/.targetdn.txt)"
@@ -1638,7 +1638,7 @@
       fi
     fi
     if [[ -n $DN ]]; then
-      p10k segment -i '%F{1}󰇗%f' -f 46 -t "$DN"
+      p10k segment -i '%F{1}󰇗%f' -f 2 -t "$DN"
     fi
     if [[ -n $TARGET ]]; then
       p10k segment -i '%F{1}󰓥%f' -f $targetcolor -t "$TARGET"
