@@ -118,5 +118,5 @@ function rot13() {
 }
 
 function mktarget() {
-  mkdir -p $1/{nmap,content,exploits,Imgs}
+  mkdir -p $1/{enum,content,exploits,Imgs}
 }
