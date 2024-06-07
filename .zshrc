@@ -1,6 +1,8 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+PROMPT=parrot
+. ~/.prompt.zsh
 
 for file in /Users/nachh/.config/funciones/*.zsh; do 
   source "$file"
@@ -39,6 +41,10 @@ export PATH="$HOME/.rvm/bin:$PATH"
 export PATH="$HOME/.config/bin:$PATH"
 # pycurl
 export PATH="~/pycurl/curl-7.86.0/bin:$PATH"
+# Go
+export GOROOT=/usr/local/go
+export PATH="/usr/local/go/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 export LDFLAGS="-L~/pycurl/curl-7.86.0/lib -L/opt/homebrew/Cellar/openssl@3/3.1.1_1/lib"
 export CPPFLAGS="-I~/pycurl/curl-7.86.0/include -I/opt/homebrew/Cellar/openssl@3/3.1.1_1/include"
 # Bin Utils path, puede causar fallo de compatibilidad con ciertas binarios no recuerdo cual
@@ -58,6 +64,9 @@ export PATH="/Users/nachh/.config/neo4j/bin/:$PATH"
 set NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
 set NEO4J_ACCEPT_LICENSE_AGREEMENT=eval
 
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # export GOROOT=/opt/homebrew/bin/go
 # export GOPATH=$HOME/go
@@ -85,12 +94,12 @@ alias l='lsd -F --group-dirs=first'
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=4,underline
-ZSH_HIGHLIGHT_STYLES[precommand]=fg=4,underline
-ZSH_HIGHLIGHT_STYLES[arg0]=fg=4
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=6,underline
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=6,underline
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=6
 
 source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-export EDITOR=nvim
+export EDITOR=vim
 # Select all suggestion instead of top on result only
 # zstyle ':autocomplete:tab:*' insert-unambiguous yes
 # zstyle ':autocomplete:tab:*' widget-style menu-select
@@ -139,10 +148,6 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-# source ~/.promptrc.sh
-source $HOME/powerlevel10k/powerlevel10k.zsh-theme
-
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # bun completions
 [ -s "/Users/nachh/.bun/_bun" ] && source "/Users/nachh/.bun/_bun"
@@ -150,3 +155,4 @@ source $HOME/powerlevel10k/powerlevel10k.zsh-theme
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+unset zle_bracketed_paste
