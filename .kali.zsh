@@ -129,12 +129,23 @@ yellow="%F{yellow}"
 magenta="%F{magenta}"
 cyan="%F{cyan}"
 white="%F{white}"
+orange="%F{202}"
 reset="%F{reset}"
 configure_prompt() {
     prompt_symbol=㉿
     # Skull emoji for root terminal
     [ "$EUID" -eq 0 ] && prompt_symbol=💀
     case "$PROMPT_ALTERNATIVE" in
+	nachh_dark)
+		prompt_symbol='⚔️ '
+		[ "$EUID" -eq 0 ] && prompt_symbol='🃏 '
+		PROMPT=$'$white┌──[%B%(#.$red.$reset)%n%b$blue'$prompt_symbol$'$orange%B%m%b$white]─${TARGET:+[🎯 %B$targetcolor$TARGET%b${white}]─}${DN:+[🎯 %B$DN%b${white}]─}[%B$green%(6~.%-1~/…/%4~.%5~)%b$white]\n└──╼ ${VIRTUAL_ENV_PROMPT:+($orange%B$VIRTUAL_ENV_PROMPT%b$white)} $orange%(#.#.$)$reset '
+	;;
+	nachh)
+		prompt_symbol='⚔️ '
+		[ "$EUID" -eq 0 ] && prompt_symbol='🃏 '
+		PROMPT=$'$reset┌──[%B%(#.$red.$orange)%n%b$blue'$prompt_symbol$'$orange%B%m%b$reset]─${TARGET:+[🎯 %B$targetcolor$TARGET%b${reset}]─}${DN:+[🎯 %B$DN%b${reset}]─}[%B$green%(6~.%-1~/…/%4~.%5~)%b$reset]\n└──╼ ${VIRTUAL_ENV_PROMPT:+($orange%B$VIRTUAL_ENV_PROMPT%b$reset)} $orange%(#.#.$)$reset '
+	;;
         twodefault)
 		PROMPT=$'$reset┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b$reset)-${TARGET:+($red󰓥$targetcolor %B$TARGET%b$reset)─}${DN:+($red󰓥 $reset%B$DN%b$reset)─}[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b$reset]\n└─%B%(#.$red#.$blue$)%b%F{reset} '
             # Right-side prompt with exit codes and background processes
@@ -185,7 +196,7 @@ configure_prompt() {
 # The following block is surrounded by two delimiters.
 # These delimiters must not be modified. Thanks.
 # START KALI CONFIG VARIABLES
-PROMPT_ALTERNATIVE=twodefault
+PROMPT_ALTERNATIVE=nachh
 NEWLINE_BEFORE_PROMPT=yes
 # STOP KALI CONFIG VARIABLES
 
