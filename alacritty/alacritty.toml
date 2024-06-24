@@ -1,27 +1,7 @@
-[colors.bright]
-black = "#444444"
-blue = "#0072df"
-cyan = "#47dfd0"
-green = "#abe15b"
-magenta = "#9a5feb"
-red = "#ff2740"
-white = "#ffffff"
-yellow = "#ffd242"
-
-[colors.normal]
-black = "#232323"
-blue = "#006df8"
-cyan = "#00c8db"
-green = "#8ce10b"
-magenta = "#6d43a6"
-red = "#ff000f"
-white = "#ffffff"
-yellow = "#ffb900"
-
-[colors.primary]
-foreground = "#282c34"
-background = "#ffffff"
-
+import = [
+    "~/.config/alacritty/themes/themes/enfocado_light.toml"
+]
+#
 [cursor]
 thickness = 0.05
 
@@ -33,7 +13,7 @@ TERM = "xterm-256color"
 
 [font]
 # size = 20.0
-size = 20.0
+size = 16.0
 
 [font.bold]
 # family = "CaskaydiaCove Nerd Font Propo"
@@ -68,8 +48,12 @@ args = ["--login"]
 program = "/bin/zsh"
 
 [window]
-opacity = 0.97
+# decorations = "Transparent"
+decorations = "buttonless"
+opacity = 0.70
+blur = true
+dynamic_padding = true
 
 [window.padding]
-x = 15
-y = 15
+x = 10
+y = 10
