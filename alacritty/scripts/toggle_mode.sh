@@ -2,16 +2,16 @@
 CONFIG_PATH="$HOME/.config/alacritty/alacritty.toml"
 TIMEOUT=3000
 notify() {
-	notify-send -t ${TIMEOUT} -a alacritty-theme-toggle 'Switched alacritty theme:' $1
+	osascript -e "display notification \"${1}\" with title \"Tema de alacritty\" subtitle \"Tema configurado:\""
 }
-dark="hyper"
-light="enfocado_light"
+dark="hackthebox"
+light="alabaster"
 (
 	grep -q "$light" $CONFIG_PATH &&
 		sed -i '' "s/$light/$dark/" "$CONFIG_PATH"
-	# notify "dark" &&
+	# && notify "$dark"
 ) || (
 	grep -q "$dark" $CONFIG_PATH &&
 		sed -i '' "s/$dark/$light/" "$CONFIG_PATH"
-	# notify "light"
+	# && notify "$light"
 )

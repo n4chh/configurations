@@ -1,12 +1,13 @@
 import = [
-    "~/.config/alacritty/themes/themes/enfocado_light.toml"
+    "~/.config/alacritty/themes/themes/alabaster.toml"
 ]
 #
 [cursor]
 thickness = 0.05
 
 [cursor.style]
-shape = "Underline"
+shape = "Block"
+blinking = "On"
 
 [env]
 TERM = "xterm-256color"
@@ -57,3 +58,9 @@ dynamic_padding = true
 [window.padding]
 x = 10
 y = 10
+
+[keyboard]
+bindings = [
+{ key = "F1", mods = "None", command = "/Users/nachh/.config/alacritty/scripts/toggle_mode.sh"},
+{ key = "F1", mods = "Command", command = "/Users/nachh/.config/alacritty/scripts/darkmode.scpt"},
+]
