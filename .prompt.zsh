@@ -9,7 +9,7 @@ p10k)
 	[[ ! -f ~/.p10k.zsh ]] || . ~/.p10k.zsh
   ;;
 nachh)
-    PROMPT_ALTERNATIVE=nachh
+    PROMPT_ALTERNATIVE=nachh_ubuntu
 	. ~/.nachh.zsh
   ;;
 *)

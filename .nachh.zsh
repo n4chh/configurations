@@ -128,9 +128,11 @@ blue="%F{blue}"
 yellow="%F{yellow}"
 magenta="%F{magenta}"
 cyan="%F{cyan}"
-cyan2="%F{14}"
+cyan2="%F{51}"
 white="%F{white}"
 orange="%F{208}"
+purple2="%F{13}"
+gray="%F{8}"
 reset="%F{reset}"
 configure_prompt() {
     prompt_symbol='@'
@@ -141,6 +143,11 @@ configure_prompt() {
           PROMPT=$'┌──[%B%(#.$red.$cyan2)%n%b'$prompt_symbol$'$orange%B%m%b$reset]─${TARGET:+[🎯%B$targetcolor$TARGET%b${reset}]─}${DN:+[🎯%B$DN%b${reset}]─}[%B$cyan2%(6~.%-1~/…/%4~.%5~)%b$reset]\n└──╼ ${VIRTUAL_ENV_PROMPT:+($orange%B$VIRTUAL_ENV_PROMPT%b$reset)} $orange%(#.#.$)$reset '
             #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
         ;;
+        nachh_ubuntu)
+          PROMPT=$'┌──[%B%(#.$red.$gray)%n%b'$prompt_symbol$'$purple2%B%m%b$reset]─${TARGET:+[🎯%B$targetcolor$TARGET%b${reset}]─}${DN:+[🎯%B$DN%b${reset}]─}[%B$gray%(6~.%-1~/…/%4~.%5~)%b$reset]\n└──╼ ${VIRTUAL_ENV_PROMPT:+($purple2%B$VIRTUAL_ENV_PROMPT%b$reset)} $purple2%(#.#.$)$reset '
+            #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
+        ;;
+
     esac
     unset prompt_symbol
 }
