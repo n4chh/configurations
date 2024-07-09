@@ -128,7 +128,7 @@ blue="%F{blue}"
 yellow="%F{yellow}"
 magenta="%F{magenta}"
 cyan="%F{cyan}"
-cyan2="%F{159}"
+cyan2="%F{14}"
 white="%F{white}"
 orange="%F{208}"
 reset="%F{reset}"
@@ -138,7 +138,7 @@ configure_prompt() {
     [ "$EUID" -eq 0 ] && prompt_symbol=🃏
     case "$PROMPT_ALTERNATIVE" in
         nachh)
-          PROMPT=$'$white┌──[%B%(#.$red.$reset)%n%b'$prompt_symbol$'$orange%B%m%b$white]─${TARGET:+[🎯%B$targetcolor$TARGET%b${white}]─}${DN:+[🎯%B$DN%b${white}]─}[%B$cyan2%(6~.%-1~/…/%4~.%5~)%b$white]\n└──╼ ${VIRTUAL_ENV_PROMPT:+($orange%B$VIRTUAL_ENV_PROMPT%b$white)} $orange%(#.#.$)$reset '
+          PROMPT=$'┌──[%B%(#.$red.$cyan2)%n%b'$prompt_symbol$'$orange%B%m%b$reset]─${TARGET:+[🎯%B$targetcolor$TARGET%b${reset}]─}${DN:+[🎯%B$DN%b${reset}]─}[%B$cyan2%(6~.%-1~/…/%4~.%5~)%b$reset]\n└──╼ ${VIRTUAL_ENV_PROMPT:+($orange%B$VIRTUAL_ENV_PROMPT%b$reset)} $orange%(#.#.$)$reset '
             #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
         ;;
     esac
