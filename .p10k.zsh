@@ -30,8 +30,8 @@
 
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-    # os_icon                 # os identifier
-    htb_icon
+    os_icon                 # os identifier
+    # htb_icon
     # dir                     # current directory
     # context
     target
@@ -188,11 +188,11 @@
   #################################[ os_icon: os identifier ]##################################
   # OS identifier color. #4f90ff
   # typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND='#6a6a6a'
-  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND='#9FEF00'
+  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=''
   # Custom icon.
   # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='󰀵'
-  typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='󰆧'
+  # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION=''
+  typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION=' '
 
   ################################[ prompt_char: prompt symbol ]################################
   # Green prompt symbol if the last command succeeded.
@@ -226,7 +226,7 @@
   typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=3
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=0
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=
   # Display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -311,19 +311,19 @@
   #
     
     typeset -g POWERLEVEL9K_DIR_CLASSES=(
-      "/Users/nachh/Hacking/htb(|/*)"    HTB      '󰆧'
+      "/home/nachh/Hacking/htb(|/*)"    HTB      '󰆧'
       '~(|/*)'       HOME     '󱂵'
       '*'            DEFAULT  '')
     typeset -g POWERLEVEL9K_DIR_HOME_FOREGROUND=4
-    typeset -g POWERLEVEL9K_DIR_HOME_ANCHOR_FOREGROUND=0
+    typeset -g POWERLEVEL9K_DIR_HOME_ANCHOR_FOREGROUND=
     typeset -g POWERLEVEL9K_DIR_HOME_SHORTENED_FOREGROUND=12
   #
     typeset -g POWERLEVEL9K_DIR_HTB_FOREGROUND=2
-    typeset -g POWERLEVEL9K_DIR_HTB_ANCHOR_FOREGROUND=0
+    typeset -g POWERLEVEL9K_DIR_HTB_ANCHOR_FOREGROUND=
     typeset -g POWERLEVEL9K_DIR_HTB_SHORTENED_FOREGROUND=10
   #
     typeset -g POWERLEVEL9K_DIR_DEFAULT_NOT_WRITABLE_FOREGROUND=1
-    typeset -g POWERLEVEL9K_DIR_DEFAULT_NOT_WRITABLE_ANCHOR_FOREGROUND=0
+    typeset -g POWERLEVEL9K_DIR_DEFAULT_NOT_WRITABLE_ANCHOR_FOREGROUND=
     typeset -g POWERLEVEL9K_DIR_DEFAULT_NOT_WRITABLE_SHORTENED_FOREGROUND=9
   # Whenever the current directory is ~/work or a subdirectory of ~/work, it gets styled with one
   # of the following classes depending on its writability and existence: WORK, WORK_NOT_WRITABLE or
@@ -562,7 +562,7 @@
   # Show duration of the last command if takes at least this many seconds.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
   # Show this many fractional digits. Zero means round to seconds.
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=0
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_PRECISION=
   # Execution time color.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=101
   # Duration format: 1d 2h 3m 4s.
@@ -1611,8 +1611,8 @@
   }
 
   function prompt_target() {
-    [ -f '/Users/nachh/.local/dn.txt' ] &&  export DN="$(cat /Users/nachh/.local/dn.txt)"
-    [ -f '/Users/nachh/.local/target.txt' ] &&  export TARGET="$(cat /Users/nachh/.local/target.txt)"
+    [ -f '/home/nachh/.local/dn.txt' ] &&  export DN="$(cat /home/nachh/.local/dn.txt)"
+    [ -f '/home/nachh/.local/target.txt' ] &&  export TARGET="$(cat /home/nachh/.local/target.txt)"
     local targetcolor=1
     local domain=""
     if [[ -n $TARGET ]]; then 
@@ -1645,14 +1645,13 @@
   }
   function prompt_htb_icon()
   {
-    local iconcolor=0
-    local icon='󰀶'
-    local icon='󰘳'
+    local iconcolor=
+    local icon=' '
     if [[ $USER == "root" ]]; then 
       iconcolor="#df0f30"
       iconcolor=1
     fi
-    if [[ "$PWD/" =~ "/Users/nachh/Hacking/htb/*." ]]; then 
+    if [[ "$PWD/" =~ "/home/nachh/Hacking/htb/*." ]]; then 
       #iconcolor="#9FEF00" 
       iconcolor=2
       icon='󰆧'
@@ -1665,7 +1664,7 @@
 
   }
   function prompt_userws() { 
-    [ -f '/Users/nachh/.local/workspace.txt' ] &&  export WS="$(cat /Users/nachh/.local/workspace.txt)"
+    [ -f '/home/nachh/.local/workspace.txt' ] &&  export WS="$(cat /home/nachh/.local/workspace.txt)"
     if [ -d "$WS" ]; then
       local wsname=" %B• %b%F{#309fff}$(echo -n $WS | awk -F'/' '{print $NF}')%f" 
     fi

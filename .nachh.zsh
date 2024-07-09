@@ -66,8 +66,8 @@ TIMEFMT=$'\nreal\t%E\nuser\t%U\nsys\t%S\ncpu\t%P'
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 function source_target() {
-  [ -f '/Users/nachh/.local/.targetdn.txt' ] &&  export DN="$(cat /Users/nachh/.local/.targetdn.txt)"
-  [ -f '/Users/nachh/.local/.targetip.txt' ] &&  export TARGET="$(cat /Users/nachh/.local/.targetip.txt)"
+  [ -f '/home/nachh/.local/.targetdn.txt' ] &&  export DN="$(cat /home/nachh/.local/.targetdn.txt)"
+  [ -f '/home/nachh/.local/.targetip.txt' ] &&  export TARGET="$(cat /home/nachh/.local/.targetip.txt)"
   targetcolor=$red
   domain=""
   if [[ -n $TARGET ]]; then
@@ -128,56 +128,19 @@ blue="%F{blue}"
 yellow="%F{yellow}"
 magenta="%F{magenta}"
 cyan="%F{cyan}"
+cyan2="%F{159}"
 white="%F{white}"
+orange="%F{208}"
 reset="%F{reset}"
 configure_prompt() {
-    prompt_symbol=㉿
+    prompt_symbol='@'
     # Skull emoji for root terminal
-    [ "$EUID" -eq 0 ] && prompt_symbol=💀
+    [ "$EUID" -eq 0 ] && prompt_symbol=🃏
     case "$PROMPT_ALTERNATIVE" in
-        twodefault)
-		PROMPT=$'$reset┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b$reset)-${TARGET:+($red󰓥$targetcolor %B$TARGET%b$reset)─}${DN:+($red󰓥 $reset%B$DN%b$reset)─}[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b$reset]\n└─%B%(#.$red#.$blue$)%b%F{reset} '
-            # Right-side prompt with exit codes and background processes
+        nachh)
+          PROMPT=$'$white┌──[%B%(#.$red.$reset)%n%b'$prompt_symbol$'$orange%B%m%b$white]─${TARGET:+[🎯%B$targetcolor$TARGET%b${white}]─}${DN:+[🎯%B$DN%b${white}]─}[%B$cyan2%(6~.%-1~/…/%4~.%5~)%b$white]\n└──╼ ${VIRTUAL_ENV_PROMPT:+($orange%B$VIRTUAL_ENV_PROMPT%b$white)} $orange%(#.#.$)$reset '
             #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
-            ;;
-        twowhite)
-		PROMPT=$'$white┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b$white)-${TARGET:+($red󰓥$targetcolor %B$TARGET%b$white)─}${DN:+($red󰓥 $reset%B$DN%b$white)─}[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b$white]\n└─%B%(#.$red#.$blue$)%b%F{reset} '
-            # Right-side prompt with exit codes and background processes
-            #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
-            ;;
-        twoblue)
-		PROMPT=$'%(#.$red.$blue)┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b%(#.$red.$blue))-${TARGET:+($red󰓥$targetcolor %B$TARGET%b%(#.$red.$blue))─}${DN:+($red󰓥 $reset%B$DN%b%(#.$red.$blue))─}[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%(#.$red.$blue)]\n└─%B%(#.$red#.$blue$)%b%F{reset} '
-            # Right-side prompt with exit codes and background processes
-            #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
-            ;;
-        twoyellow)
-		PROMPT=$'%(#.$blue.$yellow)┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b%(#.$blue.$yellow))-${TARGET:+($red󰓥$targetcolor %B$TARGET%b%(#.$blue.$yellow))─}${DN:+($red󰓥 $reset%B$DN%b%(#.$blue.$yellow))─}[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%(#.$blue.$yellow)]\n└─%B%(#.$red#.$blue$)%b%F{reset} '
-            # Right-side prompt with exit codes and background processes
-            #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
-            ;;
-        twocyan)
-		PROMPT=$'%(#.$blue.$cyan)┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b%(#.$blue.$cyan))-${TARGET:+($red󰓥$targetcolor %B$TARGET%b%(#.$blue.$cyan))─}${DN:+($red󰓥 $reset%B$DN%b%(#.$blue.$cyan))─}[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%(#.$blue.$cyan)]\n└─%B%(#.$red#.$blue$)%b%F{reset} '
-            # Right-side prompt with exit codes and background processes
-            #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
-            ;;
-        twomagenta)
-		PROMPT=$'%(#.$blue.$magenta)┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b%(#.$blue.$magenta))-${TARGET:+($red󰓥$targetcolor %B$TARGET%b%(#.$blue.$magenta))─}${DN:+($red󰓥 $reset%B$DN%b%(#.$blue.$magenta))─}[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%(#.$blue.$magenta)]\n└─%B%(#.$red#.$blue$)%b%F{reset} '
-            # Right-side prompt with exit codes and background processes
-            #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
-            ;;
-        twolines)
-		PROMPT=$'%(#.$blue.$green)┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b%(#.$blue.$green))-${TARGET:+($red󰓥$targetcolor %B$TARGET%b%(#.$blue.$green))─}${DN:+($red󰓥 $reset%B$DN%b%(#.$blue.$green))─}[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%(#.$blue.$green)]\n└─%B%(#.$red#.$blue$)%b%F{reset} '
-            # Right-side prompt with exit codes and background processes
-            #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
-            ;;
-        oneline)
-            PROMPT=$'${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{%(#.red.blue)}%n@%m%b%F{reset}:%B%F{%(#.blue.green)}%~%b%F{reset}%(#.#.$) '
-            RPROMPT=
-            ;;
-        backtrack)
-            PROMPT=$'${debian_chroot:+($debian_chroot)}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))}%B%F{red}%n@%m%b%F{reset}:%B%F{blue}%~%b%F{reset}%(#.#.$) '
-            RPROMPT=
-            ;;
+        ;;
     esac
     unset prompt_symbol
 }

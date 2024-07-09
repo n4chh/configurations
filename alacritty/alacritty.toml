@@ -1,5 +1,5 @@
 import = [
-    "~/.config/alacritty/themes/themes/alabaster.toml"
+    "~/.config/alacritty/hackthebox.toml"
 ]
 #
 [cursor]
@@ -18,12 +18,12 @@ size = 16.0
 
 [font.bold]
 # family = "CaskaydiaCove Nerd Font Propo"
-family = "SFMono Nerd Font"
+family = "UbuntuSansMono Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
 # family = "CaskaydiaCove Nerd Font Propo"
-family = "SFMono Nerd Font"
+family = "UbuntuSansMono Nerd Font"
 style = "Bold Italic"
 
 [font.glyph_offset]
@@ -32,12 +32,12 @@ y = 0
 
 [font.italic]
 # family = "CaskaydiaCove Nerd Font Propo"
-family = "SFMono Nerd Font"
+family = "UbuntuSansMono Nerd Font"
 style = "Italic"
 
 [font.normal]
 # family = "CaskaydiaCove Nerd Font Propo"
-family = "SFMono Nerd Font"
+family = "UbuntuSansMono Nerd Font"
 style = "Regular"
 
 [font.offset]
@@ -51,8 +51,7 @@ program = "/bin/zsh"
 [window]
 # decorations = "Transparent"
 decorations = "buttonless"
-opacity = 0.70
-blur = true
+opacity = 0.90
 dynamic_padding = true
 
 [window.padding]

@@ -1,16 +1,16 @@
 function settarget() {
-  echo "$1" > /Users/nachh/.local/target.txt
+  echo "$1" > /home/nachh/.local/target.txt
   if [[ `pwd` =~ .*"/$1" ]]; then 
-    echo "$(pwd)" > /Users/nachh/.local/targetdir.txt
+    echo "$(pwd)" > /home/nachh/.local/targetdir.txt
   else
-    echo '' > /Users/nachh/.local/targetdir.txt
+    echo '' > /home/nachh/.local/targetdir.txt
   fi
-  export TARGET="$(cat /Users/nachh/.local/target.txt)"
-  export TARGETDIR="$(cat /Users/nachh/.local/targetdir.txt)"
+  export TARGET="$(cat /home/nachh/.local/target.txt)"
+  export TARGETDIR="$(cat /home/nachh/.local/targetdir.txt)"
 }
 
 function cdtarget() {
-  export TARGETDIR="$(cat /Users/nachh/.local/targetdir.txt)"
+  export TARGETDIR="$(cat /home/nachh/.local/targetdir.txt)"
   if [[ -d $TARGETDIR ]];then
     cd $TARGETDIR
   else
@@ -25,15 +25,15 @@ function setws() {
   else
     export WS="$(pwd)"
   fi
-  echo "$WS" >  /Users/nachh/.local/workspace.txt
+  echo "$WS" >  /home/nachh/.local/workspace.txt
 }
 function clearws() {
-  echo "" > /Users/nachh/.local/workspace.txt
+  echo "" > /home/nachh/.local/workspace.txt
   export WS=""
 }
 
 function cdws() {
-  export WS=$(cat /Users/nachh/.local/workspace.txt)
+  export WS=$(cat /home/nachh/.local/workspace.txt)
   if ! [ -d $WS ]; then 
     echo "\033[31;1mERROR\033[0m: No hay ningun espacio de trabajo"
   else
@@ -46,20 +46,20 @@ function mktarget() {
 }
 
 function setdn() {
-  echo "$1" > /Users/nachh/.local/dn.txt
-  export TARGET="$(cat /Users/nachh/.local/dn.txt)"
+  echo "$1" > /home/nachh/.local/dn.txt
+  export TARGET="$(cat /home/nachh/.local/dn.txt)"
 }
 
 function cleardn() {
-  echo "$1" > /Users/nachh/.local/dn.txt
-  export TARGET="$(cat /Users/nachh/.local/dn.txt)"
+  echo "$1" > /home/nachh/.local/dn.txt
+  export TARGET="$(cat /home/nachh/.local/dn.txt)"
 }
 
 function cleartarget() {
-  echo "" > /Users/nachh/.local/target.txt
-  echo "" > /Users/nachh/.local/targetdir.txt
-  export TARGETDIR="$(cat /Users/nachh/.local/targetdir.txt)"
-  export TARGET="$(cat /Users/nachh/.local/target.txt)"
+  echo "" > /home/nachh/.local/target.txt
+  echo "" > /home/nachh/.local/targetdir.txt
+  export TARGETDIR="$(cat /home/nachh/.local/targetdir.txt)"
+  export TARGET="$(cat /home/nachh/.local/target.txt)"
 }
 function hex-encode() {
   echo "$@" | xxd -p
