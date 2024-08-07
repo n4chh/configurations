@@ -11,9 +11,9 @@ kali)
     PROMPT_ALTERNATIVE=twowhite
 	. ~/.kali.zsh
   ;;
-parrot)
-    PROMPT_ALTERNATIVE=parrotwhite
-	. ~/.parrot.zsh
+nachh)
+    PROMPT_ALTERNATIVE=nachhsimple
+	. ~/.nachh.zsh
   ;;
 *)
 	. ~/.kali.zsh

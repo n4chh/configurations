@@ -1,13 +1,12 @@
 # if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
-PROMPT=parrot
+PROMPT=nachh
 . ~/.prompt.zsh
 
 for file in /Users/nachh/.config/funciones/*.zsh; do 
   source "$file"
 done
-
 
 export TARGETDIR="$(cat /Users/nachh/.local/targetdir.txt)"
 export TARGET="$(cat /Users/nachh/.local/target.txt)"
@@ -45,8 +44,8 @@ export PATH="~/pycurl/curl-7.86.0/bin:$PATH"
 export GOROOT=/usr/local/go
 export PATH="/usr/local/go/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
-export LDFLAGS="-L~/pycurl/curl-7.86.0/lib -L/opt/homebrew/Cellar/openssl@3/3.1.1_1/lib"
-export CPPFLAGS="-I~/pycurl/curl-7.86.0/include -I/opt/homebrew/Cellar/openssl@3/3.1.1_1/include"
+# export LDFLAGS="-L~/pycurl/curl-7.86.0/lib -L/opt/homebrew/Cellar/openssl@3/3.1.1_1/lib"
+# export CPPFLAGS="-I~/pycurl/curl-7.86.0/include -I/opt/homebrew/Cellar/openssl@3/3.1.1_1/include"
 # Bin Utils path, puede causar fallo de compatibilidad con ciertas binarios no recuerdo cual
 # export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 # FINDUTILS
@@ -94,12 +93,30 @@ alias l='lsd -F --group-dirs=first'
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=6,underline
-ZSH_HIGHLIGHT_STYLES[precommand]=fg=6,underline
-ZSH_HIGHLIGHT_STYLES[arg0]=fg=6
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=10,underline
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=10,underline
+ZSH_HIGHLIGHT_STYLES[arg0]=fg=10
 
+
+function zvm_config() {
+  # The prompt cursor in normal mode
+ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_USER_DEFAULT
+#
+# # The prompt cursor in insert mode
+ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_USER_DEFAULT
+#
+# # The prompt cursor in visual mode
+ZVM_VISUAL_MODE_CURSOR=$ZVM_CURSOR_USER_DEFAULT
+#
+# # The prompt cursor in visual line mode
+ZVM_VISUAL_LINE_MODE_CURSOR=$ZVM_CURSOR_USER_DEFAULT
+#
+# # The prompt cursor in operator pending mode
+ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_USER_DEFAULT
+}
+export  PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-export EDITOR=vim
+export EDITOR=nvim
 # Select all suggestion instead of top on result only
 # zstyle ':autocomplete:tab:*' insert-unambiguous yes
 # zstyle ':autocomplete:tab:*' widget-style menu-select
