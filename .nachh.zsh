@@ -151,8 +151,18 @@ configure_prompt() {
         ;;
         nachhsimple)
             colour1="%F{#149e69}"
-    prompt_symbol='${colour1}⏹%f'
-            PROMPT=$'$reset%B[%b'"$prompt_symbol"$'%B]%b [%B%(#.$red.$reset)%n%b@$colour1%B%m%b$reset] %(?..%B[$red%?$reset]%b )${TARGET:+[🎯%B$targetcolor$TARGET%b${reset}] }${DN:+[🎯%B$DN%b${reset}] }\n%B[%b$colour1%(3~.%-1~/…/%1~.%2~)$reset%B]%b ${VIRTUAL_ENV_PROMPT:+($colour1%B$VIRTUAL_ENV_PROMPT%b$reset) }$colour1%(#.#.$)$reset '
+            prompt_symbol='${colour1}⏹%f'
+            PROMPT=$'%(?..%B[${red}X %?$reset]%b\n)'
+            PROMPT+=$'$reset%B[%b'"$prompt_symbol"$'%B]%b ' 
+            PROMPT+=$'$reset%B[%b${colour1}%D{%H:%M:%S}${reset}%B]%b ' 
+            PROMPT+=$'%B[%b%(#.$red%B.$reset)%n%b@$colour1%m$reset%B]%b '
+            PROMPT+=$'${TARGET:+[🎯%B$targetcolor$TARGET%b${reset}] }'
+            PROMPT+=$'${DN:+[🎯%B$DN%b${reset}] }'
+            PROMPT+=$'\n'
+            PROMPT+=$'%B[%b$colour1%(3~.%-1~/…/%1~.%2~)$reset%B]:%b '
+            PROMPT+=$'${VIRTUAL_ENV_PROMPT:+($colour1%B$VIRTUAL_ENV_PROMPT%b$reset) }'
+            PROMPT+=$'$colour1%(#.#.>)$reset '
+
         ;;
     esac
     unset prompt_symbol
@@ -161,7 +171,7 @@ configure_prompt() {
 # The following block is surrounded by two delimiters.
 # These delimiters must not be modified. Thanks.
 # START KALI CONFIG VARIABLES
-NEWLINE_BEFORE_PROMPT=yes
+NEWLINE_BEFORE_PROMPT=no
 # STOP KALI CONFIG VARIABLES
 if [ "$color_prompt" = yes ]; then
     # override default virtualenv indicator in prompt
