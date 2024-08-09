@@ -133,7 +133,9 @@ white="%F{white}"
 orange="%F{#E95420}"
 purple2="%F{#772953}"
 gray="%F{8}"
+blue2="%F{39}"
 reset="%F{reset}"
+PROMPT_ALTERNATIVE=nachh_blue
 configure_prompt() {
     prompt_symbol='@'
     # Skull emoji for root terminal
@@ -144,7 +146,11 @@ configure_prompt() {
             #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
         ;;
         nachh_ubuntu)
-            PROMPT=$'┌──[%B%(#.$red.$reset)%n%b$reset'$prompt_symbol$'$purple2%B%m%b$reset]─${TARGET:+[🎯%B$targetcolor$TARGET%b${reset}]─}${DN:+[🎯%B$DN%b${reset}]─}[%B$orange%(6~.%-1~/…/%4~.%5~)%b$reset]\n└──╼ ${VIRTUAL_ENV_PROMPT:+($purple2%B$VIRTUAL_ENV_PROMPT%b$reset)} %(?.$purple2.[$red✗%B$reset %?%b] )%(#.#.$)$reset '
+            PROMPT=$'┌──[%B%(#.$red.$reset)%n%b$reset'$prompt_symbol$'$orange%B%m%b$reset]─${TARGET:+[🎯%B$targetcolor$TARGET%b${reset}]─}${DN:+[🎯%B$DN%b${reset}]─}[%B$orange%(6~.%-1~/…/%4~.%5~)%b$reset]\n└──%(?.$orange.[$red✗%B$reset %?%b]$red)%(#.#.➤)$reset ${VIRTUAL_ENV_PROMPT:+($orange%B$VIRTUAL_ENV_PROMPT%b$reset) }'
+            #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
+        ;;
+        nachh_blue)
+            PROMPT=$'┌──[%B%(#.$red.$reset)%n%b$reset'$prompt_symbol$'$blue2%B%m%b$reset]─${TARGET:+[🎯%B$targetcolor$TARGET%b${reset}]─}${DN:+[🎯%B$DN%b${reset}]─}[%B$blue2%(6~.%-1~/…/%4~.%5~)%b$reset]\n└──%(?.$blue2.[$red✗%B$reset %?%b]$red)%(#.#.➤)$reset ${VIRTUAL_ENV_PROMPT:+($blue2%B$VIRTUAL_ENV_PROMPT%b$reset) }'
             #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
         ;;
 
@@ -172,9 +178,9 @@ if [ "$color_prompt" = yes ]; then
         ZSH_HIGHLIGHT_STYLES[default]=none
         ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=red,underline
         ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=cyan,bold
-        ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=13,underline
+        ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=12,underline
         ZSH_HIGHLIGHT_STYLES[global-alias]=fg=green,bold
-        ZSH_HIGHLIGHT_STYLES[precommand]=fg=13,underline
+        ZSH_HIGHLIGHT_STYLES[precommand]=fg=12,underline
         ZSH_HIGHLIGHT_STYLES[commandseparator]=fg=blue,bold
         ZSH_HIGHLIGHT_STYLES[autodirectory]=fg=green,underline
         ZSH_HIGHLIGHT_STYLES[path]=bold
@@ -186,8 +192,8 @@ if [ "$color_prompt" = yes ]; then
         ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]=fg=magenta,bold
         ZSH_HIGHLIGHT_STYLES[process-substitution]=none
         ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]=fg=magenta,bold
-        ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=magenta
-        ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=magenta
+        ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=yellow
+        ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=yellow
         ZSH_HIGHLIGHT_STYLES[back-quoted-argument]=none
         ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]=fg=blue,bold
         ZSH_HIGHLIGHT_STYLES[single-quoted-argument]=fg=yellow
@@ -202,7 +208,7 @@ if [ "$color_prompt" = yes ]; then
         ZSH_HIGHLIGHT_STYLES[comment]=fg=black,bold
         ZSH_HIGHLIGHT_STYLES[named-fd]=none
         ZSH_HIGHLIGHT_STYLES[numeric-fd]=none
-        ZSH_HIGHLIGHT_STYLES[arg0]=fg=13
+        ZSH_HIGHLIGHT_STYLES[arg0]=fg=12
         ZSH_HIGHLIGHT_STYLES[bracket-error]=fg=red,bold
         ZSH_HIGHLIGHT_STYLES[bracket-level-1]=fg=blue,bold
         ZSH_HIGHLIGHT_STYLES[bracket-level-2]=fg=green,bold
