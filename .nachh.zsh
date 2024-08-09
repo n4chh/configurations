@@ -135,7 +135,7 @@ purple2="%F{#772953}"
 gray="%F{8}"
 blue2="%F{39}"
 reset="%F{reset}"
-PROMPT_ALTERNATIVE=nachh_blue
+PROMPT_ALTERNATIVE=nachh_simple
 configure_prompt() {
     prompt_symbol='@'
     # Skull emoji for root terminal
@@ -144,6 +144,21 @@ configure_prompt() {
         nachh)
           PROMPT=$'┌──[%B%(#.$red.$cyan2)%n%b'$prompt_symbol$'$orange%B%m%b$reset]─${TARGET:+[🎯%B$targetcolor$TARGET%b${reset}]─}${DN:+[🎯%B$DN%b${reset}]─}[%B$cyan2%(6~.%-1~/…/%4~.%5~)%b$reset]\n└──╼ ${VIRTUAL_ENV_PROMPT:+($orange%B$VIRTUAL_ENV_PROMPT%b$reset)} $orange%(#.#.$)$reset '
             #RPROMPT=$'%(?.. %? %F{red}%B⨯%b%F{reset})%(1j. %j %F{yellow}%B⚙%b%F{reset}.)'
+        ;;
+        nachh_simple)
+            colour1="%F{#E95420}"
+            colour2="%F{#FF9020}"
+            prompt_symbol='${colour1}%f'
+            PROMPT=$'%(?..%B[${red}X %?$reset]%b\n)'
+            PROMPT+=$'$reset%B[%b'"$prompt_symbol"$'%B]%b '
+            PROMPT+=$'$reset%B[%b${colour2}%D{%H:%M:%S}${reset}%B]%b '
+            PROMPT+=$'%B${colour1}[%f%b%(#.${red}%B.$reset)%n%f%b@$colour2%m$reset%B$colour1]$reset%b '
+            PROMPT+=$'${TARGET:+[🎯%B$targetcolor$TARGET%b${reset}] }'
+            PROMPT+=$'${DN:+[🎯%B$DN%b${reset}] }'
+            PROMPT+=$'\n'
+            PROMPT+=$'%B[%b$colour2%(3~.%-1~/…/%1~.%2~)$reset%B]:%b '
+            PROMPT+=$'${VIRTUAL_ENV_PROMPT:+($colour1%B$VIRTUAL_ENV_PROMPT%b$reset) }'
+            PROMPT+=$'$colour2%(#.#.>)$reset '
         ;;
         nachh_ubuntu)
             PROMPT=$'┌──[%B%(#.$red.$reset)%n%b$reset'$prompt_symbol$'$orange%B%m%b$reset]─${TARGET:+[🎯%B$targetcolor$TARGET%b${reset}]─}${DN:+[🎯%B$DN%b${reset}]─}[%B$orange%(6~.%-1~/…/%4~.%5~)%b$reset]\n└──%(?.$orange.[$red✗%B$reset %?%b]$red)%(#.#.➤)$reset ${VIRTUAL_ENV_PROMPT:+($orange%B$VIRTUAL_ENV_PROMPT%b$reset) }'
@@ -161,7 +176,7 @@ configure_prompt() {
 # The following block is surrounded by two delimiters.
 # These delimiters must not be modified. Thanks.
 # START KALI CONFIG VARIABLES
-NEWLINE_BEFORE_PROMPT=yes
+NEWLINE_BEFORE_PROMPT=no
 # STOP KALI CONFIG VARIABLES
 
 if [ "$color_prompt" = yes ]; then
