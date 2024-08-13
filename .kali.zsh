@@ -136,16 +136,20 @@ configure_prompt() {
     # Skull emoji for root terminal
     [ "$EUID" -eq 0 ] && prompt_symbol=💀
     case "$PROMPT_ALTERNATIVE" in
-	nachh_dark)
-		prompt_symbol='⚔️ '
-		[ "$EUID" -eq 0 ] && prompt_symbol='🃏 '
-		PROMPT=$'$white┌──[%B%(#.$red.$reset)%n%b$blue'$prompt_symbol$'$orange%B%m%b$white]─${TARGET:+[🎯 %B$targetcolor$TARGET%b${white}]─}${DN:+[🎯 %B$DN%b${white}]─}[%B$green%(6~.%-1~/…/%4~.%5~)%b$white]\n└──╼ ${VIRTUAL_ENV_PROMPT:+($orange%B$VIRTUAL_ENV_PROMPT%b$white)} $orange%(#.#.$)$reset '
-	;;
-	nachh)
-		prompt_symbol='⚔️ '
-		[ "$EUID" -eq 0 ] && prompt_symbol='🃏 '
-		PROMPT=$'$reset┌──[%B%(#.$red.$orange)%n%b$blue'$prompt_symbol$'$orange%B%m%b$reset]─${TARGET:+[🎯 %B$targetcolor$TARGET%b${reset}]─}${DN:+[🎯 %B$DN%b${reset}]─}[%B$green%(6~.%-1~/…/%4~.%5~)%b$reset]\n└──╼ ${VIRTUAL_ENV_PROMPT:+($orange%B$VIRTUAL_ENV_PROMPT%b$reset)} $orange%(#.#.$)$reset '
-	;;
+        nachh)
+            colour1="%F{4}"
+            colour2="%F{2}"
+            PROMPT=$'%(?..%B[${red}X %?$reset]%b\n)'
+            PROMPT+=$'$reset%B[%b'"$prompt_symbol"$'%B]%b ' 
+            PROMPT+=$'$reset%B[%b${colour1}%D{%H:%M:%S}${reset}%B]%b ' 
+            PROMPT+=$'%B[%b%(#.$red%B.$reset)%n%b%f@$colour1%m$reset%B]%b '
+            PROMPT+=$'${TARGET:+[🎯%B$targetcolor$TARGET%b${reset}] }'
+            PROMPT+=$'${DN:+[🎯%B$DN%b${reset}] }'
+            PROMPT+=$'\n'
+            PROMPT+=$'%B[%b$colour2%(3~.%-1~/…/%1~.%2~)$reset%B]:%b '
+            PROMPT+=$'${VIRTUAL_ENV_PROMPT:+($colour1%B$VIRTUAL_ENV_PROMPT%b$reset) }'
+            PROMPT+=$'$colour1%(#.#.>)$reset '
+        ;;
         twodefault)
 		PROMPT=$'$reset┌──${debian_chroot:+($debian_chroot)─}${VIRTUAL_ENV:+($(basename $VIRTUAL_ENV))─}(%B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b$reset)-${TARGET:+($red󰓥$targetcolor %B$TARGET%b$reset)─}${DN:+($red󰓥 $reset%B$DN%b$reset)─}[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b$reset]\n└─%B%(#.$red#.$blue$)%b%F{reset} '
             # Right-side prompt with exit codes and background processes
