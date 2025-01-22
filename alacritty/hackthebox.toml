@@ -9,8 +9,8 @@ text = "#ffffff"
 background = "#313f55"
 
 [colors.cursor]
-text = '#eee9fc'
-cursor = '#eee9fc'
+text = '#1a2332'
+cursor = '#a4b1cd'
 
 [colors.normal]
 black = "#000000"
