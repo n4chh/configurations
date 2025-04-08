@@ -142,8 +142,6 @@ alacritty_toggle_mode() {
 
 kde_toggle_mode() {
 	local mode=$1
-	local kde_dark="org.kde.breezedark.desktop"
-	local kde_light="org.kde.breeze.desktop"
 	
 	echo $mode
 	if [[ $mode == "dark" ]]; then
@@ -167,6 +165,8 @@ gnome_toggle_mode() {
 	fi
 }
 
+kde_dark="org.manjaro.breath-dark.desktop"
+kde_light="org.manjaro.breath-light.desktop"
 gnome_light="'prefer-light'"
 gnome_dark="'prefer-dark'"
 SESSION=kde
@@ -217,4 +217,4 @@ else
 fi
 
 # waybar_reset
-# swaync_toogle_mode "$mode"
+# swayn

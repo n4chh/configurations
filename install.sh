@@ -12,4 +12,10 @@ do
 	echo "Coping $file"
 	install -Dm 755 $file "$HOME/.config/scripts/$file"
 done
+cd ../tmux
+for file in *;
+do
+	echo "Coping /tmux$file"
+	install -Dm 755 $file "$HOME/.config/scripts/$file"
+done
 
