@@ -169,7 +169,7 @@ kde_dark="org.manjaro.breath-dark.desktop"
 kde_light="org.manjaro.breath-light.desktop"
 gnome_light="'prefer-light'"
 gnome_dark="'prefer-dark'"
-SESSION=kde
+SESSION=gnome
 get_current_mode() {
 	if [[ $SESSION == "gnome" ]]; then
 		current_mode=$(gsettings get org.gnome.desktop.interface color-scheme)

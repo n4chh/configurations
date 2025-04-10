@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+curl -SsLo /tmp/Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Hack.zip 
+
+sudo unzip -d /usr/local/share/fonts /tmp/Hack.zip
+
 cd src/alacritty
 for file in *;
 do
