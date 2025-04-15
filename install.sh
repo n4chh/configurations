@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-curl -SsLo /tmp/Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/Hack.zip 
+curl -SsLo /tmp/Hack.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip 
 
 sudo unzip -d /usr/local/share/fonts /tmp/Hack.zip
 
