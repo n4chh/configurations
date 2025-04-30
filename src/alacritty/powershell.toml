@@ -1,0 +1,104 @@
+#
+[colors.primary]
+background = '#052454'
+foreground = '#f6f6f7'
+
+# Normal colors
+[colors.normal]
+# It is 'dark blue' not black
+black = '#000000'
+red = '#7e0008'
+green = '#098003'
+yellow = '#c4a000'
+# It is 'black' not blue
+blue = '#010083'
+# It is 'medium red' not magenta
+magenta = '#d33682'
+# It is 'medium green' not cyan
+cyan = '#0e807f'
+# It is 'gray' not white
+white = '#7f7c7f'
+
+# Bright colors
+[colors.bright]
+# It is 'light blue' not bright black
+black = '#808080'
+red = '#ef2929'
+green = '#1cfe3c'
+yellow = '#fefe45'
+# It is 'gray' not bright blue
+blue = '#268ad2'
+# It is 'magenta' not bright magenta
+magenta = '#fe13fa'
+# It is 'cyan' not bright cyan
+cyan = '#29fffe'
+white = '#f6f6f7'
+
+[cursor]
+thickness = 0.05
+
+[cursor.style]
+shape = "Block"
+blinking = "On"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+# size = 20.0
+size = 10.0
+
+[font.bold]
+# family = "CaskaydiaCove Nerd Font Propo"
+#family = "JetBrainsMono Nerd Font Mono"
+family = "ProFont IIx Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+# family = "CaskaydiaCove Nerd Font Propo"
+# family = "JetBrainsMono Nerd Font Mono"
+family = "ProFont IIx Nerd Font Mono"
+style = "Bold Italic"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+# family = "CaskaydiaCove Nerd Font Propo"
+# family = "JetBrainsMono Nerd Font Mono"
+family = "ProFont IIx Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+# family = "CaskaydiaCove Nerd Font Propo"
+# family = "JetBrainsMono Nerd Font Mono"
+family = "ProFont IIx Nerd Font Mono"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[terminal.shell]
+args = ["--login"]
+program = "/usr/bin/pwsh"
+
+[window]
+# decorations = "Transparent"
+# decorations = "buttonless"
+# opacity = 0.90
+opacity = 1
+blur = true
+# dynamic_padding = true
+
+[window.padding]
+# x = 25
+# y = 25
+
+[keyboard]
+bindings = [
+]
+
+
+[terminal]
