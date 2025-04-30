@@ -5,6 +5,8 @@ curl -SsLo /tmp/FiraCode.zip https://github.com/ryanoasis/nerd-fonts/releases/do
 sudo unzip -d /usr/local/share/fonts /tmp/FiraCode.zip
 
 cd src/alacritty
+mkdir -p "$HOME/.config/alacritty"
+git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 for file in *; do
     echo "Coping alacritty/$file"
     install -D $file "$HOME/.config/alacritty/$file"
