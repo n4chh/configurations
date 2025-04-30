@@ -14,15 +14,11 @@ TERM = "xterm-256color"
 size = 12.0
 
 [font.bold]
-# family = "CaskaydiaCove Nerd Font Propo"
-# family = "Terminess Nerd Font Mono"
-family = "Hack Nerd Font Propo"
+family = "FiraCode Nerd Font Propo"
 style = "Bold"
 
 [font.bold_italic]
-# family = "CaskaydiaCove Nerd Font Propo"
-# family = "Terminess Nerd Font Mono"
-family = "Hack Nerd Font Propo"
+family = "FiraCode Nerd Font Propo"
 style = "Bold Italic"
 
 [font.glyph_offset]
@@ -30,15 +26,11 @@ x = 0
 y = 0
 
 [font.italic]
-# family = "CaskaydiaCove Nerd Font Propo"
-# family = "Terminess Nerd Font Mono"
-family = "Hack Nerd Font Propo"
+family = "FiraCode Nerd Font Propo"
 style = "Italic"
 
 [font.normal]
-# family = "CaskaydiaCove Nerd Font Propo"
-# family = "Terminess Nerd Font Mono"
-family = "Hack Nerd Font Mono"
+family = "FiraCode Nerd Font Mono"
 style = "Regular"
 
 [font.offset]
