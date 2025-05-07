@@ -1,0 +1,12 @@
+[config]
+
+[templates.kitty-dark]
+input_path = '~/.config/matugen/templates/dark-kitty.conf'
+output_path = '~/.config/kitty/dark-theme.auto.conf'
+[templates.kitty-light]
+input_path = '~/.config/matugen/templates/light-kitty.conf'
+output_path = '~/.config/kitty/light-theme.auto.conf'
+
+[templates.tmux]
+input_path = '~/.config/matugen/templates/tmux.conf'
+output_path = '~/.config/tmux/tmux.conf'
