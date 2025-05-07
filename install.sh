@@ -61,11 +61,17 @@ function install_zsh_plugins() {
     brew install jandedobbeleer/oh-my-posh/oh-my-posh
 
     log 1 "Installing oh-my-zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    if ! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended; then
+        log 2 "There was an error while installing oh-my-zsh"
+    fi
+    ZSH_CUSTOM=~/.oh-my-zsh
     log 1 "Installing zsh-autosuggestions"
     git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
     log 1 "Installing zsh-syntax-highlighting"
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    log 1 "Installing fast-fast-syntax-highlighting"
+    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
+        ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 }
 
 function install_utilities() {
@@ -73,6 +79,21 @@ function install_utilities() {
     brew install fzf
     log 1 "Installing fastfetch"
     brew install fastfetch
+    log 1 "Installing nvm"
+    brew install nvm
+    log 1 "Installing lazygit"
+    brew install lazygit
+    log 1 "Installing fd"
+    brew install fd
+    log 1 "Installing tmux"
+    brew install tmux
+    log 1 "Installing eza"
+    brew install eza
+}
+function install_neovim() {
+    brew install Neovim
+    git clone https://github.com/n4chh/nvim.conf ~/.config/nvim
+    log 0 "Neovim config installed"
 }
 
 if ! which matugen 2>/dev/null 1>&2; then
@@ -90,21 +111,30 @@ fi
 
 [ -d ~/.config ] || mkdir ~/.config
 
+if yes_or_no "Would you like to install utilities?"; then
+    install_utilities
+fi
+
+if yes_or_no "Would you like to install Neovim?"; then
+    install_neovim
+fi
+
+if yes_or_no "Would you like to configure ZSH?"; then
+    install_zsh_plugins
+fi
+
+cp .zshrc ~
 cp -r .config/* ~/.config
 log 0 Source files copied
-wallpaper="$(get_wallpapper_path)"
+wallpaper="$(get_wallpaper_path)"
+
 if ! [ -f "$wallpaper" ]; then
     log 3 "Could not detect actual wallpaper."
     log 1 "Info:"
     echo $wallpaper
     exit 1
 fi
-
-install_utilities
-
-cp .zshrc ~
-
-install_zsh_plugins
+log 1 "Wallpaper detected $wallpaper"
 
 matugen image "$wallpaper"
 
