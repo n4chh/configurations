@@ -1,3 +1,17 @@
 # configurations
-On this repo I will upload all my config files, from vim configurations to advanced scripts to automate different tasks
-Switch betwen Branches and Folders to see all the different files I usually use on different OS
+# Mac OS
+
+To use this configurations you should have installed this dependences:
+## **Sketchybar**
+Bar
+## **Yabai**
+Window Manager
+## **Skhd**
+Keymap
+## **Kitty**
+Terminal
+## **ZSH**
+ZSH
+
+If you have any question just let me know :D
+prueba
