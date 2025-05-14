@@ -48,47 +48,51 @@ function download_nerd_fonts() {
 }
 
 function install_zsh_plugins() {
-
+    $ZSH_CUSTOM=$HOME/.oh-my-zsh
     log 1 "Installing oh-my-posh"
     [ -f /usr/local/bin/oh-my-posh ] || (curl -s https://ohmyposh.dev/install.sh | sudo bash -s -- -d /usr/local/bin)
     log 1 "Installing oh-my-zsh"
-    if ! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended; then
+    if ! $sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended; then
         log 2 "There was an error while installing oh-my-zsh"
     fi
-    ZSH_CUSTOM=~/.oh-my-zsh
+    ZSH_CUSTOM=$HOME/.oh-my-zsh
     log 1 "Installing zsh-autosuggestions"
-    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    $sudo git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
     log 1 "Installing zsh-syntax-highlighting"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    $sudo git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
     log 1 "Installing fast-fast-syntax-highlighting"
-    git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
+    $sudo git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
         ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 }
 
 function configure_zsh() {
-    cp .zshrc ~
-    cp .config/oh-my-zsh ~/.config
-    cp .config/zshrc ~/.config
+    local old_home=$HOME
+    if [ $USER == "root" ]; then
+        HOME=/root
+        sudo=sudo
+    fi
     if yes_or_no "Would you like to configure ZSH plugins for $USER?"; then
         install_zsh_plugins
     fi
+    $sudo cp ./.zshrc ~
+    $sudo cp -r ./.config/ohmyposh ~/.config
+    $sudo cp -r ./.config/zshrc ~/.config
+    HOME=$old_home
 }
 
 function install_utilities() {
-    log 1 "Installing fzf"
-    sudo apt install fzf
-    log 1 "Installing fastfetch"
-    sudo apt install fastfetch
+    local packages=(
+        "fzf"
+        "lazygit"
+        "fastfetch"
+        "fd-find"
+        "tmux"
+        "eza"
+    )
+    log 1 "Installing ${packages[*]}"
+    sudo apt install ${packages[*]}
     log 1 "Installing nvm"
-    sudo apt install nvm
-    log 1 "Installing lazygit"
-    sudo apt install lazygit
-    log 1 "Installing fd"
-    sudo apt install fd
-    log 1 "Installing tmux"
-    sudo apt install tmux
-    log 1 "Installing eza"
-    sudo apt install eza
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 }
 function install_neovim() {
     sudo apt install neovim
@@ -115,10 +119,15 @@ if yes_or_no "Would you like to install Neovim?"; then
     install_neovim
 fi
 
-configure_zsh
-if yes_or_no "Would you like to configure ZSH plugins for $USER?"; then
-    sudo configure_zsh
+if yes_or_no "Would you like to configure ZSH for $USER?"; then
+    configure_zsh
 fi
+old_user=$USER
+USER=root
+if yes_or_no "Would you like to configure ZSH for $USER?"; then
+    configure_zsh
+fi
+USER=old_user
 
 cp -r .config/* ~/.config
 log 0 Source files copied
