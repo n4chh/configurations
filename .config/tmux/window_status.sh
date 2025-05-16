@@ -1,0 +1,1 @@
+normal/window_status.sh

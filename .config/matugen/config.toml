@@ -7,6 +7,9 @@ output_path = '~/.config/kitty/dark-theme.auto.conf'
 input_path = '~/.config/matugen/templates/light-kitty.conf'
 output_path = '~/.config/kitty/light-theme.auto.conf'
 
+[templates.tmux-colors]
+input_path = '~/.config/matugen/templates/colors.sh'
+output_path = '~/.config/tmux/colors.sh'
 [templates.tmux]
 input_path = '~/.config/matugen/templates/tmux.conf'
 output_path = '~/.config/tmux/tmux.conf'
