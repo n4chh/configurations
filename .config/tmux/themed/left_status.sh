@@ -2,5 +2,5 @@
 
 source ./colors.sh
 
-session="#[fg=$SOURCE bg=terminal]#[bg=$SOURCE fg=colour255] #[bg=$PRIMARYBG fg=$PRIMARY] #S#[fg=$PRIMARYBG bg=terminal] "
+session="#[bg=$SOURCE fg=$WHITE] #[bg=$TAGBG fg=$TAGFG] #S#[fg=$TAGBG bg=terminal] "
 echo "$session"
