@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ./colors.sh
+source ~/.config/tmux/colors.sh
 function window_status() {
     echo "#[fg=$SECONDARY]#[bg=$SECONDARY]  #[fg=$TAGFGDIM bg=$TAGBG] #I #W #[fg=$TAGBG bg=terminal]"
 }
