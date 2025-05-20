@@ -96,14 +96,6 @@ function install_neovim() {
     log 0 "Neovim config installed"
 }
 
-if ! which matugen 2>/dev/null 1>&2; then
-    log 2 "matugen is needed. "
-    log 1 "Installing it . . ."
-    if ! cargo install matugen; then
-        log 3 There was an error while installing matugen.
-        exit 1
-    fi
-fi
 if yes_or_no "Would you like to install Homebrew?"; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -126,16 +118,26 @@ fi
 cp .zshrc ~
 cp -r .config/* ~/.config
 log 0 Source files copied
-wallpaper="$(get_wallpaper_path)"
+if yes_or_no "Would you like to setup config files with matugen?"; then
+    if ! which matugen 2>/dev/null 1>&2; then
+        log 2 "Can't find matugen. "
+        log 1 "Installing it . . ."
+        if ! cargo install matugen; then
+            log 3 There was an error while installing matugen.
+            exit 1
+        fi
+    fi
+    wallpaper="$(get_wallpaper_path)"
 
-if ! [ -f "$wallpaper" ]; then
-    log 3 "Could not detect actual wallpaper."
-    log 1 "Info:"
-    echo $wallpaper
-    exit 1
+    if ! [ -f "$wallpaper" ]; then
+        log 3 "Could not detect actual wallpaper."
+        log 1 "Info:"
+        echo $wallpaper
+        exit 1
+    fi
+    log 1 "Wallpaper detected $wallpaper"
+
+    matugen image "$wallpaper"
 fi
-log 1 "Wallpaper detected $wallpaper"
-
-matugen image "$wallpaper"
 
 log 0 "Setup completed"
