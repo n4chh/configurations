@@ -5,7 +5,7 @@ function window_status() {
     echo "#[fg=$SECONDARY]#[bg=$SECONDARY]  #[fg=$TAGFGDIM bg=$TAGBG] #I #W #[fg=$TAGBG bg=terminal]"
 }
 function window_active_status() {
-    echo "#[fg=$PRIMARY]#[bg=$PRIMARY fg=$SOURCE]#[fg=$PRIMARY bg=$TAGBG] #[fg=$SOURCE bg=$TAGBG]#I #W #[fg=$TAGBG bg=terminal]"
+    echo "#[fg=$PRIMARY]#[bg=$PRIMARY fg=$SOURCE]#[fg=$PRIMARY bg=$TAGBG] #[fg=$TAGFG bg=$TAGBG]#I #W #[fg=$TAGBG bg=terminal]"
 }
 
 if [[ $1 == "active" ]]; then
