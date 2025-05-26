@@ -161,6 +161,9 @@ automatically-unhide-macos-hidden-apps = false
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = 'mode service'
     alt-shift-f = 'fullscreen'
+    alt-f = [ 'fullscreen --no-outer-gaps' ]
+#     alt-f = [ 'fullscreen --no-outer-gaps' , """exec-and-forget osascript -e '
+# tell application "System Events" to tell dock preferences to set autohide menu bar to true' """ ]
     alt-z = """exec-and-forget osascript -e '
 tell application "System Events"
     if autohide menu bar of dock preferences then
