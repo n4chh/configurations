@@ -1,1 +1,0 @@
-normal/right_status.sh

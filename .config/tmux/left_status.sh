@@ -1,1 +1,0 @@
-normal/left_status.sh

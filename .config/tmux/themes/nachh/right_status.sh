@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-source ~/.config/tmux/colors.sh
+cd $1
+source colors.sh
 
 function vpn_status() {
     local vpn_status=$(ifconfig | grep -A 1 POINTOPOINT | grep 'inet ' | awk '{print $2}')
