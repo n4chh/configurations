@@ -1,6 +1,10 @@
+# theme = dark:Tomorrow Night Bright,light:Tomorrow
 theme = dark:Apple System Colors,light:Apple System Colors Light
-#background-opacity = 0.20
-#background-blur = true
-font-family = Terminess Nerd Font
-font-size = 16
+# background-opacity = 0.70
+# background-blur = true
+font-family = BlexMono Nerd Font Propo
+# font-family = Courier Prime
+# font-family = Cousine Nerd Font Propo
+font-size = 18
 window-inherit-font-size = false
+macos-option-as-alt = true

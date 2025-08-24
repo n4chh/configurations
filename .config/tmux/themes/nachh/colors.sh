@@ -5,15 +5,17 @@ mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light)
 BLUE=#3487ed
 WHITE=#ffffff
 
-SOURCE=#fe5d26
-PRIMARY=#f2c078
+PRIMARY=#c1fb33
 SECONDARY=#c1dbb3
 TERCIARY=#faedca
 if [[ $mode == "Dark" ]]; then
+	SOURCE=#c1fbb3
+	SOURCE=#c1fb33
     TAGBG=#494949
     TAGFGDIM=#909090
     TAGFG=terminal
 else
+	SOURCE=#218b53
     TAGFG=terminal
     TAGFGDIM=#909090
     TAGBG=#d4d4d4
