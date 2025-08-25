@@ -1,0 +1,9 @@
+theme = dark:Apple System Colors,light:Apple System Colors Light
+#background-opacity = 0.20
+#background-blur = true
+font-family = Hurmit Nerd Font Propo
+font-size = 14
+window-inherit-font-size = false
+shell-integration = zsh
+
+command = /usr/bin/zsh -l
