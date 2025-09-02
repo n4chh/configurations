@@ -1,6 +1,6 @@
 {
 	"transient_prompt": {
-		"template": "<b><#33ccff>{{.Shell}}</></b> <b>(</b>{{ .AbsolutePWD }}<b>)=></b> ",
+		"template": "[{{.Shell}}]:{{ .AbsolutePWD }}:> ",
 		"foreground": "default",
 		"background": "transparent"
 	},
@@ -11,15 +11,26 @@
 			"segments": [
 				{
 					"properties": {
+						"always_enabled": true,
 						"cache_duration": "none"
 					},
 					"trailing_diamond": "\ue0b0",
 					"leading_diamond": "\ue0b6",
-					"template": "{{ .UserName }}@<b>{{ .HostName }}</b>",
-					"foreground": "#000000",
-					"background": "#33ccff",
+					"template": "[{{.Name}}]",
+					"foreground": "default",
+					"type": "shell",
+					"style": "plain"
+				},
+				{
+					"properties": {
+						"cache_duration": "none"
+					},
+					"trailing_diamond": "\ue0b0",
+					"leading_diamond": "\ue0b6",
+					"template": "[{{ .UserName }}@<b>{{ .HostName }}</b>]",
+					"foreground": "default",
 					"type": "session",
-					"style": "diamond"
+					"style": "plain"
 				},
 				{
 					"properties": {
@@ -33,10 +44,9 @@
                             "~/.config": " "
 						}
 					},
-					"powerline_symbol": "\ue0b0",
-					"template": "<b> {{ .Path }}</b>",
-					"foreground": "#000000",
-					"background": "#00ff99",
+					"powerline_symbol": ":",
+					"template": "<b>{{ .Path }}</b>",
+					"foreground": "default",
 					"type": "path",
 					"style": "powerline"
 				}
@@ -138,13 +148,9 @@
 			"alignment": "left",
 			"segments": [
 				{
-					"properties": {
-						"always_enabled": true,
-						"cache_duration": "none"
-					},
-					"template": " <b>{{.Name}}></b>",
-					"foreground": "#33ccff",
-					"type": "shell",
+					"template": ">",
+					"foreground": "default",
+					"type": "text",
 					"style": "plain"
 				}
 			],
