@@ -2,19 +2,12 @@
 
 mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light)
 
-#
-#
-#3396D3
-#FFF0CE
-#EBCB90
-#EEEEEE
-
 BLUE=#3487ed
 WHITE=#ffffff
 
-SOURCE=#3396D3
-PRIMARY=#EBCB90
-SECONDARY=#FFF0CE
+SOURCE=#3487ed
+PRIMARY=#f2c078
+SECONDARY=#84b7f3
 TERCIARY=#faedca
 if [[ $mode == "Dark" ]]; then
     TAGBG=#494949
@@ -24,4 +17,10 @@ else
     TAGFG=terminal
     TAGFGDIM=#909090
     TAGBG=#d4d4d4
+fi
+if [[ "$1" == "set" ]]; then
+    echo "hey2" >/tmp/test
+    tmux set-option -g pane-border-style 'fg=terminal'
+    tmux set-option -g pane-active-border-style "fg=$SOURCE"
+    tmux set-option -g status-style "bg=terminal fg=$SOURCE"
 fi
