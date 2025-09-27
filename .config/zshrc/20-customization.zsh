@@ -25,6 +25,7 @@ plugins=(
 )
 
 # Set-up oh-my-zsh
+
 source $ZSH/oh-my-zsh.sh
 
 # -----------------------------------------------------
@@ -42,8 +43,6 @@ setopt appendhistory
 # Prompt
 # -----------------------------------------------------
 # eval "$(oh-my-posh init zsh)"
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/nachh.json)"
-
 
 # -----------------------------------------------------
 # Carapace
