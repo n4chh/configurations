@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-theme=nachh
+theme=catppuccin
 path="$HOME/.config/tmux/themes/$theme"
 [[ -d "$path" ]] || exit 1
 cd $path

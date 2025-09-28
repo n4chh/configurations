@@ -67,6 +67,17 @@ function install_zsh_plugins() {
         ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
 }
 
+function install_sddm_theme() {
+	local sddm_theme="catppuccin-latte-flamingo"
+	log 1 "Installing dependencies"
+	sudo pacman -Syu qt6-svg qt6-declarative qt5-quickcontrols2
+	
+	log 1 "Downloading theme"
+	curl -fsSL "https://github.com/catppuccin/sddm/releases/download/v1.1.2/$sddm_theme-sddm.zip" -o "/tmp/$sddm_theme.zip"
+	sudo unzip -d /usr/share/sddm/themes "/tmp/$sddm_theme.zip"
+	log 3 "Theme installed"
+}
+
 function install_utilities() {
     log 1 "Installing brightnessctl"
     sudo pamcan -S brightnessctl
@@ -103,6 +114,10 @@ fi
 
 if yes_or_no "Would you like to configure ZSH?"; then
     install_zsh_plugins
+fi
+
+if yes_or_no "Would you likke to configure SDDM?"; then
+	install_sddm_theme
 fi
 
 cp .zshrc ~
