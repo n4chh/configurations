@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-mode=$(gsettings get org.gnome.desktop.interface color-scheme)
+mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light)
 
-if [[ $mode == "'prefer-dark'" ]]; then
+
+if [[ $mode == "Dark" ]]; then
 	ROSEWATER="#f5e0dc"
 	FLAMINGO="#f2cdcd"
 	PINK="#f5c2e7"
