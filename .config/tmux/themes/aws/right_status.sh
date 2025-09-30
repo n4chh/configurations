@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 cd $1
 source colors.sh
+LEFT_ICON=""
+RIGHT_ICON=""
 
 function vpn_status() {
     local vpn_status=$(ifconfig | grep -A 1 POINTOPOINT | grep 'inet ' | awk '{print $2}')
@@ -12,12 +14,12 @@ function vpn_status() {
     # else
 		echo -n " "
 		echo -n "#[fg=$TAGBG ]"
-		echo -n ""
+		echo -n "$LEFT_ICON"
 		echo -n "#[fg=$PRIMARY bg=$TAGBG]"
 		echo -n " "
 		echo -n "#[fg=$GREEN bold] $vpn_status"
 		echo -n "#[nobold fg=$TAGBG bg=terminal]"
-		echo -n ""
+		echo -n "$RIGHT_ICON"
     fi
 }
 
