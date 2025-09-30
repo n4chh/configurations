@@ -18,17 +18,17 @@ tmux set -g status-right "#($PWD/right_status.sh $PWD)"
 
 source $PWD/colors.sh
 
-tmux setw -g window-status-format "#($PWD/window_status.sh $PWD)"
-tmux setw -g window-status-current-format "#($PWD/window_status.sh $PWD active)"
+tmux set -g window-status-format "#($PWD/window_status.sh $PWD)"
+tmux set -g window-status-current-format "#($PWD/window_status.sh $PWD active)"
 
 tmux set -g mouse on
 
-tmux set-option -g pane-border-lines heavy
-tmux set-option -g pane-border-format ''
-tmux set-option -g pane-border-status top
-tmux set-option -g pane-border-style "fg=$OVERLAY0"
-tmux set-option -g pane-active-border-style "fg=$SAPPHIRE"
-tmux set-option -g status-style "bg=terminal fg=$SOURCE"
+tmux set -g pane-border-lines heavy
+tmux set -g pane-border-format ''
+tmux set -g pane-border-status top
+tmux set -g pane-border-style "fg=$OVERLAY0"
+tmux set -g pane-active-border-style "fg=$SAPPHIRE"
+tmux set -g status-style "bg=terminal fg=$SOURCE"
 
 tmux set -g message-style "fg=$TEXT bg=$SURFACE1"
 tmux set -g message-command-style "bg=$TEXT fg=$SURFACE1"

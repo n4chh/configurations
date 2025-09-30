@@ -5,33 +5,40 @@ source colors.sh
 
 tmux setw -g window-status-separator ''
 
+LEFT_ICON=""
+RIGHT_ICON=""
 
 function window_status() {
-	echo -n "#[range=window|#window_id]#[fg=$TAGBG #{?window_start_flag,bg=terminal,bg=$TAGBG}]"
-	echo -n ""
-	echo -n "#[fg=$TAGFGDIM bg=$TAGBG]"
+	local tag_bg=$TAGBG
+	echo -n "#[range=window|#window_id]#[fg=$tag_bg #{?window_start_flag,bg=terminal,bg=$tag_bg}]"
+	echo -n "$LEFT_ICON"
+	echo -n "#[fg=$TAGFGDIM bg=$tag_bg]"
 	echo -n " "
 	echo -n "#I"
 	echo -n "#{?window_zoomed_flag, ,}"
-	echo -n " #W#[norange] "
-	echo -n "#[fg=$RED]#[range=user|kill#{window_id}]#[norange fg=$TAGFGDIM] "
+	echo -n " #W#[norange]"
+	echo -n " "
+	echo -n "#[fg=$RED]#[range=user|kill#{window_id}]#[norange] "
 	echo -n "#[fg=terminal bg=terminal]"
-	echo -n "#[fg=$TAGBG #{?window_end_flag,bg=terminal,bg=$TAGBG}]"
-	echo -n ""
+	echo -n "#[fg=$tag_bg #{?window_end_flag,bg=terminal,bg=$tag_bg}]"
+	echo -n "$RIGHT_ICON"
 	echo -n "#{?window_end_flag,#[fg=$PRIMARY range=user|new]#[norange] ,}"
 }
 function window_active_status() {
-	echo -n "#[range=window|#window_id]#[fg=$PRIMARY #{?window_start_flag,bg=terminal,bg=$TAGBG}]"
-	echo -n ""
-	echo -n "#[fg=$SOURCE bg=$PRIMARY]"
+	local active_tag_bg=$PRIMARY
+	local tag_bg=$TAGBG
+	echo -n "#[range=window|#window_id]#[fg=$active_tag_bg #{?window_start_flag,bg=terminal,bg=$tag_bg}]"
+	echo -n "$LEFT_ICON"
+	echo -n "#[fg=$SOURCE bg=$active_tag_bg]"
 	echo -n " "
 	echo -n "#I"
 	echo -n "#{?window_zoomed_flag, ,}"
-	echo -n " #[bold]#W#[nobold norange] "
-	echo -n "#[fg=$RED range=user|kill#{window_id}]#[norange fg=$TAGFGDIM] "
+	echo -n " #[bold]#W#[nobold norange]"
+	echo -n " "
+	echo -n "#[fg=$RED range=user|kill#{window_id}]#[norange] "
 	echo -n "#[fg=terminal bg=terminal]"
-	echo -n "#[fg=$PRIMARY #{?window_end_flag,bg=terminal,bg=$TAGBG}]"
-	echo -n ""
+	echo -n "#[fg=$active_tag_bg #{?window_end_flag,bg=terminal,bg=$tag_bg}]"
+	echo -n "$RIGHT_ICON"
 	echo -n "#{?window_end_flag,#[fg=$PRIMARY range=user|new]#[norange] ,}"
 }
 
