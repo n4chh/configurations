@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 cd $1
 source colors.sh
-LEFT_ICON=""
-RIGHT_ICON=""
+# LEFT_ICON=""
+# RIGHT_ICON=""
 
 function vpn_status() {
     local vpn_status=$(ifconfig | grep -A 1 POINTOPOINT | grep 'inet ' | awk '{print $2}')

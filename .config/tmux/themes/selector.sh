@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 BASE_PATH="$HOME/.config/tmux/themes"
-DEFAULT_THEME="$BASE_PATH/aws"
+DEFAULT_THEME="$BASE_PATH/nachh"
 get_theme() {
 	local theme="$1"
 
@@ -52,7 +52,7 @@ fzf_theme_selector() {
             --header="Current: $DEFAULT_THEME" \
 			--preview="source $BASE_PATH/selector.sh; source_theme {}" \
             --preview-window=right:60% \
-			--bind="esc:execute(source $BASE_PATH/selector.sh; source_theme)+abort"
+			--bind="esc:execute(source $BASE_PATH/selector.sh; source_theme)+abort" \
 			--bind="enter:execute(source $BASE_PATH/selector.sh; source_theme {}; change_theme {})+accept"
 }
 

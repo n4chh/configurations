@@ -2,5 +2,8 @@
 cd $1
 source ./colors.sh
 
-session="#[fg=$SOURCE]#[bg=$SOURCE fg=$TAGBG] #[bg=$TAGBG fg=$TAGFG] #S#[fg=$TAGBG bg=terminal] "
-echo "$session"
+echo -n " #[fg=$TAG_FG bold]#S "
+echo -n "#[fg=$SOURCE bold]"
+echo -n "#{?#{==:#{pane_mode},copy-mode},[C],}"
+echo -n "#{?#{pane_mode},,[N]}"
+echo -n " #[fg=$TERCIARY nobold]❯#[fg=terminal] "

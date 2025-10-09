@@ -18,17 +18,16 @@ tmux set -g status-right "#($PWD/right_status.sh $PWD)"
 
 source $PWD/colors.sh
 
-
-
-
-command="if -F '#{==:#{mouse_status_range},window}' {\
-        select-window\
+command="\
+if -F '#{==:#{mouse_status_range},window}' {\
+    select-window\
 } {\
-        if -F '#{m/r:^kill,#{mouse_status_range}}' {\
-        run -C 'kill-window -t#{s/^kill//:mouse_status_range}'\
-    }\
+    if -F '#{m/r:^kill,#{mouse_status_range}}' {\
+        run-shell 'tmux kill-window -t #{s/^kill//:mouse_status_range}'\
+    } {\
         if -F '#{==:#{mouse_status_range},new}' {\
-        new-window\
+            new-window\
+        }\
     }\
 }"
 
@@ -50,8 +49,6 @@ tmux bind-key -T root MouseDown1StatusLeft "$command"
 tmux bind-key -Troot F1 "$command"
 
 
-
-
 # tmux bind-key -n F1 "tmux display-
 
 
@@ -65,8 +62,7 @@ tmux set -g pane-border-format ''
 tmux set -g pane-border-status top
 tmux set -g pane-border-style "fg=$OVERLAY0"
 tmux set -g pane-active-border-style "fg=$SAPPHIRE"
-tmux set -g status-style "bg=terminal fg=$SOURCE"
-
+tmux set -g status-style "bg=terminal fg=$ROSEWATER"
 tmux set -g message-style "fg=$TEXT bg=$SURFACE1"
 tmux set -g message-command-style "bg=$TEXT fg=$SURFACE1"
 
