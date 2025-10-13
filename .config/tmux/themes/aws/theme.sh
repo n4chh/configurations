@@ -55,7 +55,6 @@ tmux set -g mouse on
 
 source $PWD/colors.sh
 
-tmux set -g pane-border-lines heavy
 tmux set -g status-position top
 tmux set -g pane-border-status top
 tmux set -g pane-border-format "#[fg=terminal]"
