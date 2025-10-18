@@ -40,11 +40,6 @@ SAVEHIST=10000
 setopt appendhistory
 
 # -----------------------------------------------------
-# Prompt
-# -----------------------------------------------------
-# eval "$(oh-my-posh init zsh)"
-
-# -----------------------------------------------------
 # Carapace
 # -----------------------------------------------------
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
