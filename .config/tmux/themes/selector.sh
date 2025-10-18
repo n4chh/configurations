@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 BASE_PATH="$HOME/.config/tmux/themes"
-DEFAULT_THEME="$BASE_PATH/nachh"
+DEFAULT_THEME="$BASE_PATH/zen"
 get_theme() {
 	local theme="$1"
 
