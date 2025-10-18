@@ -1,0 +1,7 @@
+# theme = dark:Adwaita Dark,light:Ubuntu
+theme = dark:Adwaita Dark,light:Adwaita
+font-family = Ubuntu Sans Mono
+font-family = Symbols Nerd Font Propo
+font-size = 10
+window-inherit-font-size = false
+macos-option-as-alt = true

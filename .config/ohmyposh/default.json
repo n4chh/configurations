@@ -1,0 +1,229 @@
+{
+	"palette": {
+		"Black": "#000000",
+		"White": "#FFFFFF",
+		"UbuntuOrange": "#E95420",
+		"LightAubergine": "#77216F",
+		"CanonicalAbuerigne": "#772953",
+		"MidAubergine": "#5E2750",
+		"DarkAubergine": "#2C001E",
+		"WarmGrey": "#AEA79F",
+		"CoolGrey":"#333333",
+		"Red": "#c7002a",
+		"Error": "#e91e33"
+	},
+	"transient_prompt": {
+		"template": "{{.Env.HOLA}}<p:CoolGrey>{{if .Root}}</><p:Red>{{end}}</><p:WarmGrey,p:CoolGrey>{{if .Root}}</><p:WarmGrey,p:Red>{{end}} <b>{{.Segments.Shell.Name}}</b> </><p:CoolGrey>{{if .Root}}</><p:Red>{{end}}</><transparent,p:MidAubergine></><default,p:MidAubergine> {{ .PWD }} </><p:MidAubergine></> ",
+		"foreground": "default",
+		"background": "transparent"
+	},
+
+	"blocks": [
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"properties": {
+						"cache_duration": "none",
+						"style": "full",
+						"folder_icon": " ",
+						"style": "full",
+						"mapped_locations_enabled": true,
+						"mapped_locations": {
+							"~/Desktop/Github": " ",
+							"~/.config": " "
+						}
+					},
+					"powerline_symbol": "",
+					"template": "<b> {{ .Path }} </b>",
+					"foreground": "p:WarmGrey",
+					"foreground_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:CoolGrey{{end}}"
+					],
+					"background": "transparent",
+					"type": "path",
+					"style": "powerline"
+				},
+				{
+					"properties": {
+						"branch_icon": "",
+						"cache_duration": "none",
+						"display_changing_color": true,
+						"fetch_status": true,
+						"fetch_upstream_icon": true,
+						"full_branch_path": true
+					},
+					"template": "  ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }}){{ if gt .Ahead 0 }}<#50fa7b> +{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }}<#ff5555> -{{ .Behind }}</>{{ end }}{{ if .Working.Changed }}<p:White>  {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<p:Black>  {{ .Staging.String }}</>{{ end }} ",
+					"foreground": "p:Black",
+					"background": "#ffb86c",
+					"type": "git",
+					"powerline_symbol": "",
+					"style": "powerline"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "right",
+			"foreground": "transparent",
+			"segments": [ 
+
+				{
+					"template": " {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#50fa7b",
+					"type": "node",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"package-lock.json"
+						]
+					},
+					"template": " {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#ff5555",
+					"type": "npm",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"pnpm-lock.yaml"
+						]
+					},
+					"template": "󰋁 {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#ffb86c",
+					"type": "pnpm",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files"
+					},
+					"template": "<#FEE058>󰌠 </>{{ .Full }}",
+					"foreground": "p:White",
+					"background": "#3870A2",
+					"type": "python",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " {{ .Full }}",
+					"foreground": "#ED1D23",
+					"background": "p:White",
+					"type": "java",
+					"type": "python",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " 󰟓 {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#69d7e2",
+					"type": "go",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"type": "zig",
+					"foreground": "#342311",
+					"background": "#ffad55",
+					"template": " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " {{ .Full }}",
+					"foreground": "p:White",
+					"background": "#6272a4",
+					"type": "php",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"leading_diamond": " ",
+					"trailing_diamond": "",
+					"template": "<p:UbuntuOrange> </> <b>{{.Name}}</b> ",
+					"background": "p:LightAubergine",
+					"foreground": "p:White",
+					"type": "shell",
+					"style": "diamond",
+					"properties": {
+						"mapped_shell_names": {
+							"pwsh": "PS"
+						}
+					}
+				},
+				{
+					"properties": {
+						"cache_duration": "none"
+					},
+
+					"powerline_symbol": "",
+					"template": " {{ if .Root }}  {{end}}<b>{{ .UserName }}</b>{{if .SSHSession}}@<b>{{ .HostName }}</b>{{end}} ",
+					"foreground": "p:White",
+					"background": "p:CanonicalAbuerigne",
+					"background_templates": [
+						"{{if .Root}}p:Red{{end}}"
+					],
+					"type": "session",
+					"style": "powerline"
+				},
+				{
+					"trailing_diamond": "",
+					"leading_diamond": "<transparent,background></>",
+					"template": " {{ if .Error}} {{.Code}}{{else}} {{end}}",
+					"foreground": "p:White",
+					"foreground_templates":[
+    					"{{if eq \"Light\" .Env.THEME}}p:CoolGrey{{end}}"
+					],
+					"background": "p:CoolGrey",
+					"background_templates":[
+						"{{ if .Error }}p:Error{{ end }}",
+    					"{{if eq \"Light\" .Env.THEME}}p:WarmGrey{{end}}"
+					],
+					"type": "status",
+					"style": "diamond",
+					"properties": {
+						"always_enabled": true
+					}
+				}
+
+			],
+			"newline": true
+		}
+	],
+	"version": 3,
+	"patch_pwsh_bleed": true,
+	"final_space": true
+}
