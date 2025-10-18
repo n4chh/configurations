@@ -1,0 +1,216 @@
+{
+	"palette": {
+		"Black": "#000000",
+		"White": "#FFFFFF",
+		"CozyWhite": "#FBF9F8",
+		"SesameBlack": "#151515",
+		"PeachyClay": "#e5bda1",
+		"WarmTerra": "#c88566",
+		"IvorySand":"#f0e9d3",
+		"MintJade": "#cfddbb",
+		"DuskyPine": "#747564",
+		"Red": "#c7002a"
+	},
+	"transient_prompt": {
+		"template": "{{.Env.HOLA}}<p:WarmTerra>{{if .Root}}</><p:Red>{{end}}</><p:Black,p:WarmTerra> {{if .Root}}</><p:Black,p:Red>{{end}}<b>{{.Segments.Shell.Name}}</b> </><p:WarmTerra>{{if .Root}}</><p:Red>{{end}} </>{{ .PWD }} <b>></b> ",
+		"foreground": "default",
+		"background": "transparent"
+	},
+
+	"blocks": [
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"properties": {
+						"cache_duration": "none"
+					},
+					"trailing_diamond": "",
+					"leading_diamond": "",
+					"template": " {{ if .Root }}<b>{{end}}{{ .UserName }}{{ if .Root}}</b>{{end}}{{if .SSHSession}}@<b>{{ .HostName }}</b>{{end}} ",
+					"foreground": "p:Black",
+					"background": "p:MintJade",
+					"background_templates": [
+						"{{if .Root}}p:Red{{end}}"
+					],
+					"type": "session",
+					"style": "diamond"
+				},
+				{
+					"properties": {
+						"cache_duration": "none",
+						"style": "full",
+						"folder_icon": " ",
+						"style": "full",
+						"mapped_locations_enabled": true,
+						"mapped_locations": {
+							"~/Desktop/Github": " ",
+							"~/.config": " "
+						}
+					},
+					"powerline_symbol": "",
+					"template": "<b> {{ .Path }} </b>",
+					"foreground": "p:IvorySand",
+					"foreground_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:DuskyPine{{end}}"
+					],
+					"background": "transparent",
+					"type": "path",
+					"style": "powerline"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "right",
+			"foreground": "transparent",
+			"segments": [
+				{
+					"properties": {
+						"branch_icon": "",
+						"cache_duration": "none",
+						"display_changing_color": true,
+						"fetch_status": true,
+						"fetch_upstream_icon": true,
+						"full_branch_path": true
+					},
+					"template": " ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }}){{ if gt .Ahead 0 }}<#50fa7b> +{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }}<#ff5555> -{{ .Behind }}</>{{ end }}{{ if .Working.Changed }}<p:White>  {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<p:Black>  {{ .Staging.String }}</>{{ end }}",
+					"foreground": "p:Black",
+					"background": "#ffb86c",
+					"type": "git",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#50fa7b",
+					"type": "node",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"package-lock.json"
+						]
+					},
+					"template": " {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#ff5555",
+					"type": "npm",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"pnpm-lock.yaml"
+						]
+					},
+					"template": "󰋁 {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#ffb86c",
+					"type": "pnpm",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files"
+					},
+					"template": "<#FEE058>󰌠 </>{{ .Full }}",
+					"foreground": "p:White",
+					"background": "#3870A2",
+					"type": "python",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " {{ .Full }}",
+					"foreground": "#ED1D23",
+					"background": "p:White",
+					"type": "java",
+					"type": "python",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " 󰟓 {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#69d7e2",
+					"type": "go",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"type": "zig",
+					"foreground": "#342311",
+					"background": "#ffad55",
+					"template": " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " {{ .Full }}",
+					"foreground": "p:White",
+					"background": "#6272a4",
+					"type": "php",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"leading_diamond": " ",
+					"trailing_diamond": " ",
+					"template": " <b>{{.Name}}</b> ",
+					"background": "transparent",
+					"foreground": "p:WarmTerra",
+					"type": "shell",
+					"style": "diamond",
+					"properties": {
+						"mapped_shell_names": {
+							"pwsh": "PS"
+						}
+					}
+				},
+				{
+					"template": "<b>></b>",
+					"foreground": "default",
+					"type": "text",
+					"style": "plain"
+				}
+
+			],
+			"newline": true
+		}
+	],
+	"version": 3,
+	"patch_pwsh_bleed": true,
+	"final_space": true
+}
