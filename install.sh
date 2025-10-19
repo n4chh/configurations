@@ -52,8 +52,9 @@ function install_zsh() {
 	log 1 "Installing zsh"
 	sudo apt install zsh
 	log 1 "Installing carapace completions"
-	curl -fsSL https://github.com/carapace-sh/carapace-bin -o ~/.local/bin/carapace
-	chmod +x ~/.local/bin/carapace
+	curl -fsSL https://github.com/carapace-sh/carapace-bin/releases/download/v1.5.3/carapace-bin_1.5.3_linux_amd64.tar.gz -o ~/.local/bin/carapace.tar.gz
+	tar -xzf ~/.local/bin/carapace.tar.gz -C ~/.local/bin	
+	rm ~/.local/bin/{README.md,LICENSE,carapace.tar.gz}
 
 	if yes_or_no "Would you like to set zsh as default shell for current user?"; then
 		user=$USER
@@ -93,6 +94,11 @@ function install_utilities() {
 
 	log 1 "Installing ghostty"
 	snap install ghostty --classic
+	if yes_or_no "Do you want to set ghostty as the default terminal emulator"; then
+		ghostty_path="$(which ghostty)"
+		[[ -f "$ghostty_path" ]] || ghostty_path="/snap/ghostty/current/bin/ghostty"
+		sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator "$ghostty_path" 50
+	fi
 
     log 1 "Installing tmux"
     sudo apt install tmux
