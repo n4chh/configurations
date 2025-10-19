@@ -30,7 +30,7 @@ function window_active_status() {
 	echo -n "#[range=window|#window_id]"
 	echo -n "#[fg=$active_tab_bg]#{?window_start_flag,#[bg=terminal],#[bg=$tab_bg]}"
 	echo -n "$LEFT_ICON"
-	echo -n "#[fg=$TAGFG bg=$active_tab_bg]"
+	echo -n "#[fg=$WHITE bg=$active_tab_bg]"
 	echo -n " "
 	echo -n "#I"
 	echo -n "#{?window_zoomed_flag, ,}"
