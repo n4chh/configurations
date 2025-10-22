@@ -1,0 +1,234 @@
+{
+	"palette": {
+		"AWS": "#ff9900",
+		"AWSBlack":"#232f3e",
+		"AWSWhite":"#f2f2f2",
+		"AWSBlue":"#146eb4",
+		"Error": "#DB0000"
+	},
+	"transient_prompt": {
+		"template": " <#146eb4></><#f2f2f2,#146eb4><b>{{.Shell}}</b> </><#146eb4,#232f3e> </><#f2f2f2,#232f3e>{{ .PWD }}</><#232f3e,default></> <b>></b> ",
+		"foreground": "default",
+		"background": "transparent"
+	},
+	"blocks": [
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"properties": {
+						"cache_duration": "none",
+						"style": "full",
+						"folder_icon": " ",
+						"style": "full",
+						"mapped_locations_enabled": true,
+						"mapped_locations": {
+							"~/Desktop/Github": " ",
+							"~/.config": " "
+						}
+					},
+					"trailing_diamond": "",
+					"leading_diamond": "",
+					"template": "<b> {{ .Path }} </b>",
+					"foreground": "p:AWSBlack",
+					"foreground_templates":[
+    					"{{if eq \"Light\" .Env.THEME}}p:AWSWhite{{end}}"
+					],
+					"background": "p:AWSWhite",
+					"background_templates":[
+						"{{ if .Error }}p:Error{{ end }}",
+    					"{{if eq \"Light\" .Env.THEME}}p:AWSBlack{{end}}"
+					],
+					"type": "path",
+					"style": "diamond"
+				},
+				{
+					"type": "aws",
+					"style": "powerline",
+					"powerline_symbol": "",
+					"foreground": "#232f3e",
+					"background": "#FFA400",
+					"template": "   {{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "right",
+			"segments": [
+				{
+					"type": "text",
+					"style": "diamond",
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"foreground": "#ffffff",
+					"background": "#00A4FF",
+					"template": "{{ if .Env.HTTP_PROXY }}󰛳 {{ .Env.HTTP_PROXY }}{{ end }}"
+				},
+				{
+					"properties": {
+						"branch_icon": "",
+						"cache_duration": "none",
+						"display_changing_color": true,
+						"fetch_status": true,
+						"fetch_upstream_icon": true,
+						"full_branch_path": true
+					},
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": " ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }}){{ if gt .Ahead 0 }}<#50fa7b> +{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }}<#ff5555> -{{ .Behind }}</>{{ end }}{{ if .Working.Changed }}<#ffffff>  {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<#000000>  {{ .Staging.String }}</>{{ end }}",
+					"foreground": "#000000",
+					"background": "#ffb86c",
+					"type": "git",
+					"style": "diamond"
+				},
+				{
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": " {{ .Full }}",
+					"foreground": "#000000",
+					"background": "#50fa7b",
+					"type": "node",
+					"style": "diamond"
+				},
+				{
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"package-lock.json"
+						]
+					},
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": " {{ .Full }}",
+					"foreground": "#000000",
+					"background": "#ff5555",
+					"type": "npm",
+					"style": "diamond"
+				},
+				{
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"pnpm-lock.yaml"
+						]
+					},
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": "󰋁 {{ .Full }}",
+					"foreground": "#000000",
+					"background": "#ffb86c",
+					"type": "pnpm",
+					"style": "diamond"
+				},
+				{
+					"properties": {
+						"display_mode": "files"
+					},
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": "<#FEE058>󰌠 </>{{ .Full }}",
+					"foreground": "#ffffff",
+					"background": "#3870A2",
+					"type": "python",
+					"style": "diamond"
+				},
+				{
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": " {{ .Full }}",
+					"foreground": "#ED1D23",
+					"background": "#ffffff",
+					"type": "java",
+					"style": "diamond"
+				},
+				{
+					"template": " 󰟓 {{ .Full }}",
+					"foreground": "#000000",
+					"background": "#69d7e2",
+					"type": "go",
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"style": "diamond"
+				},
+
+				{
+					"type": "zig",
+					"style": "diamond",
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"foreground": "#342311",
+					"background": "#ffad55",
+					"template": " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+				},
+				{
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": " {{ .Full }}",
+					"foreground": "#ffffff",
+					"background": "#6272a4",
+					"type": "php",
+					"style": "diamond"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": "<b>{{.Name}}</b>",
+					"foreground": "#f2f2f2",
+					"background": "#146eb4",
+					"type": "shell",
+					"style": "diamond"
+				},
+				{
+					"properties": {
+						"cache_duration": "none"
+					},
+					"powerline_symbol": "",
+  					"template": " {{ .UserName }}{{ if .SSHSession }} {{.HostName }}{{ end }} ",
+					"foreground": "p:AWSBlack",
+					"foreground_templates":[
+    					"{{if eq \"Light\" .Env.THEME}}p:AWSWhite{{end}}"
+					],
+					"background": "p:AWSWhite",
+					"background_templates":[
+						"{{ if .Error }}p:Error{{ end }}",
+    					"{{if eq \"Light\" .Env.THEME}}p:AWSBlack{{end}}"
+					],
+					"type": "session",
+					"style": "powerline"
+				},
+				{
+					"trailing_diamond": "",
+					"leading_diamond": "<transparent,background></>",
+					"template": " {{ if .Error}} {{.Code}}{{else}} {{end}}",
+					"foreground": "p:AWSWhite",
+					"foreground_templates":[
+						"{{ if .Error }}p:AWSWhite{{ end }}",
+    					"{{if eq \"Light\" .Env.THEME}}p:AWSBlack{{end}}"
+					],
+					"background": "p:AWS",
+					"background_templates":[
+						"{{ if .Error }}p:Error{{ end }}"
+					],
+					"type": "status",
+					"style": "diamond",
+					"properties": {
+						"always_enabled": true
+					}
+				}
+
+			],
+			"newline": true
+		}
+	],
+	"version": 3,
+	"patch_pwsh_bleed": true,
+	"final_space": true
+}

@@ -26,11 +26,7 @@ function vpn_status() {
 date=$(date +"%D %T")
 vpn=$(vpn_status)
 
-# echo -n " #[fg=$SURFACE0]"
-
 echo -n "$vpn"
-echo -n " "
-echo -n "#{mouse_status_range}"
 echo -n " "
 echo -n "#[fg=$PRIMARY]"
 echo -n "$date"

@@ -5,9 +5,6 @@ source colors.sh
 
 tmux setw -g window-status-separator ''
 
-LEFT_ICON=""
-RIGHT_ICON=""
-
 function window_status() {
 	local tab_bg=$TAGBG
 	echo -n "#[range=window|#window_id]"

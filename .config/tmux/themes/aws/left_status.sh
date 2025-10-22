@@ -2,8 +2,10 @@
 cd $1
 source ./colors.sh
 
-session="#[fg=$SOURCE]#[bg=$SOURCE fg=$AWSPRIMARY]  #[bg=$TAGBG fg=$TAGFG] #S#[fg=$TAGBG bg=terminal] "
 echo -n " "
-echo -n "#[fg=$PRIMARY bold]  "
+echo -n "#[fg=$PRIMARY]$LEFT_ICON#[bg=$PRIMARY]"
+echo -n "#[fg=$PRIM_CONTRAST bold] "
+echo -n "#[fg=$PRIMARY bg=terminal]$RIGHT_ICON#[fg=terminal]"
+echo -n " "
 echo -n "#[fg=$SOURCE bold]#S "
 echo -n "#[fg=$SOURCE nobold]❯#[fg=terminal] "
