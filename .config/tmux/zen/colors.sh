@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light)
+
+#
+#
+#3396D3
+#FFF0CE
+#EBCB90
+#EEEEEE
+COZY_WHITE="#FBF9F8"
+SESAME_BLACK="#151515"
+PEACHY_CLAY="#e5bda1"
+WARM_TERRA="#c88566"
+IVORY_SAND="#f0e9d3"
+MINT_JADE="#cfddbb"
+DUSKY_PINE="#747564"
+
+# icons
+# ''
+# ''
+# ''
+# ''
+LEFT_ICON=""
+RIGHT_ICON=""
+
+if [[ $mode == "Dark" ]]; then
+	SOURCE="$PEACHY_CLAY"
+	PRIMARY="$MINT_JADE"
+	SECONDARY="$DUSKY_PINE"
+	TERCIARY="$WARM_TERRA"
+
+	BLUE=#3487ed
+	GREEN=#00802f
+	RED=#DB0000
+	WHITE=#ffffff
+
+    TAG_FG="$COZY_WHITE"
+    TAG_FGDIM="$SESAME_BLACK"
+    TAG_BG="$DUSKY_PINE"
+
+	ACTIVE_TAB_FG="$SESAME_BLACK"
+	ACTIVE_TAB_BG="$WARM_TERRA"
+	TAB_BG="$COZY_WHITE"
+else
+	SOURCE="$WARM_TERRA"
+	PRIMARY="$DUSKY_PINE"
+	SECONDARY="$MINT_JADE"
+	TERCIARY="$PEACHY_CLAY"
+
+	BLUE=#3487ed
+	GREEN=#00802f
+	RED=#DB0000
+	WHITE=#ffffff
+
+    TAG_BG="$MINT_JADE"
+    TAG_FGDIM="$SESAME_BLACK"
+    TAG_FG="$SESAME_BLACK"
+
+	ACTIVE_TAB_FG="$SESAME_BLACK"
+	ACTIVE_TAB_BG="$WARM_TERRA"
+	TAB_BG="$IVORY_SAND"
+fi
