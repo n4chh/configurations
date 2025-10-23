@@ -4,6 +4,7 @@
 tmux set -g default-terminal "screen-256color"
 # tmux set -g status-style "#(./colors.sh print)"
 tmux set -g status-justify left
+tmux set -g pane-base-index 1
 
 tmux set -g status on
 tmux set -g status-right-length 200

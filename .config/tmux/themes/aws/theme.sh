@@ -10,6 +10,7 @@ tmux set -g status-left-length 40
 tmux set -g status-interval 1
 tmux set -g status-left "#($PWD/left_status.sh $PWD)"
 tmux set -g status-right "#($PWD/right_status.sh $PWD)"
+tmux set -g pane-base-index 1
 
 # icons
 # ''
