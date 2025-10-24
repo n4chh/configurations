@@ -6,7 +6,7 @@ source colors.sh
 tmux setw -g window-status-separator ''
 
 function get_index_format() {
-	local i=("󰎡 " "󰎤 " "󰎧 " "󰎪 " "󰎭 " "󰎱 " "󰎳 " "󰎶 " "󰎹 " "󰎼 ")
+	local i=("󰎡 " "󰬺 " "󰬻 " "󰬼 " "󰬽 " "󰬾 " "󰬿 " "󰭀 " "󰭁 " "󰭂 ")
 	echo -n "#{?#{==:#I,0},${i[0]},}"
 	echo -n "#{?#{==:#I,1},${i[1]},}"
 	echo -n "#{?#{==:#I,2},${i[2]},}"
@@ -30,10 +30,19 @@ function window_status() {
 	echo -n "#{?window_zoomed_flag, ,}"
 	echo -n "#W#[norange]"
 	echo -n " "
-	echo -n "#[fg=$RED]#[range=user|kill#{window_id}]#[norange] "
-	echo -n "#[fg=$tab_bg]#{?window_end_flag,#[bg=terminal],#[bg=$tab_bg]}"
-	echo -n "$RIGHT_ICON"
-	echo -n "#{?window_end_flag,#[fg=$PRIMARY range=user|new]#[norange] ,}"
+	echo -n "#[range=user|kill#{window_id}]"
+	echo -n "#[fg=$RED]$LEFT_ICON#[fg=$WHITE bg=$RED]"
+	echo -n "#{?window_end_flag,"
+	echo -n "#[bg=terminal],"
+	echo -n "#[bg=$tab_bg]"
+	echo -n "}#[fg=$RED norange]$RIGHT_ICON"
+
+	echo -n "#{?window_end_flag,"
+	echo -n " #[range=user|new]"
+	echo -n "#[fg=$GREEN bg=terminal]$LEFT_ICON"
+	echo -n "#[fg=$WHITE bg=$GREEN]󱇬#[fg=$GREEN bg=terminal norange]$RIGHT_ICON"
+	echo -n ",}"
+
 }
 function window_active_status() {
 	local active_tab_bg=$PRIMARY
@@ -47,10 +56,18 @@ function window_active_status() {
 	echo -n "#{?window_zoomed_flag, ,}"
 	echo -n "#[bold]#W#[nobold norange]"
 	echo -n " "
-	echo -n "#[fg=$RED range=user|kill#{window_id}]#[norange] "
-	echo -n "#[fg=$active_tab_bg]#{?window_end_flag,#[bg=terminal],#[bg=$tab_bg]}"
-	echo -n "$RIGHT_ICON"
-	echo -n "#{?window_end_flag,#[fg=$PRIMARY range=user|new]#[norange] ,}"
+	echo -n "#[range=user|kill#{window_id}]"
+	echo -n "#[fg=$RED]$LEFT_ICON#[fg=$WHITE bg=$RED]"
+	echo -n "#{?window_end_flag,"
+	echo -n "#[bg=terminal],"
+	echo -n "#[bg=$tab_bg]"
+	echo -n "}#[fg=$RED norange]$RIGHT_ICON"
+
+	echo -n "#{?window_end_flag,"
+	echo -n " #[range=user|new]"
+	echo -n "#[fg=$GREEN bg=terminal]$LEFT_ICON"
+	echo -n "#[fg=$WHITE bg=$GREEN]󱇬#[fg=$GREEN bg=terminal norange]$RIGHT_ICON"
+	echo -n ",}"
 }
 
 if [[ $2 == "active" ]]; then
