@@ -50,6 +50,15 @@
 					"foreground": "#232f3e",
 					"background": "#FFA400",
 					"template": "   {{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
+				},
+				{
+					"type": "text",
+					"style": "diamond",
+					"trailing_diamond": "",
+					"leading_diamond": "<transparent,background></>",
+					"foreground": "#ffffff",
+					"background": "#00A4FF",
+					"template": "{{ if .Env.HTTP_PROXY }}󰛳 {{ .Env.HTTP_PROXY }}{{ end }}"
 				}
 			]
 		},
@@ -57,15 +66,6 @@
 			"type": "prompt",
 			"alignment": "right",
 			"segments": [
-				{
-					"type": "text",
-					"style": "diamond",
-					"leading_diamond": "",
-					"trailing_diamond": "",
-					"foreground": "#ffffff",
-					"background": "#00A4FF",
-					"template": "{{ if .Env.HTTP_PROXY }}󰛳 {{ .Env.HTTP_PROXY }}{{ end }}"
-				},
 				{
 					"properties": {
 						"branch_icon": "",
