@@ -6,7 +6,7 @@ source colors.sh
 tmux setw -g window-status-separator ''
 
 function get_index_format() {
-	local i=("󰎡 " "󰬺" "󰬻" "󰬼" "󰬽" "󰬾" "󰬿" "󰭀" "󰭁" "󰭂")
+	local i=("󰎡 " "󰬺 " "󰬻 " "󰬼 " "󰬽 " "󰬾 " "󰬿 " "󰭀 " "󰭁 " "󰭂 ")
 	echo -n "#{?#{==:#I,0},${i[0]},}"
 	echo -n "#{?#{==:#I,1},${i[1]},}"
 	echo -n "#{?#{==:#I,2},${i[2]},}"
@@ -20,9 +20,8 @@ function get_index_format() {
 }
 
 function window_status() {
-	# local TAB_BG="$TAG_BG"
 	echo -n "#[fg=$TAB_BG]"
-	echo -n "#{?window_start_flag,#[bg=terminal],#[bg=$TAB_BG]}"
+	echo -n "#{?window_start_flag,#[bg=terminal],#[bg=$RED]}"
 	echo -n "#[range=window|#window_id]"
 	echo -n "$LEFT_ICON"
 	echo -n "#[fg=$TAG_FGDIM bg=$TAB_BG]"
@@ -31,17 +30,18 @@ function window_status() {
 	echo -n "#{?window_zoomed_flag, ,}"
 	echo -n "#W#[norange]"
 	echo -n " "
-	echo -n "#[fg=$RED]#[range=user|kill#{window_id}]#[norange] "
-	echo -n "#[fg=$TAB_BG]"
-	echo -n "#{?window_end_flag,#[bg=terminal],#[bg=$TAB_BG]}"
+	echo -n "#[range=user|kill#{window_id}]"
+	echo -n "#[fg=$RED]$LEFT_ICON#[fg=$WHITE bg=$RED]#[fg=$RED bg=$TAB_BG]"
+	echo -n "#{?window_end_flag,"
+	echo -n "#[norange fg=$RED bg=$SECONDARY]"
 	echo -n "$RIGHT_ICON"
-	echo -n "#{?window_end_flag,#[fg=$SECONDARY range=user|new]#[norange] ,}"
+	echo -n "#[range=user|new]"
+	echo -n "#[fg=$TAG_FG bg=$SECONDARY]󱇬#[fg=$SECONDARY bg=terminal]$RIGHT_ICON"
+	echo -n "#[norange] ,}"
 }
 function window_active_status() {
-	# local ACTIVE_TAB_BG="$PRIMARY"
-	# local TAB_BG="$TAG_BG"
 	echo -n "#[fg=$ACTIVE_TAB_BG]"
-	echo -n "#{?window_start_flag,#[bg=terminal],#[bg=$TAB_BG]}"
+	echo -n "#{?window_start_flag,#[bg=terminal],#[bg=$RED]}"
 	echo -n "#[range=window|#window_id]"
 	echo -n "$LEFT_ICON"
 	echo -n "#[fg=$ACTIVE_TAB_FG bg=$ACTIVE_TAB_BG]"
@@ -50,11 +50,14 @@ function window_active_status() {
 	echo -n "#{?window_zoomed_flag, ,}"
 	echo -n "#[bold]#W#[nobold norange]"
 	echo -n " "
-	echo -n "#[fg=$RED range=user|kill#{window_id}]#[norange] "
-	echo -n "#[fg=$ACTIVE_TAB_BG]"
-	echo -n "#{?window_end_flag,#[bg=terminal],#[bg=$TAB_BG]}"
+	echo -n "#[range=user|kill#{window_id}]"
+	echo -n "#[fg=$RED]$LEFT_ICON#[fg=$WHITE bg=$RED]#[fg=$RED bg=$TAB_BG]"
+	echo -n "#{?window_end_flag,"
+	echo -n "#[norange fg=$RED bg=$SECONDARY]"
 	echo -n "$RIGHT_ICON"
-	echo -n "#{?window_end_flag,#[fg=$SECONDARY range=user|new]#[norange] ,}"
+	echo -n "#[range=user|new]"
+	echo -n "#[fg=$TAG_FG bg=$SECONDARY]󱇬#[fg=$SECONDARY bg=terminal]$RIGHT_ICON"
+	echo -n "#[norange] ,}"
 }
 
 if [[ $2 == "active" ]]; then
