@@ -1,33 +1,28 @@
 #!/usr/bin/env bash
 
-mode=$(gsettings get org.gnome.desktop.interface color-scheme)
-
+mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light)
 
 BLUE=#3487ed
 GREEN=#00802f
 RED=#DB0000
 WHITE=#ffffff
 
+LEFT_ICON=""
+RIGHT_ICON=""
+
 SOURCE=#ff9900
 AWSPRIMARY=#232f3e
 SECONDARY=#146eb4
 TERCIARY=#faedca
-
-# icons
-# ''
-# ''
-# ''
-# ''
-LEFT_ICON=""
-RIGHT_ICON=""
-
-if [[ $mode == "'prefer-dark'" ]]; then
+if [[ $mode == "Dark" ]]; then
 	PRIMARY=#f2f2f2
-    TAGBG=#494949
+	PRIM_CONTRAST=#232f3e
+	TAGBG=#494949
     TAGFGDIM=#909090
     TAGFG=terminal
 else
 	PRIMARY=#232f3e
+	PRIM_CONTRAST=#f2f2f2
     TAGFG=terminal
     TAGFGDIM=#909090
     TAGBG=#d4d4d4

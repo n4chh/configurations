@@ -10,6 +10,8 @@ tmux set -g status-left-length 40
 tmux set -g status-interval 1
 tmux set -g status-left "#($PWD/left_status.sh $PWD)"
 tmux set -g status-right "#($PWD/right_status.sh $PWD)"
+tmux set -g base-index 1
+tmux set -g pane-base-index 1
 
 # icons
 # ''
@@ -55,6 +57,7 @@ tmux set -g mouse on
 
 source $PWD/colors.sh
 
+tmux set -g pane-border-lines heavy
 tmux set -g status-position top
 tmux set -g pane-border-status top
 tmux set -g pane-border-format "#[fg=terminal]"

@@ -20,54 +20,45 @@ function get_index_format() {
 }
 
 function window_status() {
-	local tab_bg=$TAGBG
+	echo -n "#[fg=$TAB_BG]"
+	echo -n "#{?window_start_flag,#[bg=$TAG_BG],#[bg=$RED]}"
 	echo -n "#[range=window|#window_id]"
-	echo -n "#[fg=$tab_bg]#{?window_start_flag,#[bg=terminal],#[bg=$tab_bg]}"
 	echo -n "$LEFT_ICON"
-	echo -n "#[fg=$TAGFGDIM bg=$tab_bg]"
+	echo -n "#[fg=$TAG_FGDIM bg=$TAB_BG]"
 	echo -n " "
 	echo -n "$(get_index_format)"
 	echo -n "#{?window_zoomed_flag, ,}"
 	echo -n "#W#[norange]"
 	echo -n " "
 	echo -n "#[range=user|kill#{window_id}]"
-	echo -n "#[fg=$RED]$LEFT_ICON#[fg=$WHITE bg=$RED]"
+	echo -n "#[fg=$RED]$LEFT_ICON#[fg=$WHITE bg=$RED]#[fg=$RED bg=$TAB_BG]"
+	echo -n "#{?window_end_flag,#[bg=$PRIMARY],#[bg=$TAB_BG]}"
 	echo -n "#{?window_end_flag,"
-	echo -n "#[bg=terminal],"
-	echo -n "#[bg=$tab_bg]"
-	echo -n "}#[fg=$RED norange]$RIGHT_ICON"
-
-	echo -n "#{?window_end_flag,"
-	echo -n " #[range=user|new]"
-	echo -n "#[fg=$GREEN bg=terminal]$LEFT_ICON"
-	echo -n "#[fg=$WHITE bg=$GREEN]󱇬#[fg=$GREEN bg=terminal norange]$RIGHT_ICON"
-	echo -n ",}"
-
+	echo -n "#[norange fg=$RED]"
+	echo -n "$RIGHT_ICON"
+	echo -n "#[range=user|new]"
+	echo -n "#[fg=$TAG_FG bg=$PRIMARY]󱇬#[fg=$PRIMARY bg=terminal]$RIGHT_ICON"
+	echo -n "#[norange] ,}"
 }
 function window_active_status() {
-	local active_tab_bg=$PRIMARY
-	local tab_bg=$TAGBG
+	echo -n "#[fg=$ACTIVE_TAB_BG]"
+	echo -n "#{?window_start_flag,#[bg=$TAG_BG],#[bg=$RED]}"
 	echo -n "#[range=window|#window_id]"
-	echo -n "#[fg=$active_tab_bg]#{?window_start_flag,#[bg=terminal],#[bg=$tab_bg]}"
 	echo -n "$LEFT_ICON"
-	echo -n "#[fg=$SOURCE bg=$active_tab_bg]"
+	echo -n "#[fg=$ACTIVE_TAB_FG bg=$ACTIVE_TAB_BG]"
 	echo -n " "
 	echo -n "$(get_index_format)"
 	echo -n "#{?window_zoomed_flag, ,}"
 	echo -n "#[bold]#W#[nobold norange]"
 	echo -n " "
 	echo -n "#[range=user|kill#{window_id}]"
-	echo -n "#[fg=$RED]$LEFT_ICON#[fg=$WHITE bg=$RED]"
+	echo -n "#[fg=$RED]$LEFT_ICON#[fg=$WHITE bg=$RED]#[fg=$RED bg=$TAB_BG]"
 	echo -n "#{?window_end_flag,"
-	echo -n "#[bg=terminal],"
-	echo -n "#[bg=$tab_bg]"
-	echo -n "}#[fg=$RED norange]$RIGHT_ICON"
-
-	echo -n "#{?window_end_flag,"
-	echo -n " #[range=user|new]"
-	echo -n "#[fg=$GREEN bg=terminal]$LEFT_ICON"
-	echo -n "#[fg=$WHITE bg=$GREEN]󱇬#[fg=$GREEN bg=terminal norange]$RIGHT_ICON"
-	echo -n ",}"
+	echo -n "#[norange fg=$RED bg=$PRIMARY]"
+	echo -n "$RIGHT_ICON"
+	echo -n "#[range=user|new]"
+	echo -n "#[fg=$TAG_FG bg=$PRIMARY]󱇬#[fg=$PRIMARY bg=terminal]$RIGHT_ICON"
+	echo -n "#[norange] ,}"
 }
 
 if [[ $2 == "active" ]]; then

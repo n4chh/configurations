@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-mode=$(gsettings get org.gnome.desktop.interface.color-scheme)
-
+mode=$(defaults read -g AppleInterfaceStyle 2>/dev/null || echo Light)
 
 BLUE=#3487ed
 WHITE=#ffffff
@@ -10,7 +9,7 @@ SOURCE=#3487ed
 PRIMARY=#f2c078
 SECONDARY=#84b7f3
 TERCIARY=#faedca
-if [[ $mode == "'prefer-dark'" ]]; then
+if [[ $mode == "Dark" ]]; then
     TAGBG=#494949
     TAGFGDIM=#909090
     TAGFG=terminal
