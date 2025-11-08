@@ -1,19 +1,15 @@
 {
 	"palette": {
-		"Black": "#000000",
+		"Black": "#1d1d1f",
 		"White": "#FFFFFF",
-		"CozyWhite": "#FBF9F8",
-		"SesameBlack": "#151515",
-		"PeachyClay": "#e5bda1",
-		"WarmTerra": "#c88566",
-		"IvorySand":"#f0e9d3",
-		"MintJade": "#cfddbb",
-		"DuskyPine": "#747564",
-		"Red": "#c7002a",
-		"Error": "#e7505a"
+		"Grey": "#f5f5f7",
+		"Accent": "#0066cc",
+		"MintGreen": "#98FF98",
+		"Coral":"#FF6F61",
+		"Error": "#FF5C5F"
 	},
 	"transient_prompt": {
-		"template": "{{.Env.HOLA}}<p:WarmTerra>{{if .Root}}</><p:Red>{{end}}</><p:SesameBlack,p:WarmTerra>{{if .Root}}</><p:SesameBlack,p:Red>{{end}} <b>{{.Segments.Shell.Name}}</b> </><p:WarmTerra>{{if .Root}}</><p:Red>{{end}}</><transparent,p:PeachyClay></><p:SesameBlack,p:PeachyClay> {{ .PWD }} </><p:PeachyClay></> ",
+		"template": "<p:Grey,p:Accent>{{if .Root}}</><p:Grey,p:Coral>{{end}} <b>{{.Segments.Shell.Name}}</b> </><p:Accent,transparent>{{if .Root}}</><p:Coral>{{end}}</> <p:Grey,transparent></><p:Black,p:Grey> {{ .PWD }} </><p:Grey></> ",
 		"foreground": "default",
 		"background": "transparent"
 	},
@@ -37,9 +33,9 @@
 					},
 					"powerline_symbol": "",
 					"template": "<b> {{ .Path }} </b>",
-					"foreground": "p:CozyWhite",
+					"foreground": "p:Grey",
 					"foreground_templates": [
-    					"{{if eq \"Light\" .Env.THEME}}p:SesameBlack{{end}}"
+    					"{{if eq \"Light\" .Env.THEME}}p:Black{{end}}"
 					],
 					"background": "transparent",
 					"type": "path",
@@ -54,9 +50,9 @@
 						"fetch_upstream_icon": true,
 						"full_branch_path": true
 					},
-					"template": "  ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }}){{ if gt .Ahead 0 }}<#50fa7b> +{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }}<#ff5555> -{{ .Behind }}</>{{ end }}{{ if .Working.Changed }}<p:White>  {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<p:Black>  {{ .Staging.String }}</>{{ end }} ",
+					"template": "  ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }}){{ if gt .Ahead 0 }}<p:MintGreen> +{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }}<p:Coral> -{{ .Behind }}</>{{ end }}{{ if .Working.Changed }}<p:Black>  {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<p:Black>  {{ .Staging.String }}</>{{ end }} ",
 					"foreground": "p:Black",
-					"background": "#ffb86c",
+					"background": "p:Grey",
 					"type": "git",
 					"powerline_symbol": "",
 					"style": "powerline"
@@ -178,11 +174,17 @@
 				{
 					"leading_diamond": " ",
 					"trailing_diamond": "",
-					"template": "<p:DuskyPine></> <b>{{.Name}}</b> ",
-					"background": "p:MintJade",
-					"foreground": "p:SesameBlack",
+					"template": "<p:Black>{{if eq \"Light\" .Env.THEME}}</><p:Grey>{{end}}</> <b>{{.Name}}</b> ",
+					"background": "p:White",
+					"foreground": "p:Black",
 					"type": "shell",
 					"style": "diamond",
+					"foreground_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:White{{end}}"
+					],
+					"background_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:Black{{end}}"
+					],
 					"properties": {
 						"mapped_shell_names": {
 							"pwsh": "PS"
@@ -196,10 +198,13 @@
 
 					"powerline_symbol": "",
 					"template": " {{ if .Root }}  {{end}}<b>{{ .UserName }}</b>{{if .SSHSession}}@<b>{{ .HostName }}</b>{{end}} ",
-					"foreground": "p:CozyWhite",
-					"background": "p:WarmTerra",
+					"foreground": "p:Black",
+					"foreground_templates": [
+						"{{if .Root}}p:White{{end}}"
+					],
+					"background": "p:Grey",
 					"background_templates": [
-						"{{if .Root}}p:Red{{end}}"
+						"{{if .Root}}p:Coral{{end}}"
 					],
 					"type": "session",
 					"style": "powerline"
@@ -208,8 +213,8 @@
 					"trailing_diamond": "",
 					"leading_diamond": "<transparent,background></>",
 					"template": " {{ if .Error}} {{.Code}}{{else}} {{end}}",
-					"foreground": "p:CozyWhite",
-					"background": "p:DuskyPine",
+					"foreground": "p:White",
+					"background": "p:Accent",
 					"background_templates":[
 						"{{ if .Error }}p:Error{{ end }}"
 					],

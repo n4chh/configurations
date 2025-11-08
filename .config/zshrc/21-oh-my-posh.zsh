@@ -43,7 +43,7 @@ _omp_detect_theme() {
   set_omp_theme
 
   if command -v oh-my-posh >/dev/null 2>&1; then
-	eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.json)"
+	eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/mac.json)"
   fi
 fi
 
