@@ -19,36 +19,12 @@ tmux set -g pane-base-index 1
 
 source $PWD/colors.sh
 
-command="\
-if -F '#{==:#{mouse_status_range},window}' {\
-    select-window\
-} {\
-    if -F '#{m/r:^kill,#{mouse_status_range}}' {\
-        run-shell 'tmux kill-window -t #{s/^kill//:mouse_status_range}'\
-    } {\
-        if -F '#{==:#{mouse_status_range},new}' {\
-            new-window\
-        }\
-    }\
-}"
+script_path="$HOME/.config/tmux/scripts"
+tmux bind-key -Troot MouseDown1Status run-shell "$script_path/status-click.sh #{mouse_status_range} #{window_id}"
 
-tmux bind-key -Troot MouseDown1Status $command
-
-
-command='current_session="#{session_name}"\
-    selected=$(tmux list-sessions -F "#{session_name}" | \
-        fzf --prompt="Select session: " \
-            --header="Current: $current_session" \
-            --preview="tmux list-windows -t {}" \
-            --preview-window=right:60% \
-            --bind="ctrl-n:execute(tmux new-session -d -s)+reload(tmux list-sessions -F \"#{session_name}\")" \
-            --bind="ctrl-x:execute(tmux kill-session -t {})+reload(tmux list-sessions -F \"#{session_name}\")") 
-    [ -n "$selected" ] && tmux switch-client -t "$selected"'
-
-command="display-popup -T '🗄️Session selector' -E '$command'"
+command="display-popup -T '🗄️Session selector' -E '$script_path/sessions-fzf.sh'"
 tmux bind-key -T root MouseDown1StatusLeft "$command"
 tmux bind-key -Troot F1 "$command"
-
 
 # tmux bind-key -n F1 "tmux display-
 

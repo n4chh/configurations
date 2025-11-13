@@ -27,7 +27,7 @@ function window_status() {
 	echo -n " "
 	echo -n "$(get_index_format)"
 	# echo -n "#{?window_zoomed_flag, ,}"
-	echo -n "#{?window_zoomed_flag,#[fg=$YELLOW] #[fg=$TAGBG],}"
+	echo -n "#{?window_zoomed_flag,#[fg=$YELLOW] #[fg=$TAGFG],}"
 	echo -n "#W#[norange]"
 	echo -n " "
 	echo -n "#[range=user|kill#{window_id}]"

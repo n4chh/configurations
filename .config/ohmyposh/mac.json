@@ -5,6 +5,7 @@
 		"Grey": "#f5f5f7",
 		"Accent": "#0066cc",
 		"MintGreen": "#98FF98",
+		"Yellow": "#FAC800",
 		"Coral":"#FF6F61",
 		"Error": "#FF5C5F"
 	},
@@ -52,7 +53,7 @@
 					},
 					"template": "  ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }}){{ if gt .Ahead 0 }}<p:MintGreen> +{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }}<p:Coral> -{{ .Behind }}</>{{ end }}{{ if .Working.Changed }}<p:Black>  {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<p:Black>  {{ .Staging.String }}</>{{ end }} ",
 					"foreground": "p:Black",
-					"background": "p:Grey",
+					"background": "p:Yellow",
 					"type": "git",
 					"powerline_symbol": "",
 					"style": "powerline"

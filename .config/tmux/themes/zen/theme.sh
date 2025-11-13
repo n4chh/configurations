@@ -8,6 +8,13 @@ tmux set -g pane-base-index 1
 tmux set -g base-index 1
 tmux set -g prefix 'M-Space'
 
+script_path="$HOME/.config/tmux/scripts"
+tmux bind-key -Troot MouseDown1Status run-shell "$script_path/status-click.sh #{mouse_status_range} #{window_id}"
+
+command="display-popup -T '🗄️Session selector' -E '$script_path/sessions-fzf.sh'"
+tmux bind-key -T root MouseDown1StatusLeft "$command"
+tmux bind-key -Troot F1 "$command"
+
 tmux set -g status on
 tmux set -g status-right-length 200
 tmux set -g status-left-length 40
