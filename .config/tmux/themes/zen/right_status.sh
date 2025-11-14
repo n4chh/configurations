@@ -26,6 +26,7 @@ vpn=$(vpn_status)
 
 # echo -n "#[fg=$PRIMARY bg=$TAG_BG]"
 # echo -n "$RIGHT_ICON"
+echo -n "#[fg=$PRIMARY]#W #[fg=terminal]at #[fg=$TAG_FG bold]#S "
 echo -n "$vpn"
 echo -n " "
 echo -n "#[fg=$PRIMARY]"

@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# source ./colors.sh
-tmux set -g default-terminal "screen-256color"
-# tmux set -g status-style "#(./colors.sh print)"
 tmux set -g status-justify left
 
 tmux set -g status on
@@ -10,8 +7,6 @@ tmux set -g status-left-length 40
 tmux set -g status-interval 1
 tmux set -g status-left "#($PWD/left_status.sh $PWD)"
 tmux set -g status-right "#($PWD/right_status.sh $PWD)"
-tmux set -g base-index 1
-tmux set -g pane-base-index 1
 
 # icons
 # ''
