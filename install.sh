@@ -59,6 +59,7 @@ function install_zsh_plugins() {
 
     log 1 "Installing oh-my-posh"
     brew install jandedobbeleer/oh-my-posh/oh-my-posh
+	curl -s https://ohmyposh.dev/install.sh | bash -s
 
     log 1 "Installing oh-my-zsh"
     if ! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended; then
@@ -75,7 +76,11 @@ function install_zsh_plugins() {
 }
 
 function install_utilities() {
+
+	log 1 "Installing zsh"
+	sudo emerge -a "app-shells/zsh"
     log 1 "Installing fzf"
+	sudo emerge -a "app-shells/fzf"
     brew install fzf
     log 1 "Installing fastfetch"
     brew install fastfetch

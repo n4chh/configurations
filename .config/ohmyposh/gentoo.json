@@ -1,0 +1,237 @@
+{
+	"palette": {
+		"Black": "#1d1d1f",
+		"White": "#FFFFFF",
+		"GentooGrey": "#DDDAEC",
+		"GentooPurple": "#54487A",
+		"GentooPurpleLight": "#61538D",
+		"GentooPurpleLight2": "#6E56AF",
+		"MintGreen": "#73D216",
+		"Yellow": "#FAC800",
+		"Coral":"#FF6F61",
+		"Error": "#D9534F"
+	},
+	"transient_prompt": {
+		"template": "<p:GentooGrey,p:GentooPurpleLight2>{{if .Root}}</><p:GentooGrey,p:Coral>{{end}} <b>{{.Segments.Shell.Name}}</b> </><p:GentooPurpleLight2,transparent>{{if .Root}}</><p:Coral>{{end}}</> <p:GentooGrey,transparent></><p:Black,p:GentooGrey> {{ .PWD }} </><p:GentooGrey></> ",
+		"foreground": "default",
+		"background": "transparent"
+	},
+
+	"blocks": [
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"properties": {
+						"cache_duration": "none",
+						"style": "full",
+						"folder_icon": " ",
+						"style": "full",
+						"mapped_locations_enabled": true,
+						"mapped_locations": {
+							"~/Desktop/Github": " ",
+							"~/.config": " "
+						}
+					},
+					"powerline_symbol": "",
+					"template": "<b> {{ .Path }} </b>",
+					"foreground": "p:GentooGrey",
+					"foreground_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:Black{{end}}"
+					],
+					"background": "transparent",
+					"type": "path",
+					"style": "powerline"
+				},
+				{
+					"properties": {
+						"branch_icon": "",
+						"cache_duration": "none",
+						"display_changing_color": true,
+						"fetch_status": true,
+						"fetch_upstream_icon": true,
+						"full_branch_path": true
+					},
+					"template": "  ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }}){{ if gt .Ahead 0 }}<p:MintGreen> +{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }}<p:Coral> -{{ .Behind }}</>{{ end }}{{ if .Working.Changed }}<p:Black>  {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<p:Black>  {{ .Staging.String }}</>{{ end }} ",
+					"foreground": "p:Black",
+					"background": "p:Yellow",
+					"type": "git",
+					"powerline_symbol": "",
+					"style": "powerline"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "right",
+			"foreground": "transparent",
+			"segments": [
+				{
+					"template": " {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#50fa7b",
+					"type": "node",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"package-lock.json"
+						]
+					},
+					"template": " {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#ff5555",
+					"type": "npm",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"pnpm-lock.yaml"
+						]
+					},
+					"template": "󰋁 {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#ffb86c",
+					"type": "pnpm",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files"
+					},
+					"template": "<#FEE058>󰌠 </>{{ .Full }}",
+					"foreground": "p:White",
+					"background": "#3870A2",
+					"type": "python",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " {{ .Full }}",
+					"foreground": "#ED1D23",
+					"background": "p:White",
+					"type": "java",
+					"type": "python",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " 󰟓 {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#69d7e2",
+					"type": "go",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"type": "zig",
+					"foreground": "p:SesameBlack",
+					"background": "p:CozyWhite",
+					"background_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:SesameBlack{{end}}"
+					],
+					"foreground_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:CozyWhite{{end}}"
+					],
+					"template": "<#ffad55> </>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " {{ .Full }}",
+					"foreground": "p:White",
+					"background": "#6272a4",
+					"type": "php",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"leading_diamond": " ",
+					"trailing_diamond": "",
+					"template": " <b>{{.Name}}</b> ",
+					"background": "p:GentooPurpleLight",
+					"foreground": "p:GentooGrey",
+					"type": "shell",
+					"style": "diamond",
+					"foreground_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:White{{end}}"
+					],
+					"background_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:Black{{end}}"
+					],
+					"properties": {
+						"mapped_shell_names": {
+							"pwsh": "PS"
+						}
+					}
+				},
+				{
+					"properties": {
+						"cache_duration": "none"
+					},
+
+					"powerline_symbol": "",
+					"template": " {{ if .Root }}  {{end}}<b>{{ .UserName }}</b>{{if .SSHSession}}@<b>{{ .HostName }}</b>{{end}} ",
+					"foreground": "p:Black",
+					"foreground_templates": [
+						"{{if .Root}}p:White{{end}}"
+					],
+					"background": "p:GentooGrey",
+					"background_templates": [
+						"{{if .Root}}p:Coral{{end}}"
+					],
+					"type": "session",
+					"style": "powerline"
+				},
+				{
+					"trailing_diamond": "",
+					"leading_diamond": "<transparent,background></>",
+					"template": " {{ if .Error}} {{.Code}}{{else}} {{end}}",
+					"foreground": "p:White",
+					"background": "p:GentooPurpleLight2",
+					"background_templates":[
+						"{{ if .Error }}p:Error{{ end }}"
+					],
+					"type": "status",
+					"style": "diamond",
+					"properties": {
+						"always_enabled": true
+					}
+				}
+			],
+			"newline": true
+		}
+	],
+	"version": 3,
+	"patch_pwsh_bleed": true,
+	"final_space": true
+}

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 BASE_PATH="$HOME/.config/tmux/themes"
-DEFAULT_THEME="$BASE_PATH/zen"
+DEFAULT_THEME="$BASE_PATH/gentoo"
 get_theme() {
 	local theme="$1"
 
@@ -45,7 +45,7 @@ source_theme() {
 fzf_theme_selector() {
 	local oifs=$IFS
 	IFS=$' '
-	local themes=($(/bin/ls -d ~/.config/tmux/themes/*/ | xargs basename))
+	local themes=($(/bin/ls -d ~/.config/tmux/themes/*/ | xargs -n 1 basename))
 	IFS="$oifs"
 
     echo "$themes" | fzf --prompt="Select session: " \
