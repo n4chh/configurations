@@ -9,9 +9,9 @@ _omp_detect_theme() {
   fi
   
   local val
-  val="$(defaults read -g AppleInterfaceStyle 2>/dev/null || true)"
+  val="$(gsettings get org.gnome.desktop.interface color-scheme)"
   local theme
-  if [[ "${val:l}" = "dark" ]]; then
+  if [[ "${val:l}" =~ dark ]]; then
     theme="Dark"
   else
     theme="Light"
@@ -43,7 +43,7 @@ _omp_detect_theme() {
   set_omp_theme
 
   if command -v oh-my-posh >/dev/null 2>&1; then
-	eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/mac.json)"
+	eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/gentoo.json)"
   fi
 fi
 

@@ -7,22 +7,7 @@
 # -----------------------------------------------------
 export EDITOR=nvim
 export ZSH="$HOME/.oh-my-zsh"
-export PATH=$PATH:~/.cargo/bin/
+export PATH="$PATH:$HOME/.cargo/bin/"
+export PATH="$PATH:$HOME/.local/bin/"
 
-# -----------------------------------------------------
-# HomeBrew
-# -----------------------------------------------------
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-
-# -----------------------------------------------------
-# Android Studio
-# -----------------------------------------------------
-export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
-
-# -----------------------------------------------------
-# Fpath
-# -----------------------------------------------------
-fpath=(/opt/metasploit-framework/embedded/framework/external/zsh $fpath)
 
