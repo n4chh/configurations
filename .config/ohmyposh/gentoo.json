@@ -145,13 +145,13 @@
 
 				{
 					"type": "zig",
-					"foreground": "p:SesameBlack",
-					"background": "p:CozyWhite",
+					"foreground": "p:Black",
+					"background": "p:White",
 					"background_templates": [
-    					"{{if eq \"Light\" .Env.THEME}}p:SesameBlack{{end}}"
+    					"{{if eq \"Light\" .Env.THEME}}p:Black{{end}}"
 					],
 					"foreground_templates": [
-    					"{{if eq \"Light\" .Env.THEME}}p:CozyWhite{{end}}"
+    					"{{if eq \"Light\" .Env.THEME}}p:White{{end}}"
 					],
 					"template": "<#ffad55> </>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
 					"powerline_symbol": "",
