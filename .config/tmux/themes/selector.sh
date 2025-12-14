@@ -2,6 +2,7 @@
 
 BASE_PATH="$HOME/.config/tmux/themes"
 DEFAULT_THEME="$BASE_PATH/gentoo"
+
 get_theme() {
 	local theme="$1"
 
@@ -36,7 +37,6 @@ change_theme() {
 source_theme() {
 	local theme="$(get_theme $1)"
 	cd "$theme"
-	"$theme/colors.sh" set
 	source "$theme/theme.sh"
 }
 
@@ -61,4 +61,5 @@ if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
 	tmux bind-key -Troot F3 "$command"
 	source_theme 
 fi
+
 

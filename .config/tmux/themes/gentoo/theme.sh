@@ -12,7 +12,6 @@ tmux set -g pane-base-index 1
 
 
 
-
 script_path="$HOME/.config/tmux/scripts"
 tmux bind-key -Troot MouseDown1Status run-shell "$script_path/status-click.sh #{mouse_status_range} #{window_id}"
 
@@ -29,6 +28,8 @@ tmux set -g window-status-current-format "#($PWD/window_status.sh $PWD active)"
 
 tmux set -g mouse on
 
+# Direct parent must export function if not it will be losed
+export -f detect_mode
 source $PWD/colors.sh
 
 tmux set -g pane-border-lines heavy

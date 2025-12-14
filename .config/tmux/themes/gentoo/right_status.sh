@@ -26,7 +26,10 @@ function vpn_status() {
 date=$(date +"%D %T")
 vpn=$(vpn_status)
 
-echo -n "#[fg=terminal bold]#S"
+echo -n "#[fg=$TAGBG]$LEFT_ICON"
+echo -n "#[bg=$TAGBG fg=$TAGFG]#W"
+echo -n "#[bg=terminal fg=$TAGBG]$RIGHT_ICON#[fg=terminal]"
+echo -n " at #[bold]#S"
 # echo -n "$vpn"
 echo -n " "
 echo -n "#[fg=$PRIMARY]"
