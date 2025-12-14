@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function log() {
     case "$1" in
@@ -42,24 +42,15 @@ function yes_or_no() {
     fi
 }
 
-function get_wallpaper_path() {
-    osascript -e '
-    tell application "Finder"
-    set theDesktopPic to desktop picture as alias
-    set theName to posix path of theDesktopPic
-    end tell'
-}
-
 function download_nerd_fonts() {
-    curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip -o /tmp/JetBrainsMono.zip
-    unzip -d ~/Library/Fonts/ /tmp/JetBrainsMono.zip
+    curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip -o /tmp/Symbols.zip
+    sudo unzip -d /usr/share/fonts/NFSymbols /tmp/Symbols.zip
 }
 
 function install_zsh_plugins() {
 
     log 1 "Installing oh-my-posh"
-    brew install jandedobbeleer/oh-my-posh/oh-my-posh
-	curl -s https://ohmyposh.dev/install.sh | bash -s
+	curl -s https://ohmyposh.dev/install.sh | sudo bash -s
 
     log 1 "Installing oh-my-zsh"
     if ! sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended; then
@@ -79,32 +70,27 @@ function install_utilities() {
 
 	log 1 "Installing zsh"
 	sudo emerge -a "app-shells/zsh"
+	log 1 "Installing carapace"
+	sudo emerge -a "app-shells/carapace"
     log 1 "Installing fzf"
 	sudo emerge -a "app-shells/fzf"
-    brew install fzf
-    log 1 "Installing fastfetch"
-    brew install fastfetch
     log 1 "Installing nvm"
-    brew install nvm
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
     log 1 "Installing lazygit"
-    brew install lazygit
+	sudo emerge -a "dev-vcs/lazygit"
     log 1 "Installing fd"
-    brew install fd
+    sudo emerge -a "sys-apps/fd"
     log 1 "Installing tmux"
-    brew install tmux
+	sudo emerge -a "app-misc/tmux"
     log 1 "Installing eza"
-    brew install eza
+	sudo emerge -a "sys-apps/eza"
 }
 function install_neovim() {
-    brew install Neovim
+	sudo emerge -a "app-editors/neovim"
     git clone https://github.com/n4chh/nvim.conf ~/.config/nvim
     log 0 "Neovim config installed"
 }
 
-if yes_or_no "Would you like to install Homebrew?"; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
 
 [ -d ~/.config ] || mkdir ~/.config
 
@@ -123,26 +109,5 @@ fi
 cp .zshrc ~
 cp -r .config/* ~/.config
 log 0 Source files copied
-if yes_or_no "Would you like to setup config files with matugen?"; then
-    if ! which matugen 2>/dev/null 1>&2; then
-        log 2 "Can't find matugen. "
-        log 1 "Installing it . . ."
-        if ! cargo install matugen; then
-            log 3 There was an error while installing matugen.
-            exit 1
-        fi
-    fi
-    wallpaper="$(get_wallpaper_path)"
-
-    if ! [ -f "$wallpaper" ]; then
-        log 3 "Could not detect actual wallpaper."
-        log 1 "Info:"
-        echo $wallpaper
-        exit 1
-    fi
-    log 1 "Wallpaper detected $wallpaper"
-
-    matugen image "$wallpaper"
-fi
 
 log 0 "Setup completed"
