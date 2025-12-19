@@ -1,0 +1,230 @@
+{
+	"palette": {
+		"Black": "#1d1d1f",
+		"White": "#FFFFFF",
+		"NewFedoraBlue": "#51a2da",
+		"FedoraBlue": "#3c6eb4",
+		"DarkFedoraBlue": "#294172",
+		"FristGreen": "#79db32",
+		"FeaturesOrange": "#e59728",
+		"FriendsMagenta":"#db3279",
+		"Error": "#D9534F"
+	},
+	"transient_prompt": {
+		"template": "<p:NewFedoraBlue,p:DarkFedoraBlue>{{if .Root}}</><p:NewFedoraBlue,p:FriendsMagenta>{{end}} <b>{{.Segments.Shell.Name}}</b> </><p:DarkFedoraBlue,transparent>{{if .Root}}</><p:FriendsMagenta>{{end}}</> <p:NewFedoraBlue,transparent></><p:Black,p:NewFedoraBlue> {{ .PWD }} </><p:NewFedoraBlue></> ",
+		"foreground": "default",
+		"background": "transparent"
+	},
+
+	"blocks": [
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"properties": {
+						"cache_duration": "none",
+						"style": "full",
+						"folder_icon": " ",
+						"style": "full",
+						"mapped_locations_enabled": true,
+						"mapped_locations": {
+							"~/Desktop/Github": " ",
+							"~/.config": " "
+						}
+					},
+					"powerline_symbol": "",
+					"template": "<b> {{ .Path }} </b>",
+					"foreground": "p:NewFedoraBlue",
+					"foreground_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:Black{{end}}"
+					],
+					"background": "transparent",
+					"type": "path",
+					"style": "powerline"
+				},
+				{
+					"properties": {
+						"branch_icon": "",
+						"cache_duration": "none",
+						"display_changing_color": true,
+						"fetch_status": true,
+						"fetch_upstream_icon": true,
+						"full_branch_path": true
+					},
+					"template": "  ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }}){{ if gt .Ahead 0 }}<p:FristGreen> +{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }}<p:FriendsMagenta> -{{ .Behind }}</>{{ end }}{{ if .Working.Changed }}<p:Black>  {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<p:Black>  {{ .Staging.String }}</>{{ end }} ",
+					"foreground": "p:Black",
+					"background": "p:FeaturesOrange",
+					"type": "git",
+					"powerline_symbol": "",
+					"style": "powerline"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "right",
+			"foreground": "transparent",
+			"segments": [
+				{
+					"template": " {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#50fa7b",
+					"type": "node",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"package-lock.json"
+						]
+					},
+					"template": " {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#ff5555",
+					"type": "npm",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"pnpm-lock.yaml"
+						]
+					},
+					"template": "󰋁 {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#ffb86c",
+					"type": "pnpm",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files"
+					},
+					"template": "<#FEE058>󰌠 </>{{ .Full }}",
+					"foreground": "p:White",
+					"background": "#3870A2",
+					"type": "python",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " {{ .Full }}",
+					"foreground": "#ED1D23",
+					"background": "p:White",
+					"type": "java",
+					"type": "python",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " 󰟓 {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#69d7e2",
+					"type": "go",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"type": "zig",
+					"foreground": "p:Black",
+					"background": "p:White",
+					"background_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:Black{{end}}"
+					],
+					"foreground_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:White{{end}}"
+					],
+					"template": "<#ffad55> </>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " {{ .Full }}",
+					"foreground": "p:White",
+					"background": "#6272a4",
+					"type": "php",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"leading_diamond": " ",
+					"trailing_diamond": "",
+					"template": " <b>{{.Name}}</b> ",
+					"background": "p:FedoraBlue",
+					"foreground": "p:White",
+					"type": "shell",
+					"style": "diamond",
+					"properties": {
+						"mapped_shell_names": {
+							"pwsh": "PS"
+						}
+					}
+				},
+				{
+					"properties": {
+						"cache_duration": "none"
+					},
+
+					"powerline_symbol": "",
+					"template": " {{ if .Root }}  {{end}}<b>{{ .UserName }}</b>{{if .SSHSession}}@<b>{{ .HostName }}</b>{{end}} ",
+					"foreground": "p:Black",
+					"foreground_templates": [
+						"{{if .Root}}p:White{{end}}"
+					],
+					"background": "p:NewFedoraBlue",
+					"background_templates": [
+						"{{if .Root}}p:FriendsMagenta{{end}}"
+					],
+					"type": "session",
+					"style": "powerline"
+				},
+				{
+					"trailing_diamond": "",
+					"leading_diamond": "<transparent,background></>",
+					"template": " {{ if .Error}} {{.Code}}{{else}} {{end}}",
+					"foreground": "p:White",
+					"background": "p:DarkFedoraBlue",
+					"background_templates":[
+						"{{ if .Error }}p:Error{{ end }}"
+					],
+					"type": "status",
+					"style": "diamond",
+					"properties": {
+						"always_enabled": true
+					}
+				}
+			],
+			"newline": true
+		}
+	],
+	"version": 3,
+	"patch_pwsh_bleed": true,
+	"final_space": true
+}
