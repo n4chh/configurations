@@ -1,0 +1,231 @@
+{
+	"palette": {
+		"Black": "#000000",
+		"White": "#FFFFFF",
+		"SnowWhite": "#F5f7f7",
+		"IceBlue": "#c8d6dc",
+		"StarryYellow":"#f0e2cd",
+		"LuminousPeach": "#f8dcc9",
+		"ObsidianBlue": "#4c525d",
+		"Red": "#c7002a",
+		"Error": "#e7505a"
+	},
+	"transient_prompt": {
+		"template": "{{.Env.HOLA}}<p:IceBlue>{{if .Root}}</><p:Red>{{end}}</><p:ObsidianBlue,p:IceBlue>{{if .Root}}</><p:ObsidianBlue,p:Red>{{end}} <b>{{.Segments.Shell.Name}}</b> </><p:IceBlue>{{if .Root}}</><p:Red>{{end}}</><transparent,p:StarryYellow></><p:ObsidianBlue,p:StarryYellow> {{ .PWD }} </><p:StarryYellow></> ",
+		"foreground": "default",
+		"background": "transparent"
+	},
+
+	"blocks": [
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"properties": {
+						"cache_duration": "none",
+						"style": "full",
+						"folder_icon": " ",
+						"style": "full",
+						"mapped_locations_enabled": true,
+						"mapped_locations": {
+							"~/Desktop/Github": " ",
+							"~/.config": " "
+						}
+					},
+					"powerline_symbol": "",
+					"template": "<b> {{ .Path }} </b>",
+					"foreground": "p:SnowWhite",
+					"foreground_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:ObsidianBlue{{end}}"
+					],
+					"background": "transparent",
+					"type": "path",
+					"style": "powerline"
+				},
+				{
+					"properties": {
+						"branch_icon": "",
+						"cache_duration": "none",
+						"display_changing_color": true,
+						"fetch_status": true,
+						"fetch_upstream_icon": true,
+						"full_branch_path": true
+					},
+					"template": "  ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }}){{ if gt .Ahead 0 }} +{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }} -{{ .Behind }}</>{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}</>{{ end }} ",
+					"foreground": "p:ObsidianBlue",
+					"background": "p:StarryYellow",
+					"type": "git",
+					"powerline_symbol": "",
+					"style": "powerline"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "right",
+			"foreground": "transparent",
+			"segments": [
+				{
+					"template": " {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#50fa7b",
+					"type": "node",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"package-lock.json"
+						]
+					},
+					"template": " {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#ff5555",
+					"type": "npm",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"pnpm-lock.yaml"
+						]
+					},
+					"template": "󰋁 {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#ffb86c",
+					"type": "pnpm",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"properties": {
+						"display_mode": "files"
+					},
+					"template": "<#FEE058>󰌠 </>{{ .Full }}",
+					"foreground": "p:White",
+					"background": "#3870A2",
+					"type": "python",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " {{ .Full }}",
+					"foreground": "#ED1D23",
+					"background": "p:White",
+					"type": "java",
+					"type": "python",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " 󰟓 {{ .Full }}",
+					"foreground": "p:Black",
+					"background": "#69d7e2",
+					"type": "go",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"type": "zig",
+					"foreground": "p:ObsidianBlue",
+					"background": "p:SnowWhite",
+					"background_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:ObsidianBlue{{end}}"
+					],
+					"foreground_templates": [
+    					"{{if eq \"Light\" .Env.THEME}}p:SnowWhite{{end}}"
+					],
+					"template": "<#ffad55> </>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				},
+
+				{
+					"template": " {{ .Full }}",
+					"foreground": "p:White",
+					"background": "#6272a4",
+					"type": "php",
+					"powerline_symbol": "",
+					"leading_powerline_symbol": "",
+					"style": "powerline"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"leading_diamond": " ",
+					"trailing_diamond": "",
+					"template": "<p:ObsidianBlue>󰻀   </> <b>{{.Name}}</b> ",
+					"background": "p:LuminousPeach",
+					"foreground": "p:ObsidianBlue",
+					"type": "shell",
+					"style": "diamond",
+					"properties": {
+						"mapped_shell_names": {
+							"pwsh": "PS"
+						}
+					}
+				},
+				{
+					"properties": {
+						"cache_duration": "none"
+					},
+
+					"powerline_symbol": "",
+					"template": " {{ if .Root }}  {{end}}<b>{{ .UserName }}</b>{{if .SSHSession}}@<b>{{ .HostName }}</b>{{end}} ",
+					"foreground": "p:ObsidianBlue",
+					"background": "p:IceBlue",
+					"background_templates": [
+						"{{if .Root}}p:StarryYellow{{end}}"
+					],
+					"type": "session",
+					"style": "powerline"
+				},
+				{
+					"trailing_diamond": "",
+					"leading_diamond": "<transparent,background></>",
+					"template": " {{ if .Error}} {{.Code}}{{else}} {{end}}",
+					"foreground": "p:SnowWhite",
+					"background": "p:ObsidianBlue",
+					"background_templates":[
+    					"{{if eq \"Dark\" .Env.THEME}}p:StarryYellow{{end}}",
+						"{{ if .Error }}p:Error{{ end }}"
+					],
+					"foreground_templates":[
+    					"{{if eq \"Dark\" .Env.THEME}}p:ObsidianBlue{{end}}"
+					],
+					"type": "status",
+					"style": "diamond",
+					"properties": {
+						"always_enabled": true
+					}
+				}
+			],
+			"newline": true
+		}
+	],
+	"version": 3,
+	"patch_pwsh_bleed": true,
+	"final_space": true
+}
