@@ -102,6 +102,7 @@ function install_utilities() {
 
     log 1 "Installing tmux"
     sudo apt install tmux
+	git clone https://github.com/n4chh/tmux.conf ~/.config/tmux 
 
     log 1 "Installing fzf"
     sudo apt install fzf
