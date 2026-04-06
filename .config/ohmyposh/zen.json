@@ -13,7 +13,7 @@
 		"Error": "#e7505a"
 	},
 	"transient_prompt": {
-		"template": "{{.Env.HOLA}}<p:WarmTerra>{{if .Root}}</><p:Red>{{end}}</><p:SesameBlack,p:WarmTerra>{{if .Root}}</><p:SesameBlack,p:Red>{{end}} <b>{{.Segments.Shell.Name}}</b> </><p:WarmTerra>{{if .Root}}</><p:Red>{{end}}</><transparent,p:PeachyClay></><p:SesameBlack,p:PeachyClay> {{ .PWD }} </><p:PeachyClay></> ",
+		"template": "<p:WarmTerra>{{if .Root}}</><p:Red>{{end}}</><p:SesameBlack,p:WarmTerra>{{if .Root}}</><p:SesameBlack,p:Red>{{end}}<b>{{.Shell}}</b></><p:WarmTerra>{{if .Root}}</><p:Red>{{end}}</><p:PeachyClay>  </> {{ .PWD }} <p:WarmTerra>❱ ",
 		"foreground": "default",
 		"background": "transparent"
 	},

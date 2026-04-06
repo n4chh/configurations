@@ -1,0 +1,64 @@
+{
+	"palette": {
+		"Black": "#1d1d1f",
+		"White": "#FFFFFF",
+		"Grey": "#8e8e93",
+		"Accent": "#0066cc",
+		"MintGreen": "#98FF98",
+		"Yellow": "#FAC800",
+		"Coral":"#FF6F61",
+		"Error": "#FF5C5F"
+	},
+	"transient_prompt": {
+		"template": "<p:White,p:Accent>{{if .Root}}</><p:White,p:Coral>  {{end}} <b>{{.Shell}}</b> </><p:Accent,transparent>{{if .Root}}</><p:Coral>{{end}}</><p:Accent> {{ .PWD }} </>❱ ",
+		"foreground": "default",
+		"background": "transparent"
+	},
+	"blocks": [
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				// {
+				// 	"properties": {
+				// 		"cache_duration": "none",
+				// 		"style": "full",
+				// 		"folder_icon": " ",
+				// 		"mapped_locations_enabled": true,
+				// 		"mapped_locations": {
+				// 			"~/Desktop/Github": " ",
+				// 			"~/.config": " "
+				// 		}
+				// 	},
+				// 	"powerline_symbol": "",
+				// 	"template": "<b> {{ .Path }} </b>",
+				// 	"foreground": "p:Yellow",
+				// 	"background": "transparent",
+				// 	"type": "path",
+				// 	"style": "powerline"
+				// },
+				{
+					"template": "{{ if .Error }} {{.Code}} {{end}}❱",
+					"trailing_diamond": "",
+					"leading_diamond": "",
+					"foreground": "p:MintGreen",
+					"foreground_templates":[
+						"{{ if .Error }}p:White{{ end }}"
+					],
+					"background": "p:Accent",
+					"background_templates":[
+						"{{ if .Error }}p:Error{{ end }}"
+					],
+					"type": "status",
+					"style": "diamond",
+					"properties": {
+						"always_enabled": true
+					}
+				}
+			]
+		}
+	],
+	"version": 3,
+	"patch_pwsh_bleed": true,
+	"final_space": true
+}

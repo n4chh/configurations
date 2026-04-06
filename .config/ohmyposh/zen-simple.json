@@ -1,0 +1,49 @@
+{
+	"palette": {
+		"Black": "#000000",
+		"White": "#FFFFFF",
+		"CozyWhite": "#FBF9F8",
+		"SesameBlack": "#151515",
+		"PeachyClay": "#e5bda1",
+		"WarmTerra": "#c88566",
+		"IvorySand":"#f0e9d3",
+		"MintJade": "#cfddbb",
+		"DuskyPine": "#747564",
+		"Red": "#c7002a",
+		"Error": "#e7505a"
+	},
+	"transient_prompt": {
+		"template": "<p:WarmTerra>{{if .Root}}</><p:Red>{{end}}</><p:SesameBlack,p:WarmTerra>{{if .Root}}</><p:SesameBlack,p:Red>{{end}}<b>{{.Shell}}</b></><p:WarmTerra>{{if .Root}}</><p:Red>{{end}}</><p:PeachyClay>  </> {{ .PWD }} <p:WarmTerra>❱ ",
+		"foreground": "default",
+		"background": "transparent"
+	},
+	"blocks": [
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"template": "{{ if .Error }} {{.Code}} {{end}}❱",
+					"trailing_diamond": "",
+					"leading_diamond": "",
+					"foreground": "p:DuskyPine",
+					"background": "p:MintJade",
+					"foreground_templates":[
+						"{{ if .Error }}p:White{{ end }}"
+					],
+					"background_templates":[
+						"{{ if .Error }}p:Error{{ end }}"
+					],
+					"type": "status",
+					"style": "diamond",
+					"properties": {
+						"always_enabled": true
+					}
+				}
+			]
+		}
+	],
+	"version": 3,
+	"patch_pwsh_bleed": true,
+	"final_space": true
+}
