@@ -16,8 +16,8 @@ plugins=(
     web-search
 	# zsh-vi-mode
     zsh-autosuggestions
-    zsh-syntax-highlighting
-    # fast-syntax-highlighting
+    # zsh-syntax-highlighting
+    fast-syntax-highlighting
     copyfile
     copybuffer
     dirhistory
