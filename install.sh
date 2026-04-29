@@ -86,6 +86,9 @@ function install_zsh_plugins() {
 }
 
 function install_utilities() {
+	log 1 "Installing tree-sitter"
+	sudo apt install tree-sitter-cli
+
 	log 1 "Installing curl"
 	sudo apt install curl
 
@@ -134,7 +137,7 @@ function install_dev_pkg() {
 
 function install_neovim() {
     snap install --edge nvim --classic
-    git clone https://github.com/n4chh/nvim.conf ~/.config/nvim
+    git clone https://github.com/n4chh/nvim.conf -b nvim-12 ~/.config/nvim
     log 0 "Neovim config installed"
 }
 
