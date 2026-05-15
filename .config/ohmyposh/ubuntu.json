@@ -1,23 +1,20 @@
 {
 	"palette": {
-		"Black": "#000000",
+		"UbuntuOrange": "#E95420",
+		"OrangeLight": "#F4AA61",
+		"AubergineDeep": "#2C001E",
+		"AubergineMid": "#77216F",
+		"WarmGrey": "#AEA79F",
 		"White": "#FFFFFF",
-		"CozyWhite": "#FBF9F8",
-		"SesameBlack": "#151515",
-		"PeachyClay": "#e5bda1",
-		"WarmTerra": "#c88566",
-		"IvorySand":"#f0e9d3",
-		"MintJade": "#cfddbb",
-		"DuskyPine": "#747564",
-		"Red": "#c7002a",
-		"Error": "#e7505a"
+		"Black": "#000000",
+		"Red": "#EF2929",
+		"Error": "#CC0000"
 	},
 	"transient_prompt": {
-		"template": "<p:WarmTerra>{{if .Root}}</><p:Red>{{end}}</><p:SesameBlack,p:WarmTerra>{{if .Root}}</><p:SesameBlack,p:Red>{{end}}<b>{{.Shell}}</b></><p:WarmTerra>{{if .Root}}</><p:Red>{{end}}</><p:PeachyClay>  </> {{ .PWD }} <p:WarmTerra>❱ ",
+		"template": "<p:UbuntuOrange>{{if .Root}}</><p:Red>{{end}}</><p:AubergineDeep,p:UbuntuOrange>{{if .Root}}</><p:White,p:Red>{{end}}<b>{{.Shell}}</b></><p:UbuntuOrange>{{if .Root}}</><p:Red>{{end}}</><p:OrangeLight>  </> {{ .PWD }} <p:UbuntuOrange>❱ ",
 		"foreground": "default",
 		"background": "transparent"
 	},
-
 	"blocks": [
 		{
 			"type": "prompt",
@@ -27,38 +24,34 @@
 					"properties": {
 						"cache_duration": "none",
 						"style": "full",
-						"folder_icon": " ",
-						"style": "full",
+						"folder_icon": " ",
 						"mapped_locations_enabled": true,
 						"mapped_locations": {
-							"~/Desktop/Github": " ",
-							"~/.config": " "
+							"~/Desktop/Github": "  ",
+							"~/.config": "  "
 						}
 					},
 					"powerline_symbol": "",
 					"template": "<b> {{ .Path }} </b>",
-					"foreground": "p:CozyWhite",
-					"foreground_templates": [
-    					"{{if eq \"Light\" .Env.THEME}}p:SesameBlack{{end}}"
-					],
+					"foreground": "default",
 					"background": "transparent",
 					"type": "path",
 					"style": "powerline"
 				},
 				{
 					"properties": {
-						"branch_icon": "",
+						"branch_icon": " ",
 						"cache_duration": "none",
 						"display_changing_color": true,
 						"fetch_status": true,
 						"fetch_upstream_icon": true,
 						"full_branch_path": true
 					},
-					"template": "  ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }}){{ if gt .Ahead 0 }}<#50fa7b> +{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }}<#ff5555> -{{ .Behind }}</>{{ end }}{{ if .Working.Changed }}<p:White>  {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<p:Black>  {{ .Staging.String }}</>{{ end }} ",
-					"foreground": "p:Black",
-					"background": "#ffb86c",
+					"template": "  ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }}){{ if gt .Ahead 0 }}<#8AE234> +{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }}<#EF2929> -{{ .Behind }}</>{{ end }}{{ if .Working.Changed }}<p:White>  {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<p:AubergineDeep>  {{ .Staging.String }}</>{{ end }} ",
+					"foreground": "p:AubergineDeep",
+					"background": "p:UbuntuOrange",
 					"type": "git",
-					"powerline_symbol": "",
+					"powerline_symbol": "",
 					"style": "powerline"
 				}
 			]
@@ -69,7 +62,7 @@
 			"foreground": "transparent",
 			"segments": [
 				{
-					"template": " {{ .Full }}",
+					"template": "  {{ .Full }}",
 					"foreground": "p:Black",
 					"background": "#50fa7b",
 					"type": "node",
@@ -77,65 +70,50 @@
 					"leading_powerline_symbol": "",
 					"style": "powerline"
 				},
-
 				{
-					"properties": {
-						"display_mode": "files",
-						"extensions": [
-							"package-lock.json"
-						]
-					},
-					"template": " {{ .Full }}",
+					"template": "  {{ .Full }}",
 					"foreground": "p:Black",
 					"background": "#ff5555",
 					"type": "npm",
 					"powerline_symbol": "",
 					"leading_powerline_symbol": "",
-					"style": "powerline"
-				},
-
-				{
+					"style": "powerline",
 					"properties": {
 						"display_mode": "files",
 						"extensions": [
-							"pnpm-lock.yaml"
+							"package-lock.json"
 						]
-					},
+					}
+				},
+				{
 					"template": "󰋁 {{ .Full }}",
 					"foreground": "p:Black",
 					"background": "#ffb86c",
 					"type": "pnpm",
 					"powerline_symbol": "",
 					"leading_powerline_symbol": "",
-					"style": "powerline"
-				},
-
-				{
+					"style": "powerline",
 					"properties": {
-						"display_mode": "files"
-					},
+						"display_mode": "files",
+						"extensions": [
+							"pnpm-lock.yaml"
+						]
+					}
+				},
+				{
 					"template": "<#FEE058>󰌠 </>{{ .Full }}",
 					"foreground": "p:White",
 					"background": "#3870A2",
 					"type": "python",
 					"powerline_symbol": "",
 					"leading_powerline_symbol": "",
-					"style": "powerline"
+					"style": "powerline",
+					"properties": {
+						"display_mode": "files"
+					}
 				},
-
 				{
-					"template": " {{ .Full }}",
-					"foreground": "#ED1D23",
-					"background": "p:White",
-					"type": "java",
-					"type": "python",
-					"powerline_symbol": "",
-					"leading_powerline_symbol": "",
-					"style": "powerline"
-				},
-
-				{
-					"template": " 󰟓 {{ .Full }}",
+					"template": " 󰟓  {{ .Full }}",
 					"foreground": "p:Black",
 					"background": "#69d7e2",
 					"type": "go",
@@ -143,25 +121,17 @@
 					"leading_powerline_symbol": "",
 					"style": "powerline"
 				},
-
 				{
+					"template": "<p:UbuntuOrange> </>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+					"foreground": "p:AubergineDeep",
+					"background": "p:OrangeLight",
 					"type": "zig",
-					"foreground": "p:SesameBlack",
-					"background": "p:CozyWhite",
-					"background_templates": [
-    					"{{if eq \"Light\" .Env.THEME}}p:SesameBlack{{end}}"
-					],
-					"foreground_templates": [
-    					"{{if eq \"Light\" .Env.THEME}}p:CozyWhite{{end}}"
-					],
-					"template": "<#ffad55> </>{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
 					"powerline_symbol": "",
 					"leading_powerline_symbol": "",
 					"style": "powerline"
 				},
-
 				{
-					"template": " {{ .Full }}",
+					"template": "  {{ .Full }}",
 					"foreground": "p:White",
 					"background": "#6272a4",
 					"type": "php",
@@ -178,9 +148,9 @@
 				{
 					"leading_diamond": " ",
 					"trailing_diamond": "",
-					"template": "<p:DuskyPine>{{.Icon}}</> <b>{{base .Env.SHELL}}</b> ",
-					"background": "p:MintJade",
-					"foreground": "p:SesameBlack",
+					"template": "<p:OrangeLight>{{.Icon}}</> <b>{{base .Env.SHELL}}</b> ",
+					"background": "p:AubergineMid",
+					"foreground": "p:White",
 					"type": "os",
 					"style": "diamond",
 					"properties": {
@@ -190,14 +160,10 @@
 					}
 				},
 				{
-					"properties": {
-						"cache_duration": "none"
-					},
-
 					"powerline_symbol": "",
-					"template": " {{ if .Root }}  {{end}}<b>{{ .UserName }}</b>{{if .SSHSession}}@<b>{{ .HostName }}</b>{{end}} ",
-					"foreground": "p:CozyWhite",
-					"background": "p:WarmTerra",
+					"template": " {{ if .Root }}   {{end}}<b>{{ .UserName }}</b>{{if .SSHSession}}@<b>{{ .HostName }}</b>{{end}} ",
+					"foreground": "p:White",
+					"background": "p:UbuntuOrange",
 					"background_templates": [
 						"{{if .Root}}p:Red{{end}}"
 					],
@@ -208,10 +174,13 @@
 					"trailing_diamond": "",
 					"leading_diamond": "<transparent,background></>",
 					"template": " {{ if .Error}} {{.Code}}{{else}} {{end}}",
-					"foreground": "p:CozyWhite",
-					"background": "p:DuskyPine",
-					"background_templates":[
-						"{{ if .Error }}p:Error{{ end }}"
+					"foreground": "p:White",
+					"background": "p:WarmGrey",
+					"background_templates": [
+						"{{if .Error}}p:Error{{end}}"
+					],
+					"foreground_templates": [
+						"{{if .Error}}p:White{{end}}"
 					],
 					"type": "status",
 					"style": "diamond",

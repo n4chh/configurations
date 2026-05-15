@@ -1,0 +1,47 @@
+{
+	"palette": {
+		"UbuntuOrange": "#E95420",
+		"OrangeLight": "#F4AA61",
+		"AubergineDeep": "#2C001E",
+		"AubergineMid": "#77216F",
+		"WarmGrey": "#AEA79F",
+		"White": "#FFFFFF",
+		"Black": "#000000",
+		"Red": "#EF2929",
+		"Error": "#CC0000"
+	},
+	"transient_prompt": {
+		"template": "<p:UbuntuOrange>{{if .Root}}</><p:Red>{{end}}</><p:AubergineDeep,p:UbuntuOrange>{{if .Root}}</><p:White,p:Red>{{end}}<b>{{.Shell}}</b></><p:UbuntuOrange>{{if .Root}}</><p:Red>{{end}}</><p:OrangeLight>  </> {{ .PWD }} <p:UbuntuOrange>❱ ",
+		"foreground": "default",
+		"background": "transparent"
+	},
+	"blocks": [
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"trailing_diamond": "",
+					"leading_diamond": "",
+					"template": "{{ if .Error }}  {{.Code}} {{end}}❱",
+					"foreground": "p:AubergineDeep",
+					"background": "p:OrangeLight",
+					"foreground_templates": [
+						"{{ if .Error }}p:White{{ end }}"
+					],
+					"background_templates": [
+						"{{ if .Error }}p:Error{{ end }}"
+					],
+					"type": "status",
+					"style": "diamond",
+					"properties": {
+						"always_enabled": true
+					}
+				}
+			]
+		}
+	],
+	"version": 3,
+	"patch_pwsh_bleed": true,
+	"final_space": true
+}

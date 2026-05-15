@@ -5,7 +5,7 @@
 # -----------------------------------------------------
 # oh-myzsh themes: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # -----------------------------------------------------
-# ZSH_THEME=robbyrussell
+ZSH_THEME=dst
 
 # -----------------------------------------------------
 # oh-myzsh plugins

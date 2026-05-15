@@ -42,13 +42,20 @@ _omp_detect_theme() {
 
   set_omp_theme
 
+  SHELL_THEME=ubuntu
+  _config_theme="$HOME/.config/ohmyposh/$SHELL_THEME.json"
+  _config_simple_theme="$HOME/.config/ohmyposh/$SHELL_THEME-simple.json"
+  if ! [[ -f "$_config_theme" ]] || ! [[ -f "$_config_simple_theme" ]]; then
+	  return
+  fi
+		  
   if command -v oh-my-posh >/dev/null 2>&1; then
 	  case "$TERM_PROGRAM" in
 	  	tmux)
-			eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen-simple.json)"
+			eval "$(oh-my-posh init zsh --config "$_config_simple_theme")"
 	  	;;
 	  	*)
-			eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.json)"
+			eval "$(oh-my-posh init zsh --config "$_config_theme")"
 	  	;;
 	  esac
   fi
