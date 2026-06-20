@@ -6,7 +6,7 @@ POSH=agnoster
 # -----------------------------------------------------
 # oh-myzsh themes: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # -----------------------------------------------------
-# ZSH_THEME=robbyrussell
+ZSH_THEME=intheloop
 
 # -----------------------------------------------------
 # oh-myzsh plugins
@@ -17,8 +17,8 @@ plugins=(
     web-search
 	# zsh-vi-mode
     zsh-autosuggestions
-    zsh-syntax-highlighting
-    # fast-syntax-highlighting
+    # zsh-syntax-highlighting
+    fast-syntax-highlighting
     copyfile
     copybuffer
     dirhistory
@@ -45,6 +45,7 @@ setopt appendhistory
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
+eval "$(zoxide init zsh)"
 
 # function zvm_after_select_vi_mode() {
 #   case $ZVM_MODE in

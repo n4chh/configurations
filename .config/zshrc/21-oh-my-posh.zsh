@@ -47,6 +47,9 @@ _omp_detect_theme() {
 		tmux)
 	eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen-simple.json)"
 		;;
+		zed)
+	return
+		;;
 		*) 
 	eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.json)"
 		;;
