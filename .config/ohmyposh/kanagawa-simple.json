@@ -1,0 +1,61 @@
+{
+	"palette": {
+	"SumiInk":"#16161D",
+	"FujiWhite":"#DCD7BA",
+	"OldWhite":"#C8C093",
+	"SpringGreen":"#98BB6C",
+	"AutumnGreen":"#76946A",
+	"SamuraiRed":"#E82424",
+	"SurimiOrange":"#FFA066",
+	"CarpYellow":"#E6C384",
+	"SakuraPink":"#D27E99",
+	"SpringBlue":"#7FB4CA",
+	
+	"LotusInk":"#545464",
+	"LotusWhite":"#F2ECBC",
+	"LotusGreen":"#6F894E",
+	"LotusRed":"#C84053",
+	"LotusOrange":"#CC6D00",
+	"LotusYellow":"#DE9800",
+	"LotusPink":"#B35B79",
+	"LotusTeal":"#6693BF",
+
+	"Error": "#c84053"
+	},
+	"transient_prompt": {
+		"template": "<p:SurimiOrange>{{if .Root}}</><p:SamuraiRed>{{end}}</><p:SumiInk,p:SurimiOrange>{{if .Root}}</><p:OldWhite,p:SamuraiRed> {{end}}<b>{{.Shell}}</b></><p:SurimiOrange>{{if .Root}}</><p:SamuraiRed>{{end}}</><p:PeachyClay>  </> {{ .PWD }} <p:SurimiOrange>❱ ",
+		"foreground": "default",
+		"background": "transparent"
+	},
+	"blocks": [
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"template": "{{ if .Error }} {{.Code}} {{end}}{{if.Root}} {{end}}❱",
+					"trailing_diamond": "",
+					"leading_diamond": "",
+					"foreground": "p:SumiInk",
+					"background": "p:CarpYellow",
+					"foreground_templates":[
+						"{{ if .Error }}p:FujiWhite{{ end }}",
+						"{{ if .Root }}p:OldWhite{{ end }}"
+					],
+					"background_templates":[
+						"{{ if .Error }}p:Error{{ end }}",
+						"{{ if .Root }}p:SamuraiRed{{ end }}"
+					],
+					"type": "status",
+					"style": "diamond",
+					"properties": {
+						"always_enabled": true
+					}
+				}
+			]
+		}
+	],
+	"version": 3,
+	"patch_pwsh_bleed": true,
+	"final_space": true
+}

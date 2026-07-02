@@ -40,18 +40,21 @@ _omp_detect_theme() {
     fi
   fi
 
+  
   set_omp_theme
-
+THEME_FILE_BASE="$HOME/.config/ohmyposh/kanagawa"
   if command -v oh-my-posh >/dev/null 2>&1; then
 	case "$TERM_PROGRAM" in
 		tmux)
-	eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen-simple.json)"
+	[[ -f "$THEME_FILE_BASE-simple.json" ]] && 
+		eval "$(oh-my-posh init zsh --config "$THEME_FILE_BASE-simple.json")"
 		;;
 		zed)
 	return
 		;;
 		*) 
-	eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.json)"
+	[[ -f "$THEME_FILE_BASE.json" ]] && 
+		eval "$(oh-my-posh init zsh --config "$THEME_FILE_BASE.json")"
 		;;
 	esac
   fi
