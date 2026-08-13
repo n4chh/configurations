@@ -1,0 +1,115 @@
+onboarding = false
+# herdr configuration
+# Merged from ~/.config/tmux (git: n4chh/tmux.conf) on 2026-07-27.
+#
+# Theme is switched by toggle-theme.sh (bound to prefix+shift+t below). It
+# rewrites only the region between the THEME markers and reloads herdr. No
+# background service — you press the key after flipping macOS appearance
+# (or run: ~/.config/herdr/toggle-theme.sh auto). Everything OUTSIDE the
+# markers (keybindings, commands) is never touched by the toggle.
+
+# <<<THEME:START>>> managed by toggle-theme.sh — do not hand-edit inside markers
+# THEME-MODE: light
+# Kanagawa Lotus (light) — warm-tan ramp derived from your Ghostty bg #f2e9de
+# (custom kanagawa-lotus-opencode). Ramp monotonic; text clears 4.58:1 on all.
+[theme]
+auto_switch = true 
+# name = "rose-pine-dawn"
+light_name = "rose-pine-dawn"
+dark_name = "rose-pine"
+
+# [theme.custom]
+# panel_bg    = "reset"      # inherit Ghostty light bg #f2e9de
+# surface_dim = "#ece1d3"    # subtle fill, 1.07:1 vs bg
+# surface0    = "#e3d6c5"    # panels / tabs, 1.19:1 vs bg
+# surface1    = "#d8c9b5"    # raised elements, 1.35:1 vs bg
+# overlay0    = "#8a8980"    # inactive borders (palette 8); 2.93:1 — subtle only
+# overlay1    = "#6b6a62"    # active/visible borders; 4.53:1 — safe divider
+# text        = "#545464"    # primary ink (lotusInk1/fg); 6.18:1
+# subtext0    = "#43436c"    # lotusInk2 — darker/emphasis, not lighter muted
+# red         = "#c84053"    # lotusRed — accent/large only (4.05:1)
+# green       = "#6f894e"    # lotusGreen — UI/large only (3.26:1)
+# yellow      = "#77713f"    # lotusYellow (dark olive) — accent/large (4.14:1)
+# blue        = "#4d699b"    # lotusBlue2 — safe for body/nav (4.59:1)
+# teal        = "#597b75"    # lotusAqua — large/UI marks (3.87:1)
+# peach       = "#cc6d00"    # lotusOrange2 — icons/large only (3.04:1, weakest)
+# mauve       = "#624c83"    # lotusViolet — safe everywhere (6.07:1)
+#
+# [ui]
+# accent = "#4d699b"         # lotusBlue2 — active borders / nav highlight
+# agent_panel_sort = "spaces"
+# # <<<THEME:END>>>
+
+[keys]
+# tmux: set -g prefix '`'  (backtick)
+prefix = "backtick"
+
+# tmux: bind r source ~/.config/tmux/tmux.conf  →  reload on prefix+r.
+# herdr's default reload is prefix+shift+r and prefix+r is resize_mode,
+# so the two are swapped below to free prefix+r for reload.
+reload_config = "prefix+r"
+resize_mode   = "prefix+shift+r"
+
+# tmux: set -g mode-keys vi. herdr has no copy-mode setting; the closest
+# equivalent is editing scrollback in $EDITOR (nvim), which honors vi keys.
+edit_scrollback = "prefix+e"
+
+# Rename the current tab. herdr's default is prefix+shift+t, but that is taken
+# by the theme toggle below, so this uses prefix+, — matching tmux's
+# rename-window binding (prefix+,).
+rename_tab = "prefix+comma"
+
+# Toggle light/dark theme (Kanagawa Lotus <-> Wave). Runs toggle-theme.sh,
+# which swaps the THEME region above and reloads. type=shell = no visible pane.
+[[keys.command]]
+key = "prefix+shift+t"
+type = "shell"
+command = "$HOME/.config/herdr/toggle-theme.sh"
+description = "Toggle light/dark theme (rose-pine ⇄ rose-pine-dawn)"
+
+# --- Tool popups ported from the tmux F-key / status-bar bindings ---
+# tmux opened these in `display-popup`; herdr's `type = "pane"` opens a
+# temporary pane that closes when the command exits — the same effect.
+
+# tmux F12 / status "git" click → lazygit in the current directory
+[[keys.command]]
+key = "prefix+alt+g"
+type = "pane"
+command = "lazygit"
+description = "Open lazygit in the current directory"
+
+# --- Move panes / tabs across tabs and workspaces (herdr-move plugin) ---
+# DISABLED for now — the overlay picker didn't feel right and needs rework.
+# The plugin still lives at ~/.config/herdr/plugins/herdr-move/ (linked); these
+# bindings are kept here, commented, so they're easy to re-enable later.
+#   prefix+m → move current pane → tab (pick, or ＋ new tab)
+#   prefix+M → move current pane → workspace (pick, or ＋ new workspace)
+#   prefix+t → move the whole current tab → workspace
+# [[keys.command]]
+# key = "prefix+m"
+# type = "shell"
+# command = "herdr plugin pane open --plugin herdr-move --entrypoint pane-to-tab --placement overlay --focus"
+#
+# [[keys.command]]
+# key = "prefix+shift+m"
+# type = "shell"
+# command = "herdr plugin pane open --plugin herdr-move --entrypoint pane-to-workspace --placement overlay --focus"
+#
+# [[keys.command]]
+# key = "prefix+t"
+# type = "shell"
+# command = "herdr plugin pane open --plugin herdr-move --entrypoint tab-to-workspace --placement overlay --focus"
+
+# Settings that were tmux defaults-overrides but are already herdr defaults,
+# so nothing to set: mouse (mouse_capture=true), 1-based tab indexing,
+# renumber-on-close. herdr manages tab/pane numbering itself.
+
+[ui.toast]
+delivery = "terminal"
+
+[experimental]
+pane_history = true
+switch_ascii_input_source_in_prefix = false
+
+[ui]
+agent_panel_sort = "spaces"

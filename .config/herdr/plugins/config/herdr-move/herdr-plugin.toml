@@ -1,0 +1,27 @@
+id = "herdr-move"
+name = "herdr-move"
+version = "0.1.0"
+min_herdr_version = "0.7.0"
+description = "Move the focused pane / whole tab across tabs and workspaces via a small overlay picker."
+
+# Overlay picker panes. herdr opens these as native, herdr-owned panes and
+# passes HERDR_PLUGIN_CONTEXT_JSON with the pane that was focused when the
+# entrypoint fired — the picker script moves THAT pane, not itself.
+
+[[panes]]
+id = "pane-to-tab"
+title = "Move pane → tab"
+placement = "overlay"
+command = ["bash", "$HERDR_PLUGIN_ROOT/bin/move.sh", "pane-to-tab"]
+
+[[panes]]
+id = "pane-to-workspace"
+title = "Move pane → workspace"
+placement = "overlay"
+command = ["bash", "$HERDR_PLUGIN_ROOT/bin/move.sh", "pane-to-workspace"]
+
+[[panes]]
+id = "tab-to-workspace"
+title = "Move whole tab → workspace"
+placement = "overlay"
+command = ["bash", "$HERDR_PLUGIN_ROOT/bin/move.sh", "tab-to-workspace"]

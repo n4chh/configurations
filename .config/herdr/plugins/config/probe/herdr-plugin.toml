@@ -1,0 +1,11 @@
+id = "probe"
+name = "probe"
+version = "0.1.0"
+min_herdr_version = "0.7.0"
+description = "Env/context probe"
+
+[[actions]]
+id = "probe-dump"
+title = "Probe: dump context"
+command = ["bash", "-c", "env | grep -iE '^HERDR' | sort > /tmp/herdr_plugin_probe.txt; printf '%s' \"${HERDR_PLUGIN_CONTEXT_JSON:-}\" > /tmp/herdr_plugin_ctx.json"]
+contexts = ["pane"]
