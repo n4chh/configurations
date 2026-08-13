@@ -1,0 +1,219 @@
+{
+	"transient_prompt": {
+		"template": " <magenta><b>{{.Shell}}</b></> <darkGray><i>in</i></> <white>{{ .PWD }}</> {{ if gt .Code 0 }}<red>  {{ .Code }}</>{{ end }} {{ if gt .Code 0 }}<red>❯</>{{ else }}<magenta>❯</>{{ end }} ",
+		"foreground": "default",
+		"background": "transparent"
+	},
+	"blocks": [
+		{
+			"type": "prompt",
+			"alignment": "right",
+			"filler": "─",
+			"segments": [
+				{
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": " {{ .Full }}",
+					"foreground": "#000000",
+					"background": "#50fa7b",
+					"type": "node",
+					"style": "diamond"
+				},
+				{
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": " {{ .Full }}",
+					"foreground": "#000000",
+					"background": "#ff5555",
+					"type": "npm",
+					"style": "diamond",
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"package-lock.json"
+						]
+					}
+				},
+				{
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": "󰋁 {{ .Full }}",
+					"foreground": "#000000",
+					"background": "#ffb86c",
+					"type": "pnpm",
+					"style": "diamond",
+					"properties": {
+						"display_mode": "files",
+						"extensions": [
+							"pnpm-lock.yaml"
+						]
+					}
+				},
+				{
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": "<#FEE058>󰌠 </>{{ .Full }}",
+					"foreground": "#ffffff",
+					"background": "#3870A2",
+					"type": "python",
+					"style": "diamond",
+					"properties": {
+						"display_mode": "files"
+					}
+				},
+				{
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": " {{ .Full }}",
+					"foreground": "#ED1D23",
+					"background": "#ffffff",
+					"type": "java",
+					"style": "diamond"
+				},
+				{
+					"template": "  󰟓 {{ .Full }}",
+					"foreground": "#000000",
+					"background": "#69d7e2",
+					"type": "go",
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"style": "diamond"
+				},
+				{
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}",
+					"foreground": "#000000",
+					"background": "#dea584",
+					"type": "rust",
+					"style": "diamond"
+				},
+				{
+					"type": "zig",
+					"style": "diamond",
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"foreground": "#342311",
+					"background": "#ffad55",
+					"template": " {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+				},
+				{
+					"leading_diamond": "",
+					"trailing_diamond": "",
+					"template": " {{ .Full }}",
+					"foreground": "#ffffff",
+					"background": "#6272a4",
+					"type": "php",
+					"style": "diamond"
+				},
+				{
+					"type": "text",
+					"style": "plain",
+					"template": "─"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"properties": {
+						"cache_duration": "none"
+					},
+					"template": "{{ .UserName }}{{ if .SSHSession }} <darkGray><i>at</i></> <blue> {{.HostName }}</>{{ end }}",
+					"foreground": "white",
+					"foreground_templates": [
+						"{{ if .Error }}red{{ end }}"
+					],
+					"background": "transparent",
+					"type": "session",
+					"style": "plain"
+				},
+				{
+					"properties": {
+						"cache_duration": "none",
+						"style": "full",
+						"folder_icon": " ",
+						"mapped_locations_enabled": true,
+						"mapped_locations": {
+							"~/Desktop/Github": " ",
+							"~/.config": " "
+						}
+					},
+					"template": " <darkGray><i>in</i></> <b>{{ .Path }}</b>",
+					"foreground": "cyan",
+					"foreground_templates": [
+						"{{ if .Error }}red{{ end }}"
+					],
+					"background": "transparent",
+					"type": "path",
+					"style": "plain"
+				},
+				{
+					"type": "aws",
+					"style": "plain",
+					"background": "transparent",
+					"foreground": "yellow",
+					"template": " <darkGray><i>on</i></>   {{.Profile}}{{if .Region}}@{{.Region}}{{end}}"
+				},
+				{
+					"type": "text",
+					"style": "plain",
+					"background": "transparent",
+					"foreground": "cyan",
+					"template": "{{ if .Env.HTTP_PROXY }} <darkGray><i>via</i></> 󰛳 {{ .Env.HTTP_PROXY }}{{ end }}"
+				}
+			],
+			"newline": true
+		},
+		{
+			"type": "prompt",
+			"alignment": "right",
+			"segments": [
+				{
+					"properties": {
+						"branch_icon": "",
+						"cache_duration": "none",
+						"display_changing_color": true,
+						"fetch_status": true,
+						"fetch_upstream_icon": true,
+						"full_branch_path": true
+					},
+					"template": "<magenta></> ({{ url .UpstreamIcon .UpstreamURL }} {{ url .HEAD .UpstreamURL }}){{ if gt .Ahead 0 }}<green> +{{ .Ahead }}</>{{ end }}{{ if gt .Behind 0 }}<red> -{{ .Behind }}</>{{ end }}{{ if .Working.Changed }}<yellow>  {{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }}<white>  {{ .Staging.String }}</>{{ end }} ",
+					"foreground": "default",
+					"background": "transparent",
+					"type": "git",
+					"style": "plain"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "left",
+			"segments": [
+				{
+					"template": "<magenta><b>{{.Name}}</b></>",
+					"foreground": "magenta",
+					"background": "transparent",
+					"type": "shell",
+					"style": "plain"
+				},
+				{
+					"template": " <darkGray>·</> {{ if .Error}}<red> {{.Code}}</>{{else}}<green> </>{{end}} {{ if .Error}}<red>❯</>{{else}}<magenta>❯</>{{end}} ",
+					"foreground": "green",
+					"background": "transparent",
+					"type": "status",
+					"style": "plain",
+					"properties": {
+						"always_enabled": true
+					}
+				}
+			],
+			"newline": true
+		}
+	],
+	"version": 3,
+	"patch_pwsh_bleed": true,
+	"final_space": true
+}
