@@ -1,6 +1,6 @@
 {
 	"transient_prompt": {
-		"template": " <magenta><b>{{.Shell}}</b></> <darkGray><i>in</i></> <white>{{ .PWD }}</> {{ if gt .Code 0 }}<red>  {{ .Code }}</>{{ end }} {{ if gt .Code 0 }}<red>❯</>{{ else }}<magenta>❯</>{{ end }} ",
+		"template": " <red><b>{{.Shell}}</b></> <darkGray><i>in</i></> <white>{{ .PWD }}</>{{ if gt .Code 0 }}<red>  {{ .Code }}</>{{ end }} {{ if gt .Code 0 }}<red>❱</>{{ else }}❱{{ end }} ",
 		"foreground": "default",
 		"background": "transparent"
 	},
@@ -8,7 +8,21 @@
 		{
 			"type": "prompt",
 			"alignment": "right",
-			"filler": "─",
+			"segments": [
+
+				{
+					"template": " FAILED: {{.Code}}",
+					"foreground": "red",
+					"background": "transparent",
+					"type": "status",
+					"style": "plain"
+				}
+			]
+		},
+		{
+			"type": "prompt",
+			"alignment": "right",
+			"filler": "<gray>─</>",
 			"segments": [
 				{
 					"leading_diamond": "",
@@ -109,10 +123,12 @@
 				{
 					"type": "text",
 					"style": "plain",
+					"foreground": "gray",
 					"template": "─"
 				}
 			]
 		},
+
 		{
 			"type": "prompt",
 			"alignment": "left",
@@ -142,7 +158,7 @@
 						}
 					},
 					"template": " <darkGray><i>in</i></> <b>{{ .Path }}</b>",
-					"foreground": "cyan",
+					"foreground": "lightgray",
 					"foreground_templates": [
 						"{{ if .Error }}red{{ end }}"
 					],
@@ -167,6 +183,7 @@
 			],
 			"newline": true
 		},
+
 		{
 			"type": "prompt",
 			"alignment": "right",
@@ -193,21 +210,18 @@
 			"alignment": "left",
 			"segments": [
 				{
-					"template": "<magenta><b>{{.Name}}</b></>",
-					"foreground": "magenta",
+					"template": "<b>{{.Name}}</b>",
+					"foreground": "red",
 					"background": "transparent",
 					"type": "shell",
 					"style": "plain"
 				},
 				{
-					"template": " <darkGray>·</> {{ if .Error}}<red> {{.Code}}</>{{else}}<green> </>{{end}} {{ if .Error}}<red>❯</>{{else}}<magenta>❯</>{{end}} ",
-					"foreground": "green",
+					"template": " <darkGray>·</> ❱ ",
+					"foreground": "red",
 					"background": "transparent",
-					"type": "status",
-					"style": "plain",
-					"properties": {
-						"always_enabled": true
-					}
+					"type": "text",
+					"style": "plain"
 				}
 			],
 			"newline": true
